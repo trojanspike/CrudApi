@@ -1,0 +1,22 @@
+{
+	"name": "laravel/laravel",
+	"description": "The Laravel Framework.",
+	"keywords": [],
+	"license": "MIT",
+	"require": {},
+	"require-dev": {
+    		"heroku/heroku-buildpack-php": "*"
+  	},
+	"autoload": {
+		"classmap": []
+	},
+	"scripts": {
+		"post-install-cmd": [],
+		"post-update-cmd": [],
+		"post-create-project-cmd": []
+	},
+	"config": {
+		"preferred-install": "dist"
+	},
+	"minimum-stability": "stable"
+}
