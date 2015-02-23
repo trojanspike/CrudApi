@@ -1,6 +1,6 @@
-### basic Auth one page CRUD api
+### Basic Auth one page CRUD api
 #### no composer - just require
-versatile usage , some small examples below
+Flexable usage , some small examples below & example folder
 ```php
 <?php
 // api.php
@@ -23,11 +23,21 @@ Api::auth(function($request , $response, $run){
 	}
 });
 ```
-
-1. Api {static class}
+### Api {static class} methods
+* ::HTTP_VERBS{ get, post, put, delete }
+* ::auth($1) // $1 = function($1, $2, $3) : $1 = Request class , $2 = Response class , $3 = run Api::HTTP_VERBS
+* Example could be :
 ```php
-	Api::HTTP_VERB{ get, post, put, delete }
-	Api::auth($1) // $1 = function($1, $2, $3) : $1 = Request class , $2 = Response class , $3 = run Api::HTTP_VERBS
+	Api::post(function($req, $res){
+		$res->json( $req->input() );
+	});
+	Api::auth(function($req, $res, $run){
+		if(true){
+			$run();
+		} else {
+			$res->forBidden();
+		}
+	});
 ```
 
 2. Request {object class}
@@ -52,3 +62,11 @@ Api::auth(function($request , $response, $run){
 	$response->ok() // sets status 200 , output jsonObject {message:'Success'}
 	$response->created() // sets status 201 , output jsonObject {message:'Success'}
 ```
+
+```bash
+	curl https://user:pass@site-domain.com/api.php -X POST -d '{"key":"val"}' -H 'accept:application/json'
+```
+
+
+TODO
+* add headers X-* when func "getallheaders" isn't avail
