@@ -1,6 +1,6 @@
 {
-	"name": "laravel/laravel",
-	"description": "The Laravel Framework.",
+	"name": "BasicPageCRUD",
+	"description": " Api for easy CRUD api with header and basic auth ",
 	"keywords": [],
 	"license": "MIT",
 	"require": {},
