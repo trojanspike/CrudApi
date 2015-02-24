@@ -7,7 +7,7 @@ Flexable usage , some small examples below & example folder
 require_once __DIR__.'/src/Api.php';
 require_once __DIR__.'/path/to/Database.php';
 Api::inject('DB', Database::init()); // for e.g
-Api::post(function($request , $response){
+Api::post(function($request , $response, $injects){
 	$response->json([
 		'access'=>'true'
 	]);
@@ -108,4 +108,4 @@ Allow-Headers : Authorization, Content-Type, Accept, X-username , X-password , X
 TODO
 * add headers X-* when func "getallheaders" isn't avail
 * Request #get,input,header to accept array and returns all if avail else false. ->get(['id','key','page'])
-* - add Api::inject method to add onto Api::VERB - callback i.e Api::inject([DB, $Data_arrays])
+* ~~ add Api::inject method to add onto Api::VERB - callback i.e Api::inject([DB, $Data_arrays]) ~~
