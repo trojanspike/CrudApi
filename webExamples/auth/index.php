@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../../src/Api.php';
-
+//auth $ curl -u user:pass http://domain.com/auth?module=users -X POST -d '{"key":"val"}' -H 'accept:application/json'
 Api::auth(function($request, $response, $run){
 
     if( $request->basicAuth('username') == 'user' && $request->basicAuth('password') == 'pass' ){

@@ -10,6 +10,7 @@ Api::post(function($req, $res){
 
 //api $ curl http://domain.com/api?module=users -H 'accept:application/json'
 //auth $ curl -u user:pass http://domain.com/auth?module=users -H 'accept:application/json'
+//headerAuth $ curl http://domain.com/headerAuth?module=users -H 'X-username:user' -H 'X-password:pass' -H 'accept:application/json'
 Api::get(function($req, $res){
     $res->json([['id' => 1, 'name' => 'pete', 'job' => 'security'],
         ['id' => 2,'name' => 'John', 'job' => 'care taker'],
