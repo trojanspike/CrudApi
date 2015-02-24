@@ -9,7 +9,8 @@ require_once __DIR__.'/path/to/Database.php';
 Api::inject('DB', Database::init()); // for e.g
 Api::post(function($request , $response, $injects){
 	$response->json([
-		'access'=>'true'
+		'access'=>'true',
+		'userInfo' => $inject['userInfo']
 	]);
 });
 Api::auth(function($request , $response, $run, $injects){
@@ -24,6 +25,7 @@ Api::auth(function($request , $response, $run, $injects){
 	// PDO $db->prepare would most likely be used , here just quick/rough example
 	if( $db->query('SELECT FROM users WHERE user='.mysql_real_escape_string($Auth["username"]).' AND pass='.mysql_real_escape_string($Auth["password"])) ){
 		// success , run Api::post for incoming /POST requests
+		Api::inject('userInfo', $db->fetchAll());
 		$run();
 	} else {
 		// error , show error message

@@ -7,7 +7,7 @@ $userInfo->job = 'Care Taker';
 Api::inject('user', $userInfo);
 
 //auth $ curl -u user:pass http://domain.com/auth?module=users -X POST -d '{"key":"val"}' -H 'accept:application/json'
-//auth $ curl -u user:pass http://domain.com/auth?module=injects -X POST -d '{"key":"val"}' -H 'accept:application/json'
+//auth $ curl -u user:pass http://domain.com/auth?module=injects -X PUT -d '{"job":"Security"}' -H 'accept:application/json'
 
 Api::auth(function($request, $response, $run){
 
