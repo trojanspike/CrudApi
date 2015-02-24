@@ -95,17 +95,19 @@ Api::auth(function($request , $response, $run, $injects){
 	});
 ```
 #### Allow - Origin & Header
-Allow-Origin: *
-Allow-Headers : Authorization, Content-Type, Accept, X-username , X-password , X-verb , Auth-Token
+- Allow-Origin: *
+- Allow-Headers : Authorization, Content-Type, Accept, X-username , X-password , X-verb , Auth-Token
 
 ```bash
 	curl http://domain.com/api?module=users -X POST -d '{"key":"val"}' -H 'accept:application/json' # open api
 	curl -u user:pass http://domain.com/auth?module=users -X POST -d '{"key":"val"}' -H 'accept:application/json' # basicAuth api
 	curl http://domain.com/headerAuth?module=users -X POST -d '{"key":"val"}' -H 'X-username:user' -H 'X-password:pass' -H 'accept:application/json' # header auth
+	## using injects
+	curl -u user:pass http://domain.com/auth?module=injects -X POST -d '{"key":"val"}' -H 'accept:application/json' # basicAuth /api/inject
 ```
 
 
 TODO
 * add headers X-* when func "getallheaders" isn't avail
 * Request #get,input,header to accept array and returns all if avail else false. ->get(['id','key','page'])
-* ~~ add Api::inject method to add onto Api::VERB - callback i.e Api::inject([DB, $Data_arrays]) ~~
+* ~~add Api::inject method to add onto Api::VERB - callback i.e Api::inject([DB, $Data_arrays])~~
