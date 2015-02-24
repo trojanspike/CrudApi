@@ -31,17 +31,19 @@ Api::auth(function($request , $response, $run){
 #### Api {static class} methods
 * ::HTTP_VERBS{ get, post, put, delete }
 * ::error($1) # $1 = function($1, $2) : $1 = error message , $2 = Response class
+* ::inject($1, $2) = $1{string}, $2{*any , onject , function , class etc} # injects last into ::auth , ::VERB, get, put etc
 * ::auth($1) # $1 = function($1, $2, $3) : $1 = Request class , $2 = Response class , $3 = run
 * Example might be :
 ```php
-	Api::post(function($req, $res){
+	Api::inject('run', true);
+	Api::post(function($req, $res, $injects){
 		$res->json( $req->input() );
 	});
 	Api::error(function($mess, $res){
 		$res->status($mess['status'])json( $mess );
 	});
-	Api::auth(function($req, $res, $run){
-		if(true){
+	Api::auth(function($req, $res, $run, $injects){
+		if($injects['run']){
 			$run();
 		} else {
 			$res->forBidden();
@@ -96,4 +98,4 @@ Allow-Headers : Authorization, Content-Type, Accept, X-username , X-password , X
 TODO
 * add headers X-* when func "getallheaders" isn't avail
 * Request #get,input,header to accept array and returns all if avail else false. ->get(['id','key','page'])
-* add Api::inject method to add onto Api::VERB - callback i.e Api::inject([DB, $Data_arrays])
+* ~ add Api::inject method to add onto Api::VERB - callback i.e Api::inject([DB, $Data_arrays])

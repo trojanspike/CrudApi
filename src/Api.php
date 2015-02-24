@@ -5,9 +5,17 @@ require_once __dir__.'/lib/Response.php';
 
 class Api {
 
+	/**
+	* @var 
+	**/
 	private static $verbAllowed = ['GET', 'POST', 'PUT', 'DELETE'];
-	private static $verbFunctions = [], $errorFunc, $request, $response;
+	private static $verbFunctions = [], $injects = [], $errorFunc, $request, $response;
 
+	/**
+	* ::auth
+	*
+	* @param function				$callb 
+	**/
 	public static function auth($callb){
 		static::$request = new Request;
 		static::$response = new Response;
@@ -17,8 +25,19 @@ class Api {
 			static::$response,
 			function(){
 				static::run(static::$request->verb);
-			}
+			},
+			static::$injects
 		]);
+	}
+
+	/**
+	 * ::inject
+	 *
+	 * @param string				$as
+	 * @param *any					$inj
+	 **/
+	public static function inject($as, $inj){
+		static::$injects[$as] = $inj;
 	}
 
 	public static function get($callb){
@@ -50,7 +69,7 @@ class Api {
 				'accept '=> static::$request->accept
 			], static::$response]);
 			} else {
-				call_user_func_array( static::$verbFunctions[$verb], [static::$request,static::$response]);
+				call_user_func_array( static::$verbFunctions[$verb], [static::$request,static::$response, static::$injects]);
 			}
 		} else {
 			call_user_func_array(static::$errorFunc, [[
