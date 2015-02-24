@@ -5,14 +5,24 @@ Flexable usage , some small examples below & example folder
 <?php
 // api.php
 require_once __DIR__.'/src/Api.php';
+require_once __DIR__.'/path/to/Database.php';
+Api::inject('DB', Database::init()); // for e.g
 Api::post(function($request , $response){
 	$response->json([
 		'access'=>'true'
 	]);
 });
-Api::auth(function($request , $response, $run){
-	// would be DB query in real application
-	if( $request->basicAuth('username') == 'user' && $request->basicAuth('password') == 'pass' ){
+Api::auth(function($request , $response, $run, $injects){
+	$db = $injects['DB'];
+	$Auth = $request->basicAuth();
+	if(!$basicAuth){
+		$response->status(401)->json([
+			'access'=>'false'
+		]);
+		exit();
+	}
+	// PDO $db->prepare would most likely be used , here just quick/rough example
+	if( $db->query('SELECT FROM users WHERE user='.mysql_real_escape_string($Auth["username"]).' AND pass='.mysql_real_escape_string($Auth["password"])) ){
 		// success , run Api::post for incoming /POST requests
 		$run();
 	} else {
@@ -98,4 +108,4 @@ Allow-Headers : Authorization, Content-Type, Accept, X-username , X-password , X
 TODO
 * add headers X-* when func "getallheaders" isn't avail
 * Request #get,input,header to accept array and returns all if avail else false. ->get(['id','key','page'])
-* ~ add Api::inject method to add onto Api::VERB - callback i.e Api::inject([DB, $Data_arrays])
+* - add Api::inject method to add onto Api::VERB - callback i.e Api::inject([DB, $Data_arrays])
