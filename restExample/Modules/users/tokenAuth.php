@@ -1,7 +1,10 @@
 <?php
+/*
+curl https://basicauthcrud-api-trojanspike.c9.io/api/users/tokenAuth/15/tester/value -H 'Auth-Token:abc123' -H 'accept:application/json'
+*/
 require_once __DIR__.'/../../../src/Api.php';
 
-Api::inject('username', '');
+Api::inject('token', 'abc123');
 
 Api::get(require_once(__DIR__.'/_verbs/get.php'));
 Api::post(require_once(__DIR__.'/_verbs/post.php'));
@@ -13,6 +16,18 @@ Api::error(function($message , $res){
 });
 
 Api::auth(function($req, $res, $run, $injects){
-    $run();
+    if( $token = $req->header('auth-token') ){
+        
+        if( $token == $injects['token'] ){
+            $run();
+        } else {
+            $res->status(401)->json([
+                'error' => 'unauth2'    
+            ]);
+        }
+        
+    } else {
+        $res->status(401)->json($req->header());
+    }
 });
 ?>

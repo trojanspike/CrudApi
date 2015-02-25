@@ -8,7 +8,7 @@ $api = __DIR__.'/Modules/'.$parts[0].'/'.$parts[1].'.php';
 
 unset($parts[0], $parts[1]);
 
-Api::inject('parts', array_values($parts));
+Api::inject('params', array_values($parts));
 $public = new stdClass;
 $public->name = "global corps";
 $public->ceo = 'Steve Carlisle';
