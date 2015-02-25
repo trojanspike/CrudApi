@@ -16,14 +16,14 @@ Api::post(function($request , $response, $injects){
 Api::auth(function($request , $response, $run, $injects){
 	$db = $injects['DB'];
 	$Auth = $request->basicAuth();
-	if(!$basicAuth){
+	if(!$Auth){
 		$response->status(401)->json([
 			'access'=>'false'
 		]);
 		exit();
 	}
 	// PDO $db->prepare would most likely be used , here just quick/rough example
-	if( $db->query('SELECT FROM users WHERE user='.mysql_real_escape_string($Auth["username"]).' AND pass='.mysql_real_escape_string($Auth["password"])) ){
+	if( $db->query('SELECT FROM users WHERE user='.$Auth["username"].' AND pass='.$Auth["password"]) ){
 		// success , run Api::post for incoming /POST requests
 		Api::inject('userInfo', $db->fetchAll());
 		$run();
@@ -107,10 +107,13 @@ Api::auth(function($request , $response, $run, $injects){
 	## using injects
 	curl -u user:pass http://domain.com/auth?module=injects -X POST -d '{"key":"val"}' -H 'accept:application/json' # basicAuth /api/inject
 	curl -u user:pass http://domain.com/auth?module=injects -X PUT -d '{"job":"Security"}' -H 'accept:application/json' # basicAuth /api/inject
+	### Auth using Auth-Token
+	curl http://domain.com/AUTH_PHP/webExamples/token/ -X GET -H 'Auth-Token:tk-1fg5@e45s' -H 'accept:application/json'
+	curl http://domain.com/AUTH_PHP/webExamples/token/ -X PUT -H 'Auth-Token:tk-1fg5@e45s' -H 'accept:application/json'
 ```
 
 
 TODO
-* add headers X-* when func "getallheaders" isn't avail
+* ~~add headers X-* when func "getallheaders" isn't avail~~
 * Request #get,input,header to accept array and returns all if avail else false. ->get(['id','key','page'])
 * ~~add Api::inject method to add onto Api::VERB - callback i.e Api::inject([DB, $Data_arrays])~~

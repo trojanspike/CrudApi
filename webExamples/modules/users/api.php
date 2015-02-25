@@ -14,7 +14,8 @@ Api::post(function($req, $res){
 Api::get(function($req, $res){
     $res->json([['id' => 1, 'name' => 'pete', 'job' => 'security'],
         ['id' => 2,'name' => 'John', 'job' => 'care taker'],
-        ['id' => 3,'name' => 'jane', 'job' => 'assistant']]);
+        ['id' => 3,'name' => 'jane', 'job' => 'assistant'],
+		'Auth-Token' => $req->header('Auth-Token') ]);
 });
 
 //api $ curl http://domain.com/api?module=users -X PUT -d '{"key":"val"}' -H 'accept:application/json'
