@@ -1,5 +1,6 @@
-#### Basic Auth one page CRUD api
+#### Basic Auth CRUD api
 ##### no composer - just require
+- Version 0.1.0
 Flexable usage , some small examples below & example folder
 ```php
 <?php
