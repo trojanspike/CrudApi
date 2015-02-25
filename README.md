@@ -113,6 +113,19 @@ Api::auth(function($request , $response, $run, $injects){
 	curl http://domain.com/token/ -X PUT -H 'Auth-Token:tk-1fg5@e45s' -H 'accept:application/json'
 ```
 
+```bash
+ ## Rest api
+ # open to web access - no header accept needed
+ curl https://basicauthcrud-api-trojanspike.c9.io/api/web/open/15/tester/value
+ # closed to web , header accept is needed
+ curl https://basicauthcrud-api-trojanspike.c9.io/api/web/closed/15/tester/value -H 'accept:application/json'
+ 
+ # auth require , Token / HeaderAuth / BasicAuth
+ curl https://basicauthcrud-api-trojanspike.c9.io/api/users/tokenAuth/15/tester/value -H 'Auth-Token:abc123' -H 'accept:application/json'
+ curl https://basicauthcrud-api-trojanspike.c9.io/api/users/headerAuth/15/tester/value -H 'x-username:user123' -H 'x-password:pass123' -H 'accept:application/json'
+ curl -u user123:pass123 https://basicauthcrud-api-trojanspike.c9.io/api/users/basicAuth/15/tester/value -H 'accept:application/json'
+```
+
 
 TODO
 * ~~add headers X-* when func "getallheaders" isn't avail~~

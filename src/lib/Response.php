@@ -24,6 +24,12 @@ class Response {
 			'message' => 'ClientError'
 		]);
 	}
+	
+	public function unAuth(){
+		$this->status(401)->json([
+			'message' => 'ClientError'
+		]);
+	}
 
 	public function notFound(){
 		$this->status(404)->json([
