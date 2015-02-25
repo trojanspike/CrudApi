@@ -108,8 +108,8 @@ Api::auth(function($request , $response, $run, $injects){
 	curl -u user:pass http://domain.com/auth?module=injects -X POST -d '{"key":"val"}' -H 'accept:application/json' # basicAuth /api/inject
 	curl -u user:pass http://domain.com/auth?module=injects -X PUT -d '{"job":"Security"}' -H 'accept:application/json' # basicAuth /api/inject
 	### Auth using Auth-Token
-	curl http://domain.com/AUTH_PHP/webExamples/token/ -X GET -H 'Auth-Token:tk-1fg5@e45s' -H 'accept:application/json'
-	curl http://domain.com/AUTH_PHP/webExamples/token/ -X PUT -H 'Auth-Token:tk-1fg5@e45s' -H 'accept:application/json'
+	curl http://domain.com/token/ -X GET -H 'Auth-Token:tk-1fg5@e45s' -H 'accept:application/json'
+	curl http://domain.com/token/ -X PUT -H 'Auth-Token:tk-1fg5@e45s' -H 'accept:application/json'
 ```
 
 
