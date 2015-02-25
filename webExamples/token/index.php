@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../../src/Api.php';
-/* Auth token could be in the DB AuthSessions takes with poss a json data row */
+/* Auth token could be in the DB AuthSessions table with poss a json data row */
 $userInfo = new stdClass;
 $userInfo->token = 'tk-1fg5@e45s';
 $userInfo->start = time() - ( 60 * 60 );
