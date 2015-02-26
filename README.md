@@ -67,7 +67,7 @@ Api::auth(function($request , $response, $run, $injects){
 * ->verb	# current http verb , X-verb over ride this & can be overridden
 * ->basicAuth($1) // $1 { string#username / password | empty } returns value or array if empty $_AUTH_ARRAY
 * ->header($1) // $1 { string | empty } returns value if found else false # or array if empty $_HEADERS
-* ->init($1) // $1 { string | empty } returns value if found else false # or array if empty $_POST / $_PUT etc
+* ->input($1) // $1 { string | empty } returns value if found else false # or array if empty $_POST / $_PUT etc
 * ->get($1) // $1 { string | empty } returns value if found else false # or array if empty $_GET array
 * Example might be :
 ```php
