@@ -7,8 +7,13 @@ class Request {
 
 	public function __construct(){
 		/* Cors */
-		header('Access-Control-Allow-Origin: *');
+		if( isset($_SERVER['HTTP_ORIGIN']) ){
+			header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
+	        header("Access-Control-Allow-Credentials: true");
+	        header("Access-Control-Max-Age: 86400");
+		}
 		header('Access-Control-Allow-Headers: Authorization, Content-Type, Accept, Auth-Token , X-verb, X-username, X-password');
+		header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
 		if( function_exists('getallheaders') ){
 			$this->_headers = getallheaders();
 		} else {
