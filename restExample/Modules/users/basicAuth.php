@@ -22,7 +22,7 @@ Api::auth(function($req, $res, $run, $injects){
     if( $req->basicAuth('username') == $injects['username'] && $req->basicAuth('password') == $injects['password'] ){
         $run();
     } else {
-        $req->unAuth();
+        $res->unAuth();
     }
 });
 ?>

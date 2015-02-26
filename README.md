@@ -81,6 +81,7 @@ Api::auth(function($request , $response, $run, $injects){
 * ->json($1)  // $1 { array | object } out json encoded, headers set to application/json
 * ->badRequest() // sets status 400 , output jsonObject {message:'ClientError'}
 * ->notFound() // sets status 404 , output jsonObject {message:'ClientError'}
+* ->unAuth() // sets status 401 , output jsonObject {message:'ClientError'}
 * ->ok() // sets status 200 , output jsonObject {message:'Success'}
 * ->created() // sets status 201 , output jsonObject {message:'Success'}
 * Example might be :
