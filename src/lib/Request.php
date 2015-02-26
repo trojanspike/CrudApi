@@ -73,15 +73,15 @@ class Request {
 	}
 	
 	private function _returnKeyValsFromArray($obj , $keyArr){
-		$return = [];
+		$dataArr = [];
 		foreach( $keyArr as $key ){
 			$_val = $this->_returnKeyVals($obj ,$key);
 			if($_val == false){
 				return false;
 			}
-			$return[]=$_val;
+			$dataArr[]=$_val;
 		}
-		return $return;
+		return $dataArr;
 	}
 	
 
