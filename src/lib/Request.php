@@ -22,7 +22,6 @@ class Request {
 		    { 
 		        if (substr($name, 0, 5) == 'HTTP_') 
 		        { 
-		        	/* TODO , ensure Allow-Headers are correct format - X-* Auth-T* */
 		            $headers[str_replace(' ', '-', ucwords(strtolower(str_replace('_', ' ', substr($name, 5)))))] = $value; 
 		        } 
 		    } 

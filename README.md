@@ -44,12 +44,13 @@ Api::auth(function($request , $response, $run, $injects){
 ```
 
 ```javascript
+/* jQuery implementation */
 $.ajax({
 	type : 'GET',
     beforeSend: function(xhr) {
-      xhr.setRequestHeader("accept", 'application/json');
-			   xhr.setRequestHeader("x-username", 'user123');
-			   xhr.setRequestHeader("x-password", 'pass123');
+		xhr.setRequestHeader("accept", 'application/json');
+		xhr.setRequestHeader("x-username", 'user123');
+		xhr.setRequestHeader("x-password", 'pass123');
     },
     dataType: "json",
     url: 'https://domain.com/api/users/headerAuth/15/tester/value',
@@ -57,6 +58,16 @@ $.ajax({
         console.log(data);
     }
 });
+/* angular implementation */
+$http({method: 'GET', 
+			url: 'https://domain.com/api/users/headerAuth/15/tester/value', 
+			headers: {
+				'Accept': 'application/json',
+				'x-username' : 'user123',
+				'x-password' : 'pass123'}
+		}).then(function(obj){
+			console.log(obj);
+		});
 ```
 
 ### Requirements
