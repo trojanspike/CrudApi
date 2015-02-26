@@ -52,7 +52,7 @@ $.ajax({
 			   xhr.setRequestHeader("x-password", 'pass123');
     },
     dataType: "json",
-    url: 'https://basicauthcrud-api-trojanspike.c9.io/api/users/headerAuth/15/tester/value',
+    url: 'https://domain.com/api/users/headerAuth/15/tester/value',
     success: function(data) {
         console.log(data);
     }
