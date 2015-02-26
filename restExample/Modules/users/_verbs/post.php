@@ -1,9 +1,12 @@
 <?php
 
 return function($req, $res, $injects){
-    $res->json(['verb' => 'POST',
+    $res->json([
+        'get' => $req->get(),
         'input' => $req->input(),
-        'PublicData' => $injects['PublicData']
+        'header' => $req->header(),
+        'basic' => $req->basicAuth(),
+        'injects' => $injects    
     ]);
 }
 

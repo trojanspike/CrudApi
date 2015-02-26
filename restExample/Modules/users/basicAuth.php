@@ -7,7 +7,12 @@ curl -u user123:pass123 https://basicauthcrud-api-trojanspike.c9.io/api/users/ba
 
 Api::inject('username', 'user123');
 Api::inject('password', 'pass123');
-Api::inject('token', 'abc123');
+
+Api::inject('private', [
+    'netWorth' => '£100,000',
+    'limited' => true,
+    'projectGrowth' => '280% PA'
+]);
 
 Api::get(require_once(__DIR__.'/_verbs/get.php'));
 Api::post(require_once(__DIR__.'/_verbs/post.php'));

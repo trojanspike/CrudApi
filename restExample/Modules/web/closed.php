@@ -4,7 +4,7 @@ curl https://basicauthcrud-api-trojanspike.c9.io/api/web/closed/15/tester/value 
 */
 
 Api::get(function($req, $res, $injects){
-    $res->json( $injects );
+    $res->json( ['api' => 'web/closed - closed from viewing on web', 'injects' => $injects] );
 });
 
 Api::error(function($mess, $res){

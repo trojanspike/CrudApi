@@ -1,9 +1,12 @@
 <?php
 
 return function($req, $res, $injects){
-    $res->json(['verb' => 'DELETE',
-    '   get' => $req->get(),
-        'PublicData' => $injects['PublicData']
+    $res->json([
+        'get' => $req->get(),
+        'input' => $req->input(),
+        'header' => $req->header(),
+        'basic' => $req->basicAuth(),
+        'injects' => $injects    
     ]);
 }
 
