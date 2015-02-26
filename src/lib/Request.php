@@ -60,6 +60,9 @@ class Request {
 	}
 	
 	private function _returnKeyVals($obj, $key){
+		if( is_array($key) ){
+			return $this->_returnKeyValsFromArray($obj, $key);
+		}
 		if($key){
 			/*#BUG : Some server PHP's casting headers[keys] to lower case , test before returning */
 			$keyStr = (isset($obj[$key]))?$key:strtolower($key);
@@ -67,6 +70,18 @@ class Request {
 		} else {
 			return $obj;
 		}
+	}
+	
+	private function _returnKeyValsFromArray($obj , $keyArr){
+		$return = [];
+		foreach( $keyArr as $key ){
+			$_val = $this->_returnKeyVals($obj ,$key);
+			if($_val == false){
+				return false;
+			}
+			$return[]=$_val;
+		}
+		return $return;
 	}
 	
 
