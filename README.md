@@ -1,6 +1,6 @@
 #### Basic Auth CRUD api
 ##### no composer - just require
-- Version 0.1.0
+- Version 0.1.1
 - Flexable usage , some small examples below & example folder
 ```php
 <?php

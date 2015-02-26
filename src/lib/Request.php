@@ -56,7 +56,9 @@ class Request {
 	
 	private function _returnKeyVals($obj, $key){
 		if($key){
-			return ( isset($obj[$key]) )?$obj[$key]:false;
+			/*#BUG : Some server PHP's casting headers[keys] to lower case , test before returning */
+			$keyStr = (isset($obj[$key]))?$key:strtolower($key);
+			return ( isset($obj[$keyStr]) )?$obj[$keyStr]:false;
 		} else {
 			return $obj;
 		}
