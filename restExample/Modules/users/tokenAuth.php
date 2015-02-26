@@ -2,7 +2,6 @@
 /*
 curl https://basicauthcrud-api-trojanspike.c9.io/api/users/tokenAuth/15/tester/value -H 'Auth-Token:abc123' -H 'accept:application/json'
 */
-require_once __DIR__.'/../../../src/Api.php';
 
 Api::inject('token', 'abc123');
 

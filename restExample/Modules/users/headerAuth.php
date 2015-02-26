@@ -3,7 +3,6 @@
 curl https://basicauthcrud-api-trojanspike.c9.io/api/users/headerAuth/15/tester/value -H 'x-username:user123' -H 'x-password:pass123' -H 'accept:application/json'
 
 */
-require_once __DIR__.'/../../../src/Api.php';
 
 Api::inject('username', 'user123');
 Api::inject('password', 'pass123');

@@ -4,7 +4,6 @@
 curl -u user123:pass123 https://basicauthcrud-api-trojanspike.c9.io/api/users/basicAuth/15/tester/value -H 'accept:application/json'
 */
 
-require_once __DIR__.'/../../../src/Api.php';
 
 Api::inject('username', 'user123');
 Api::inject('password', 'pass123');
