@@ -1,6 +1,6 @@
 #### Basic Auth CRUD api
 ##### no composer - just require
-- Version 0.1.2
+- Version 0.1.6
 - Flexable usage , some small examples below & example folder
 ```php
 <?php
@@ -81,10 +81,10 @@ $.ajax({
 ```
 #### Request {object class} methods
 * ->verb	# current http verb , X-verb over ride this & can be overridden
-* ->basicAuth($1) // $1 { string#username / password | empty } returns value or array if empty $_AUTH_ARRAY
-* ->header($1) // $1 { string | empty } returns value if found else false # or array if empty $_HEADERS
-* ->input($1) // $1 { string | empty } returns value if found else false # or array if empty $_POST / $_PUT etc
-* ->get($1) // $1 { string | empty } returns value if found else false # or array if empty $_GET array
+* ->basicAuth($1) // $1 { string#username / password | array | empty } returns value or if array return Values else false if all not found or Full-Array if empty $_AUTH_ARRAY
+* ->header($1) // $1 { string | array | empty } returns value if found else false or if array return Values else false if all not found # or Full-Array if empty $_HEADERS
+* ->input($1) // $1 { string | array | empty } returns value if found else false or if array return Values else false if all not found # or Aull-Array if empty $_POST / $_PUT etc
+* ->get($1) // $1 { string | array | empty } returns value if found else false or if array return Values else false if all not found # or Full-Array if empty $_GET array
 * Example might be :
 ```php
 	Api::put(function($request, $response){
