@@ -9,10 +9,16 @@ require_once __DIR__.'/src/Api.php';
 require_once __DIR__.'/path/to/Database.php';
 Api::inject('DB', Database::init()); // for e.g
 Api::post(function($request , $response, $injects){
-	$response->json([
-		'access'=>'true',
-		'userInfo' => $inject['userInfo']
-	]);
+	$input = $request->input(['user-to', 'message']);
+	if( $input ){
+		$response->json([
+			'access'=>'true',
+			'input' => $input,
+			'userInfo' => $inject['userInfo']
+		]);
+	} else {
+		$response->json([ 'error' => 'inputs not found' ]);
+	}
 });
 Api::auth(function($request , $response, $run, $injects){
 	$db = $injects['DB'];
