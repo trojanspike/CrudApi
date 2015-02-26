@@ -132,4 +132,4 @@ TODO
 * ~~add headers X-* when func "getallheaders" isn't avail~~
 * Request #get,input,header to accept array and returns all if avail else false. ->get(['id','key','page'])
 * ~~add Api::inject method to add onto Api::VERB - callback i.e Api::inject([DB, $Data_arrays])~~
-* Improve cors & header access
+* ~~Improve cors & header access~~
