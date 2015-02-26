@@ -17,6 +17,7 @@ class Response {
 		http_response_code($this->_status);
 		header('Content-Type: '.$this->_content);
 		echo json_encode($obj);
+		exit();
 	}
 
 	public function badRequest(){
