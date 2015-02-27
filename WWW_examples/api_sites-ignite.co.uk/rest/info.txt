@@ -1,0 +1,44 @@
+/**
+try {
+	$pdo = new PDO('sqlite:../DB.sqlite', null, null, array(PDO::ATTR_PERSISTENT => true));
+	
+$name = 'Lee';
+$q = $pdo->prepare("SELECT * FROM user WHERE name like :name");
+$q->bindParam(':name', $name);
+
+if( $q->execute() ){
+	echo "<pre>";
+	print_r( $q->fetchAll(PDO::FETCH_OBJ) );
+}
+
+} catch ( PDOException $e ){
+	print_r( $e );
+}
+
+$DB = $injects['DB'];
+        
+    $Query = $DB->prepare('SELECT * FROM user');
+    
+    if( $query ){
+        $query->execute();
+        $res->json($Query->fetchAll());
+    } else {
+        $res->json(['error'=>$DB->errorInfo()]);   
+    }
+    
+**/
+Api::inject('DB' , new PDO('sqlite:../DB.sqlite', null, null, array(PDO::ATTR_PERSISTENT => true)));
+
+Api::auth(function($req, $res, $run, $injects){
+    $DB = $injects['DB'];
+        
+    $query = $DB->prepare('SELECT * FROM user');
+    
+    if( $query ){
+        $query->execute();
+        $res->json($query->fetchAll());
+    } else {
+        $res->json(['error'=>$DB->errorInfo()]);   
+    }  $res->unAuth();
+
+});

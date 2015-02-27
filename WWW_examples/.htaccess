@@ -1,2 +1,2 @@
 RewriteEngine on
-RewriteRule ^api(/.*)?$ restExample/api.php [L]
+RewriteRule ^api(/.*)?$ BasicRestExample/api.php [L]
