@@ -81,6 +81,11 @@ $http({method: 'GET',
 		}
 	});
 ```
+#### Rest {static class} methods
+* ::$Dir (String) Path to the rest config folder : ( /api/*APIS , /config/{Auth,NoAuth,Injects,Policies}.php )
+* ::$debug (Boolean) output errors ?
+* ::init($1) # $1 array of the REQUEST_URI , exploded
+
 #### Request {object class} methods
 * ->verb	# current http verb , X-verb over ride this & can be overridden
 * ->accept # The accept header sent from user
