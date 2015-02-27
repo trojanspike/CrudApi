@@ -85,6 +85,11 @@ $http({method: 'GET',
 * ::$Dir (String) Path to the rest config folder : ( /api/*APIS , /config/{Auth,NoAuth,Injects,Policies}.php )
 * ::$debug (Boolean) output errors ?
 * ::init($1) # $1 array of the REQUEST_URI , exploded
+```php
+	Rest::$Dir = realpath(__DIR__.'/Rest/');
+	Rest::$debug = true;
+	Rest::init( explode('/', $REQUEST_URI) );
+```
 
 #### Request {object class} methods
 * ->verb	# current http verb , X-verb over ride this & can be overridden
