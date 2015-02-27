@@ -6,7 +6,7 @@
 <?php
 // index.php
 require_once __DIR__.'/src/Api.php';
-require_once __DIR__.'/src/Rest.php'; /* optional */
+require_once __DIR__.'/src/Rest.php'; /* optional | you can write your own */
 /*
 Rest policies keep access restricted
 */

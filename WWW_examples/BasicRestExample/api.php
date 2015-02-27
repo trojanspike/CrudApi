@@ -1,5 +1,8 @@
 <?php
 require_once __DIR__.'/../../src/Api.php';
+
+/* Own written REST implementation */
+
 $path = str_replace('/api/','',parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
 $parts = explode('/', $path);
 
