@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__.'/../src/Api.php';
+require_once __DIR__.'/../../src/Api.php';
 $path = str_replace('/api/','',parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
 $parts = explode('/', $path);
 
