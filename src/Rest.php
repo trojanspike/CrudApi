@@ -30,7 +30,7 @@ class Rest {
     
     private static function _RequireOrError($path){
         if( file_exists($path) ){
-            require_once($path);
+            return require_once($path);
         } else {
             if( static::$debug ){
                 echo json_encode([
