@@ -1,12 +1,12 @@
 #### Basic Auth CRUD api
 ##### no composer - just require
-- Version 0.1.6
+- Version 0.1.14
 - Flexable usage , some small examples below & example folder
 ```php
 <?php
 // index.php
 require_once __DIR__.'/src/Api.php';
-require_once __DIR__.'/src/Rest.php';
+require_once __DIR__.'/src/Rest.php'; /* optional */
 /*
 Rest policies keep access restricted
 */
