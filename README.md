@@ -4,43 +4,28 @@
 - Flexable usage , some small examples below & example folder
 ```php
 <?php
-// api.php
+// index.php
 require_once __DIR__.'/src/Api.php';
-require_once __DIR__.'/path/to/Database.php';
-Api::inject('DB', Database::init()); // for e.g
-Api::post(function($request , $response, $injects){
-	$input = $request->input(['user-to', 'message']);
-	if( $input ){
-		$response->json([
-			'access'=>'true',
-			'input' => $input,
-			'userInfo' => $inject['userInfo']
-		]);
-	} else {
-		$response->json([ 'error' => 'inputs not found' ]);
-	}
-});
-Api::auth(function($request , $response, $run, $injects){
-	$db = $injects['DB'];
-	$Auth = $request->basicAuth();
-	if(!$Auth){
-		$response->status(401)->json([
-			'access'=>'false'
-		]);
-		exit();
-	}
-	// PDO $db->prepare would most likely be used , here just quick/rough example
-	if( $db->query('SELECT FROM users WHERE user='.$Auth["username"].' AND pass='.$Auth["password"]) ){
-		// success , run Api::post for incoming /POST requests
-		Api::inject('userInfo', $db->fetchAll());
-		$run();
-	} else {
-		// error , show error message
-		$response->status(401)->json([
-			'access'=>'false'
-		]);
-	}
-});
+require_once __DIR__.'/src/Rest.php';
+/*
+Rest policies keep access restricted
+*/
+$path = preg_replace('/^\//', '', parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
+
+/* /show page  */
+if( $path == '' ){
+    header('Location:/home');
+}
+
+/* How strict to make the REQUEST_URI , here I just was chars int & / */
+if( preg_match("/^([\/a-z0-9]+)$/", $path) && preg_match("/^home$/", $path) == false ){
+	/* Let the rest lib know where the config folder is */
+    Rest::$Dir = __DIR__.'/../rest/';
+    /* Pass through the URI parts aray */
+    Rest::init(explode('/', $path));
+}
+
+?>
 ```
 
 ```javascript
