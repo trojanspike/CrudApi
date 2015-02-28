@@ -17,7 +17,7 @@ class Rest {
         
         static::_RequireOrError(static::$Dir.'/api/'.static::$_api.'.php');
         static::_RequireOrError(static::$Dir.'/config/Injects.php');
-        
+
         if( ! in_array(static::$_api , array_keys(static::$_Policies)) )
         {
             /* Auth required by default */
@@ -34,7 +34,9 @@ class Rest {
         } else {
             if( static::$debug ){
                 echo json_encode([
-                        "error" => "$path , not found"
+                        "error" => "fileNotFound",
+                        "path" => $path,
+                        "policies" => static::$_Policies
                     ]);
                 exit();
             }
