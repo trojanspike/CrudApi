@@ -1,6 +1,6 @@
 <?php
 
-Api::auth(function($req, $res, $injects){
+Api::auth(function($req, $res, $run, $injects){
     
     if( $req->get('auth') == $injects['AuthKey'] ){
         $run();
