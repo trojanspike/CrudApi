@@ -23,22 +23,26 @@ Api::post(function($req, $res, $injects){
 
 
 Api::put(function($req, $res, $injects){
-    $res->json([
-        'file' => __FILE__,
-        'verb' => $req->verb,
-        'input' => $req->input(),
-        'injects' => $injects
+    $message = 'Default Message';
+    
+    if( $input = $req->input(['csrf', 'update', 'message']) ){
+        $message = $input[2];
+        $res->json([
+            'input' => $req->input(),
+            'message' => $message.' ## '.$input[1]
         ]);
+    } else {
+        $res->json(['error' => true]);
+    }
 });
 
 
 Api::delete(function($req, $res, $injects){
-    $res->json([
-        'file' => __FILE__,
-        'verb' => $req->verb,
-        'header' => $req->header(),
-        'injects' => $injects
-        ]);
+    if( ! $req->input('csrf') ){
+        $res->unAuth();
+    } else {
+        $res->ok();
+    }
 });
 
 Api::error(function($message, $res){
