@@ -5,8 +5,4 @@ composer.lock
 .c9/
 
 
-# add and ignore
-WWW_examples/API.schema
-WWW_examples/API.sqlite
-
 webExamples/test.php
