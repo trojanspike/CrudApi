@@ -10,6 +10,7 @@ class Api {
 	**/
 	private static $verbAllowed = ['GET', 'POST', 'PUT', 'DELETE'];
 	private static $verbFunctions = [], $injects = [], $errorFunc, $request, $response;
+	public static $debug = false;
 
 	/**
 	* ::auth
@@ -60,8 +61,9 @@ class Api {
 
 	private static function run($verb){
 		if( in_array($verb , static::$verbAllowed) && isset(static::$verbFunctions[$verb]) ){
-			if( static::$request->accept !== 'application/json' )
+			if( static::$request->accept !== 'application/json' && static::$debug !== true )
 			{
+				/* TODO - better way to validdate accept? i.e , if browser requests images / css /js etc > /v1/css/styles.css */
 				call_user_func_array(static::$errorFunc, [[
 				'status' => 405,
 				'message' => 'ClientError',
