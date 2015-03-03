@@ -18,6 +18,10 @@ class Rest {
         static::_RequireOrError(static::$Dir.'/api/'.static::$_api.'.php');
         static::_RequireOrError(static::$Dir.'/config/Injects.php');
 
+        /*
+        if in->array $API.$parts[0]
+        i.e : /user/creste > user.create
+        */
         if( ! in_array(static::$_api , array_keys(static::$_Policies)) )
         {
             /* Auth required by default */
@@ -45,6 +49,7 @@ class Rest {
     
     private static function _AuthChecker()
     {
+       
         $policy = static::$_Policies[static::$_api];
         if( $policy === false ){
             /* No auth required */
