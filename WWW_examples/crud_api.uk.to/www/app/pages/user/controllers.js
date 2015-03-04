@@ -17,7 +17,7 @@ window.angular.module('api')
 }])
 .controller('Login', ['$scope', '$http' , 'userInfo', '$state', '$rootScope', function($scope , $http, userInfo, $state, $rootScope){
     $scope.fn = {};
-    $scope.form = {username:'trojanspike',password:'password'};
+    $scope.form = {};
     $scope.message = '';
     
     $scope.fn.login = function(){
