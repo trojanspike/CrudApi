@@ -2,9 +2,9 @@
 ##### no composer - just require
 - Version 0.1.14
 - Flexable usage , some small examples below & example folder
-- Try at http://crud-api.uk.to
 - Feedback and improvements welcome 
 - [Try a small demo at crud-api.uk.to](http://crud-api.uk.to " Basic crud - rest API  ")
+- View # /WWW_examples/crud_api.uk.to/ Code
 ```php
 <?php
 // index.php
