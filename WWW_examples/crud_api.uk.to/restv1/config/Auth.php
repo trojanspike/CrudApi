@@ -1,0 +1,21 @@
+<?php
+
+use Conn\Auth;
+
+Api::auth(function($req, $res, $run, $injects){
+    $Auth = new Auth();
+ // curl -H 'accept:application/json' http://api.sites-ignite.co.uk/v1/user -X GET -H 'auth-token:abc123'   
+    
+    if($input = $req->header('auth-token')){
+        if( $Auth->byToken($input, $injects['NEW_TOKEN']) > 0 ){
+            $run();
+        } else {
+            $res->json( ['error' => true, 'message' => 'invalidAuthToken'] );
+        }
+    }
+    
+    $res->json( ['error' => true, 'message' => 'noAuthToken'] );
+
+});
+
+?>

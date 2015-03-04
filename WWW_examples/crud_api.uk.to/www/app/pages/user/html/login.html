@@ -1,0 +1,31 @@
+<div class="col-md-8">
+  
+   {{ message }}
+  
+  <form name="Login" ng-submit="fn.login()" class="css-form">
+    <div class="form-group">
+      <label for="exampleInputEmail1">Username</label>
+      <input type="text" class="form-control"  ng-model="form.username" placeholder="Username"
+      name="username"
+      required
+      ng-minlength="4">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      <input type="password" class="form-control" ng-model="form.password" placeholder="Password"
+      name="password"
+      required
+      ng-minlength="4">
+    </div>
+    
+    <button type="submit" class="btn btn-primary pull-right" ng-disabled="Login.$invalid">Submit</button>
+  </form>
+  
+      
+    <tt>Login.username.$valid = {{Login.username.$valid}}</tt><br/>
+    <tt>Login.inusernameput.$error = {{Login.username.$error}}</tt><br/>
+    <tt>Login.$valid = {{Login.$valid}}</tt><br/>
+    <tt>Login.$invalid = {{Login.$invalid}}</tt><br/>
+    <tt>Login.$error.required = {{!!Login.$error.required}}</tt><br/>
+    
+</div>
