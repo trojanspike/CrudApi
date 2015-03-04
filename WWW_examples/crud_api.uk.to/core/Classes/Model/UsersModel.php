@@ -10,7 +10,7 @@ class Users {
         $this->dbh = Database::getHandler();
     }
   
-// curl -H 'accept:application/json' http://api.sites-ignite.co.uk/v1/user/login -X POST -d '{"username":"trojanspike", "password":"password""} 
+// curl -H 'accept:application/json' http://crud-api.uk.to/v1/user/login -X POST -d '{"username":"trojanspike", "password":"password""} 
     public function login($form, $res, $token){
         if( $this->_createValidate($form) ){
             $user = $form[0];
@@ -41,7 +41,7 @@ class Users {
         }
     }
     
-// curl -H 'accept:application/json' http://api.sites-ignite.co.uk/v1/user/create -X POST -d '{"_csrf":"abc123", "username":"trojanspike", "password":"password", "extra":"someExtra Info"}'    
+// curl -H 'accept:application/json' http://crud-api.uk.to/v1/user/create -X POST -d '{"_csrf":"abc123", "username":"trojanspike", "password":"password", "extra":"someExtra Info"}'    
     public function create($form, $tokenID, $res){
         $result = [];
         $db = $this->dbh;
