@@ -1,7 +1,7 @@
 <?php
 
 class Response {
-	private $_status;
+	private $_status, $_content = false;
 
 	public function __construct(){
 		$this->_status = 200;
@@ -10,7 +10,7 @@ class Response {
 	
 	/* Setting methods */
 	
-	public function contentType($content){
+	public function setContent($content){
 		$this->_content = $content;
 		return $this;
 	}
@@ -36,11 +36,14 @@ class Response {
 	
 	public function json($obj){
 		$this->setHeader('Content-Type:application/javascript');
-		$this->render(json_encode($obj));
+		$this->outPut(json_encode($obj));
 	}
 	
 	public function outPut($content){
 		http_response_code($this->_status);
+		if( $this->_content !== false ){
+			header('Content-Type:'.$this->_content);
+		}
 		echo $content;
 		header('Content-Length:'.strlen($content));
 		header('Connection:close');
@@ -80,16 +83,7 @@ class Response {
 		]);
 	}
 	
-	
-	
-	/* @start private */
-	private function render($content){
-		/* 5.4* */
-		http_response_code($this->_status);
-		header('Content-Type: '.$this->_content);
-		echo $content;
-		exit();
-	}
+	/* Private Methods */
 
 }
 
