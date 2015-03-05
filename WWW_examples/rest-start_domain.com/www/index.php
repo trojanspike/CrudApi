@@ -12,10 +12,6 @@ if( $path == '' ){
     header('Location:/home');
 }
 
-if( ! isset($_SESSION['_CSRF']) ){
-    $_SESSION['_CSRF'] = hash('ripemd128', uniqid());
-}
-
 
 /* uri - /v1/* */
 $version = substr($path,0,2);
@@ -32,6 +28,9 @@ if( preg_match("/^([\/\.a-zA-Z0-9]+)$/", $path) && preg_match("/^v[0-9]$/", $ver
     Rest::init(explode('/', $path));
 }
 
+if( ! isset($_SESSION['_CSRF']) ){
+    $_SESSION['_CSRF'] = hash('ripemd128', uniqid());
+}
 ?>
 
 <!DOCTYPE html>
