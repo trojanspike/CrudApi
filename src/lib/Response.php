@@ -1,11 +1,10 @@
 <?php
 
 class Response {
-	private $_status, $_content;
+	private $_status;
 
 	public function __construct(){
 		$this->_status = 200;
-		$this->_content = 'application/javascript';
 	}
 	
 	
@@ -13,6 +12,17 @@ class Response {
 	
 	public function contentType($content){
 		$this->_content = $content;
+		return $this;
+	}
+	
+	public function setHeader($header){
+		if( is_array($header) ){
+			foreach( $header as $head ){
+				header($head);
+			}
+		} else {
+			header($header);
+		}
 		return $this;
 	}
 
@@ -25,14 +35,15 @@ class Response {
 	/* output methods */
 	
 	public function json($obj){
-		/* default is 200 & application/javascript */
+		$this->setHeader('Content-Type:application/javascript');
 		$this->render(json_encode($obj));
 	}
 	
 	public function outPut($content){
 		http_response_code($this->_status);
-		header('Content-Type: '.$this->_content);
 		echo $content;
+		header('Content-Length:'.strlen($content));
+		header('Connection:close');
 		exit();
 	}
 	
