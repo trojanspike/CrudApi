@@ -61,18 +61,7 @@ class Api {
 
 	private static function run($verb){
 		if( in_array($verb , static::$verbAllowed) && isset(static::$verbFunctions[$verb]) ){
-			if( static::$request->accept !== 'application/json' && static::$debug !== true )
-			{
-				/* TODO - better way to validdate accept? i.e , if browser requests images / css /js etc > /v1/css/styles.css */
-				call_user_func_array(static::$errorFunc, [[
-				'status' => 405,
-				'message' => 'ClientError',
-				'error' => 'acceptTypeError',
-				'accept '=> static::$request->accept
-			], static::$response]);
-			} else {
-				call_user_func_array( static::$verbFunctions[$verb], [static::$request,static::$response, static::$injects]);
-			}
+			call_user_func_array( static::$verbFunctions[$verb], [static::$request,static::$response, static::$injects]);
 		} else {
 			call_user_func_array(static::$errorFunc, [[
 				'status' => 405,
