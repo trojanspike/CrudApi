@@ -1,9 +1,6 @@
 <?php
 
 /** Api github.com/trojanspike/BasicAuthCRUD-api
-* 
-* Computes a set of instructions to convert the content of
-* one string into another.
 *
 * Copyright (c) 2015 Lee Mc Kay (http://www.@site/)
 *
