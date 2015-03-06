@@ -37,7 +37,8 @@ window.angular.module('api', ['ui.router'])
 
 
 /* Controller */
-.controller('UserInfoCtl' , ['userInfo','$timeout', '$scope', '$http',  function(userInfo, $timeout , $scope, $http){
+.controller('UserInfoCtl' , ['userInfo','$timeout', '$scope', '$http', 
+function(userInfo, $timeout , $scope, $http){
     $scope.fn = {};
     $scope.data = {};
     $scope.data.userInfo = userInfo.getAll();
@@ -60,13 +61,13 @@ window.angular.module('api', ['ui.router'])
     $scope.quote = "#";
     
     $scope.fn.noAuth = function(){
-        $http.get('http://crud-api.uk.to/v1/Quotes').then(function(data){
+        $http.get('http://crud-api.uk.to/v1/Quotes-NoAuth').then(function(data){
             $scope.quote = data.data;
         });
     }
     
     $scope.fn.Auth = function(){
-        $http.get('http://crud-api.uk.to/v1/QuotesAuth').then(function(data){
+        $http.get('http://crud-api.uk.to/v1/Quotes-Auth').then(function(data){
             userInfo.set({
                 authToken : ( typeof data.data.authToken !== 'undefined' )?data.data.authToken:false
             });

@@ -2,6 +2,8 @@
 
 use Conn\Auth;
 use Model\Users;
+use Core\File;
+
 /* Create */
 Api::post(function($req, $res, $injects){
 $User = new Users();
@@ -18,7 +20,7 @@ $User = new Users();
 
 /* read / return all sessions */
 Api::get(function($req, $res, $injects){
-    $res->json(['##'.__FILE__]);
+    $res->setContent('text/html')->outPut('##'.File::run());
 });
 
 

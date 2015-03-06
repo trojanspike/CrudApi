@@ -1,11 +1,19 @@
 <?php
+error_reporting(E_ALL);
 
 use Model\Users;
 use App\Config;
 use App\Session;
 use Conn\Database;
+use Other\example\Run;
+
+use Core\File;
 
 Api::get(function($req, $res, $injects){
+    
+    $res->setHeader('Content-Type:text/html')->outPut(File::run());
+    //$res->setHeader('Content-Type:text/plain')->outPut(Run::test());
+    
     $db = Database::getHandler();
     
     // $res->json( $db->query('SELECT * FROM token_sessions')->fetchAll(PDO::FETCH_ASSOC) );

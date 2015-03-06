@@ -3,6 +3,7 @@
 session_start();
 
 require_once __DIR__.'/../core/loader.php';
+require_once __DIR__.'/../vendor/autoload.php'; /* Composer */
 loadFiles([ __DIR__.'/../../../src/Api.php' , __DIR__.'/../../../src/Rest.php' ]);
 
 $path = preg_replace('/^\//', '', parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
@@ -22,12 +23,12 @@ Api::inject('API_V', $version);
 
 use App\Config;
 
-config::set('site.debug', false);
+Config::set('site.debug', true);
 
 /* How strict to make the REQUEST_URI */
-if( preg_match("/^([\/\.a-zA-Z0-9]+)$/", $path) && preg_match("/^v[0-9]$/", $version) ){
+if( preg_match("/^([\/\-\.a-zA-Z0-9]+)$/", $path) && preg_match("/^v[0-9]$/", $version) ){
     Api::inject('uri', $path);
-    Rest::$Dir = __DIR__."/../rest{$version}/";
+    Rest::$Dir = __DIR__."/../rest/{$version}/";
     Rest::$debug = Config::get('site.debug');
     Api::$debug = Config::get('site.debug');
     /* TODO : Poss change ?

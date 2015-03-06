@@ -10,7 +10,7 @@ window.angular.module('api')
     return {
         request : function(conf){
             conf.headers['Accept']='application/json';
-            conf.headers['auth-token']=userInfo.get('authToken');
+            conf.headers['Auth-token']=userInfo.get('authToken');
             conf.headers['_csrf']=userInfo.get('_csrf');
             return conf;
         }

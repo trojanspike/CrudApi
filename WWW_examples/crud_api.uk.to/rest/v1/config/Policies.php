@@ -9,7 +9,10 @@ return [
     'user' => ['GET', 'POST'],
     'Session' => ['GET', 'POST'],
     'test' => false,
-    'Quotes' => false,
-    'QuotesAuth' => true
+    'Quotes/NoAuth' => false,
+    'Quotes/Auth' => true,
+    'headers' => false,
+    'upload' => ['GET', 'POST'],
+    'folder/file' => false
     ]
 ?>

@@ -1,5 +1,6 @@
 window.angular.module('api')
-.controller('LoginCreate', ['$scope', '$http' , '$state', '$rootScope', function($scope , $http, $state, $rootScope){
+.controller('LoginCreate', ['$scope', '$http' , '$state', '$rootScope', 
+function($scope , $http, $state, $rootScope){
     $scope.fn = {};
     $scope.form = {};
     
@@ -15,7 +16,8 @@ window.angular.module('api')
     };
     
 }])
-.controller('Login', ['$scope', '$http' , 'userInfo', '$state', '$rootScope', function($scope , $http, userInfo, $state, $rootScope){
+.controller('Login', ['$scope', '$http' , 'userInfo', '$state', '$rootScope', 
+function($scope , $http, userInfo, $state, $rootScope){
     $scope.fn = {};
     $scope.form = {};
     $scope.message = '';
