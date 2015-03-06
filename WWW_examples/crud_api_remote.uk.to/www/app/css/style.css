@@ -1,0 +1,36 @@
+html, body {
+    
+    background:#d3d3d3;
+    }
+body > .container {
+    height:auto;
+    background:#fff;
+    -webkit-box-shadow:0px 3px 34px -7px #7B7B7B;
+}
+
+body > footer {
+    float:left;
+    width:100%;
+    position:fixed;
+    margin-top:100%;
+    bottom:0px;
+    background:#e7e7e7;
+    border-top:1px solid #eee;
+    display:none;
+}
+
+
+/***/
+
+.css-form input.ng-invalid.ng-touched {
+    background-color: #FA787E;
+  }
+
+.css-form input.ng-valid.ng-touched {
+background-color: #78FA89;
+}
+
+
+body > .container {
+    height:100%;
+}

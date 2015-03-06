@@ -1,0 +1,40 @@
+<div class="col-md-8">
+    
+  <form name="UserCreate" ng-submit="fn.create()" class="css-form">
+    <div class="form-group">
+      <label for="exampleInputEmail1">Username</label>
+      <input type="text" class="form-control" placeholder="Username" 
+      ng-model="form.username"
+      name="username"
+      required
+      ng-minlength="4">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      <input type="password" class="form-control" placeholder="Password" 
+      ng-model="form.password"
+      name="password"
+      required
+      ng-minlength="4">
+    </div>
+    
+    <div class="form-group">
+      <label for="extra">Extra Bio</label>
+      <textarea class="form-control" style="width:100%; position:relative; min-height:150px; resize: none" 
+      ng-model="form.extra"
+      name="textarea"></textarea>
+    </div>
+    
+    <button type="submit" class="btn btn-primary pull-right" ng-disabled="UserCreate.$invalid">Submit</button>
+  </form>
+    
+    
+    <tt>UserCreate.username.$valid = {{UserCreate.username.$valid}}</tt><br/>
+    <tt>UserCreate.inusernameput.$error = {{UserCreate.username.$error}}</tt><br/>
+    <tt>UserCreate.$valid = {{UserCreate.$valid}}</tt><br/>
+    <tt>UserCreate.$invalid = {{UserCreate.$invalid}}</tt><br/>
+    <tt>UserCreate.$error.required = {{!!UserCreate.$error.required}}</tt><br/>
+    
+
+    
+</div>
