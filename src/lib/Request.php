@@ -16,6 +16,7 @@ class Request {
 		header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
 		if( function_exists('getallheaders') ){
 			$this->_headers = getallheaders();
+			$this->_ensureHeaderWord();
 		} else {
 		    $headers = ''; 
 		    foreach ($_SERVER as $name => $value) 
@@ -40,7 +41,7 @@ class Request {
 		}
 		$this->accept = $_SERVER['HTTP_ACCEPT'];
 	}
-
+	
 
 	public function basicAuth($key=false){
 		return $this->_returnKeyVals($this->_basicAuth, $key);
@@ -63,9 +64,7 @@ class Request {
 			return $this->_returnKeyValsFromArray($obj, $key);
 		}
 		if($key){
-			/*#BUG : Some server PHP's casting headers[keys] to lower case , test before returning */
-			$keyStr = (isset($obj[$key]))?$key:strtolower($key);
-			return ( isset($obj[$keyStr]) )?$obj[$keyStr]:false;
+			return ( isset($obj[$key]) )?$obj[$key]:false;
 		} else {
 			return $obj;
 		}
@@ -81,6 +80,13 @@ class Request {
 			$dataArr[]=$_val;
 		}
 		return $dataArr;
+	}
+	
+	
+	private function _ensureHeaderWord(){
+		foreach( $this->_headers as $HKey => $HVal ){
+			$this->_headers[ucwords($HKey)]=$HVal;
+		}
 	}
 	
 
