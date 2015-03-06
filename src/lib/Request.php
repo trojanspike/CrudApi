@@ -85,6 +85,7 @@ class Request {
 	
 	private function _ensureHeaderWord(){
 		foreach( $this->_headers as $HKey => $HVal ){
+			array_shift($this->_headers);
 			$this->_headers[ucwords($HKey)]=$HVal;
 		}
 	}
