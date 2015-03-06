@@ -8,9 +8,9 @@ class Rest {
     public static function init($parts)
     {
         static::$Dir = realpath(static::$Dir);
-
-        static::$_api = $parts[0];
-        Api::inject('API', $parts[0]);
+        
+        static::$_api = strpos($parts[0], '-')?str_replace('-','/',$parts[0]):$parts[0];
+        Api::inject('API', static::$_api);
         unset($parts[0]);
         Api::inject('PARAMS', array_values($parts));
         static::$_Policies = static::_RequireOrError(static::$Dir.'/config/Policies.php');

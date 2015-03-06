@@ -11,6 +11,7 @@ $policies['example'] = true // Auth required (default)
 $policies['example'] = ['GET', 'PUT'] // GET & PUT go through NoAuth.php
 */
 $policies['example'] = ['GET'];
+$policies['folder/file'] = ['GET'];
 
 return $policies;
 
