@@ -166,7 +166,7 @@ Helper shortcuts
 
 ```bash
  # Image Upload
- curl -F "other_file=@./image.jpg" http://crud-api.uk.to/v1/upload -i -H 'authToken:abc132'
+ curl -F "image_key=@./image.jpg" http://crud-api.uk.to/v1/upload -i -H 'authToken:abc132'
  
 ```
 
