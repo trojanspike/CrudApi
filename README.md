@@ -1,6 +1,6 @@
 #### Basic Auth CRUD api
 ##### no composer - just require
-- Version 0.1.24
+- Version 0.1.27
 - Flexable usage , some small examples below & example folder
 - Feedback and improvements welcome 
 - [Try a small demo at crud-api.uk.to](http://crud-api.uk.to " Basic crud - rest API  ")
@@ -37,23 +37,23 @@ if( preg_match("/^([\/a-z0-9]+)$/", $path) && preg_match("/^home$/", $path) == f
 $.ajax({
 	type : 'GET',
     beforeSend: function(xhr) {
-		xhr.setRequestHeader("accept", 'application/json');
-		xhr.setRequestHeader("x-username", 'user123');
-		xhr.setRequestHeader("x-password", 'pass123');
+		xhr.setRequestHeader("Accept", 'application/json');
+		xhr.setRequestHeader("X-username", 'user123');
+		xhr.setRequestHeader("X-password", 'pass123');
     },
     dataType: "json",
-    url: 'https://domain.com/api/users/headerAuth/15/tester/value',
+    url: 'http://crud-api.uk.to/v1/user',
     success: function(data) {
         console.log(data);
     }
 });
 /* angular implementation */
 $http({method: 'GET', 
-			url: 'https://domain.com/api/users/headerAuth/15/tester/value', 
+			url: 'http://crud-api.uk.to/v1/user', 
 			headers: {
 				'Accept': 'application/json',
-				'x-username' : 'user123',
-				'x-password' : 'pass123'}
+				'X-username' : 'user123',
+				'X-password' : 'pass123'}
 		}).then(function(obj){
 			console.log(obj);
 		});
@@ -110,7 +110,11 @@ $http({method: 'GET',
 	});
 ```
 #### Response {object class} methods
-* ->status($1)  // $1 { int } set HTTP status code. return $this
+* ->status($1)  // $1 { int } set HTTP status code. Can be chained
+* ->setContent($1) // $1 { String } , set the content-type
+* ->setHeader($1) // $1 { String | array }, set header
+
+Helper shortcuts
 * ->json($1)  // $1 { array | object } out json encoded, headers set to application/json
 * ->badRequest() // sets status 400 , output jsonObject {message:'ClientError'}
 * ->notFound() // sets status 404 , output jsonObject {message:'ClientError'}
@@ -150,14 +154,20 @@ $http({method: 'GET',
 ```bash
  ## Rest api
  # open to web access - no header accept needed
- curl https://basicauthcrud-api-trojanspike.c9.io/api/web/open/15/tester/value
+ curl https://domain.com/api/web/open/15/tester/value
  # closed to web , header accept is needed
- curl https://basicauthcrud-api-trojanspike.c9.io/api/web/closed/15/tester/value -H 'accept:application/json'
+ curl https://domain.com/api/web/closed/15/tester/value -H 'accept:application/json'
  
  # auth require , Token / HeaderAuth / BasicAuth
- curl https://basicauthcrud-api-trojanspike.c9.io/api/users/tokenAuth/15/tester/value -H 'Auth-Token:abc123' -H 'accept:application/json'
- curl https://basicauthcrud-api-trojanspike.c9.io/api/users/headerAuth/15/tester/value -H 'x-username:user123' -H 'x-password:pass123' -H 'accept:application/json'
- curl -u user123:pass123 https://basicauthcrud-api-trojanspike.c9.io/api/users/basicAuth/15/tester/value -H 'accept:application/json'
+ curl https://domain.com/api/users/tokenAuth/15/tester/value -H 'Auth-Token:abc123' -H 'accept:application/json'
+ curl https://domain.com/api/users/headerAuth/15/tester/value -H 'x-username:user123' -H 'x-password:pass123' -H 'accept:application/json'
+ curl -u user123:pass123 https://domain.com/api/users/basicAuth/15/tester/value -H 'accept:application/json'
+```
+
+```bash
+ # Image Upload
+ curl -F "other_file=@./image.jpg" http://crud-api.uk.to/v1/upload -i -H 'authToken:abc132'
+ 
 ```
 
 
