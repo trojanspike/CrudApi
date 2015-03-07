@@ -113,6 +113,7 @@ $http({method: 'GET',
 * ->status($1)  // $1 { int } set HTTP status code. Can be chained
 * ->setContent($1) // $1 { String } , set the content-type
 * ->setHeader($1) // $1 { String | array }, set header
+* ->outPut($1) // $1 { String }, out puts content
 
 Helper shortcuts
 * ->json($1)  // $1 { array | object } out json encoded, headers set to application/json
