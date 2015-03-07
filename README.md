@@ -111,7 +111,7 @@ $http({method: 'GET',
 ```
 #### Response {object class} methods
 * ->status($1)  // $1 { int } set HTTP status code. Can be chained
-* ->setContent($1) // $1 { String } , set the content-type
+* ->setContent($1) // $1 { String } , set the content-type, Can be chained
 * ->setHeader($1) // $1 { String | array }, set header
 * ->outPut($1) // $1 { String }, out puts content
 
@@ -133,7 +133,7 @@ Helper shortcuts
 		$response->json( DB->getAll(true) );
 	});
 	Api::error(function($request, $response){
-		$response->badRequest();
+		$response->status(500)->setContent('text/plain')->outPut('Error');
 	});
 ```
 #### Allow - Origin & Header
