@@ -81,7 +81,7 @@ Session::start();
                     <h4 style="text-align:center;" class="alert alert-warning" ng-hide="message === true"> {{ message }} </h4>
                   
                   <p>
-                          <a class="btn btn-primary btn-lg btn-block" ui-sref="docs.session" ui-sref-active="active" role="button"> Session Info > Learn more</a>
+                          <a class="btn btn-dark btn-lg btn-block" ui-sref="docs.session" ui-sref-active="active" role="button"> Session Info > Learn more</a>
                     </p>
                     
                     <pre>  <code> 
@@ -92,14 +92,14 @@ Session::start();
                       
                       <div class="row">
                         <div class="col-sm-6">
-                            <p> <a ng-click="fn.noAuth()" class="btn btn-primary btn-lg btn-block" role="button"> Make a call to no Auth API </a> </p>
+                            <p> <a ng-click="fn.noAuth()" class="btn btn-dark btn-lg btn-block" role="button"> Make a call to no Auth API </a> </p>
                         </div>
                         <div class="col-sm-6">
-                            <p> <a ng-click="fn.Auth()" class="btn btn-primary btn-lg btn-block" role="button"> Make a call to Auth API </a> </p>
+                            <p> <a ng-click="fn.Auth()" class="btn btn-dark btn-lg btn-block" role="button"> Make a call to Auth API </a> </p>
                         </div>
                     </div>
                     <pre>  <code>  {{ quote }} </code>  </pre>
-                    <p ng-show="data.userInfo.loggedin === true" ><a ng-click="fn.logout()" class="btn btn-primary btn-lg btn-block" role="button"> Log out </a></p>
+                    <p ng-show="data.userInfo.loggedin === true" ><a ng-click="fn.logout()" class="btn btn-dark btn-lg btn-block" role="button"> Log out </a></p>
                 </div>
                 
             </header>
@@ -130,7 +130,7 @@ Session::start();
                     
                 </aside>
         
-        <ui-view></ui-view>
+        <ui-view class="page"></ui-view>
         
         </div> <!-- /#.content -->
         
@@ -157,10 +157,22 @@ Session::start();
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.13/angular-ui-router.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular-animate.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
     
     
     <?php echo View::getJS( realpath(__DIR__.'/app/') ); ?>
     <?php echo View::getJS( realpath(__DIR__.'/app/pages/') ); ?>
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-60475647-1', 'auto');
+      ga('send', 'pageview');
+    
+    </script>
     
 </html>

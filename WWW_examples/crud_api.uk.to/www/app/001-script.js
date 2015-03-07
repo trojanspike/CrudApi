@@ -1,4 +1,4 @@
-window.angular.module('api', ['ui.router'])
+window.angular.module('api', ['ui.router', 'ngAnimate'])
 
 /* user info service */
 /* TODO - use l-storage to save authToken */

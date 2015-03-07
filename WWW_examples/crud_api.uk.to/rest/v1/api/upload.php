@@ -9,7 +9,7 @@ Api::post(function($req, $res, $injects){
 
 // curl -F "uploaded_file=@./gimp.xcf" -F "other_file=@./image.jpg" -F "pgn_file=@./image.png" http://crud-api.uk.to/v1/upload -i -H 'authToken:abc132'
 /******************************************/
-   
+   // $res->json( $req->input() );
    foreach( $_FILES as $key => $file ){
        $fileName = $file["name"];
        $fileTmpLoc = $file["tmp_name"];

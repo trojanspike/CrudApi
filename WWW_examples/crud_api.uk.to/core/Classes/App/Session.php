@@ -14,6 +14,10 @@ class Session {
         return isset( $_SESSION[$key] )?$_SESSION[$key]:false;
     }
     
+    public static function set($key, $val){
+        $_SESSION[$key]=$val;
+    }
+    
     
 }
 

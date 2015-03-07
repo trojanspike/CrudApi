@@ -36,8 +36,9 @@ Api::post(function($req, $res, $injects){
 api::get(function($req, $res, $injects){
     $db = Database::getHandler();
     
-    $result = $db->query('SELECT * FROM users')->fetchAll(PDO::FETCH_ASSOC);
-    $res->json( $result );
+    $users = $db->query('SELECT * FROM users')->fetchAll(PDO::FETCH_ASSOC);
+
+    $res->json( $users );
 });
 
 /* update */

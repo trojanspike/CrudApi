@@ -1,10 +1,17 @@
 <?php
 
+use App\Session as Sess;
+
 Api::get(function($req, $res){
+
+    Sess::set('test', uniqid());
     
-    $res->json(['ok']);
+    $res->json( $_SESSION );
     
 });
+
+
+
 
 Api::error(function($req, $res){
     
