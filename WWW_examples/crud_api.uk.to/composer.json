@@ -4,7 +4,7 @@
 	"keywords": [],
 	"license": "MIT",
 	"require": {
-	   "leafo/scssphp": "0.0.12",
+	   "leafo/scssphp": "0.0.12"
 	},
 	"require-dev": {},
 	"autoload": {
