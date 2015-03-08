@@ -4,9 +4,9 @@ use Conn\Illuminate;
 
 class Users extends Illuminate {
     
-    public function getAll($id){
+    public function getAll(){
         
-        return $this->table('users')->where('id' , '>', '?', [$id])->get();
+        return $this->table('users')->get();
         
     }
     
