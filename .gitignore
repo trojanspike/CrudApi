@@ -6,3 +6,6 @@ composer.lock
 
 WWW_examples/crud_api.uk.to/API.sqlite
 webExamples/test.php
+
+WWW_examples/crud_api.uk.to/ENV_DEFINE.php
+
