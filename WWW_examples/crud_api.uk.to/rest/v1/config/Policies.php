@@ -13,6 +13,7 @@ return [
     'Quotes/Auth' => true,
     'headers' => false,
     'upload' => ['GET', 'POST'],
-    'folder/file' => false
+    'folder/file' => false,
+    'tests/loader' => false
     ]
 ?>

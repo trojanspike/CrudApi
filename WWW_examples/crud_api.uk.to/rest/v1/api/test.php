@@ -1,5 +1,4 @@
 <?php
-error_reporting(E_ALL);
 
 use Model\Users;
 use App\Config;
@@ -7,8 +6,6 @@ use App\Session;
 use Conn\Database;
 
 Api::get(function($req, $res, $injects){
-    
-    $res->setHeader('Content-Type:text/html')->outPut(File::run());
     //$res->setHeader('Content-Type:text/plain')->outPut(Run::test());
     
     $db = Database::getHandler();
@@ -33,7 +30,7 @@ Api::get(function($req, $res, $injects){
    // $res->json( $User->test() );
    $quote = Config::get('demo.quotes');
    
-    $res->json( array_merge($r1, $r2) );
+    $res->json( array_merge( $r1, $r2 ) );
 });
 
 

@@ -1,0 +1,1 @@
+window.angular.module('dashboard.directives', []);

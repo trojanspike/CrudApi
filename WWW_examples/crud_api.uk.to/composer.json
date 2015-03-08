@@ -9,10 +9,12 @@
 	"require-dev": {},
 	"autoload": {
 	    "psr-4": {
-	    	"Core\\" : "core/Closses/Core"
+	    	"App\\":"core/Classes/App/",
+	    	"Conn\\":"core/Classes/Conn/",
+	    	"Model\\":"core/Classes/Model/"
 	    },
-		"classmap": [],
-		"files": []
+		"classmap": ["../../src/"],
+		"files": ["core/GlobalFn.php"]
 	},
 	"autoload-dev": {},
 	"scripts": {

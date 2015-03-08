@@ -9,7 +9,7 @@ delete
 /* $res, $res, $injects['params'] */
 
 use Model\Users;
-use conn\Database;
+use Conn\Database;
 use App\Session;
 
 /* # crearte */

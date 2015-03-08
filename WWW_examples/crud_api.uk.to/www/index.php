@@ -1,10 +1,8 @@
 <?php
 
 session_start();
-
-require_once __DIR__.'/../core/loader.php';
 require_once __DIR__.'/../vendor/autoload.php'; /* Composer */
-loadFiles([ __DIR__.'/../../../src/Api.php' , __DIR__.'/../../../src/Rest.php' ]);
+
 
 $path = preg_replace('/^\//', '', parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
 
@@ -16,6 +14,12 @@ if( $path == '' ){
 
 $version = substr($path,0,2);
 $path = preg_replace('/^v[0-9]\//', '', $path);
+
+/*
+use Api;
+use Rest;
+*/
+
 Api::inject('API_V', $version);
 
 
