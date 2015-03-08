@@ -107,7 +107,7 @@ class Request {
 			if($_val == false){
 				return false;
 			}
-			$dataArr[]=$_val;
+			$dataArr[$key]=$_val;
 		}
 		return $dataArr;
 	}

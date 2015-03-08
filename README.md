@@ -1,6 +1,6 @@
 #### Basic Auth CRUD api
 ##### no composer - just require
-- Version 0.1.27
+- Version 0.1.31
 - Flexable usage , some small examples below & example folder
 - Feedback and improvements welcome 
 - [Try a small demo at crud-api.uk.to](http://crud-api.uk.to " Basic crud - rest API  ")
