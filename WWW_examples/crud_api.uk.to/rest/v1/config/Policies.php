@@ -14,6 +14,7 @@ return [
     'headers' => false,
     'upload' => ['GET', 'POST'],
     'folder/file' => false,
-    'tests/loader' => false
+    'tests/loader' => false,
+    'tests/database' => false
     ]
 ?>

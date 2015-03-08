@@ -4,14 +4,17 @@
 	"keywords": [],
 	"license": "MIT",
 	"require": {
-	   "leafo/scssphp": "0.0.12"
+		"php" : ">=5.4.0",
+	   "leafo/scssphp": "0.0.12",
+	   "illuminate/database": "5.0.4"
 	},
 	"require-dev": {},
 	"autoload": {
 	    "psr-4": {
 	    	"App\\":"core/Classes/App/",
 	    	"Conn\\":"core/Classes/Conn/",
-	    	"Model\\":"core/Classes/Model/"
+	    	"Model\\":"core/Classes/Model/",
+	    	"Illuminate\\Database\\": ""
 	    },
 		"classmap": ["../../src/"],
 		"files": ["core/GlobalFn.php"]

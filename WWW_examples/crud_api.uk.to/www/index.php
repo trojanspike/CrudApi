@@ -1,6 +1,11 @@
 <?php
 
 session_start();
+
+if( file_exists(__DIR__.'/../ENV_DEFINESS.php') ){
+    require_once __DIR__.'/../ENV_DEFINESS.php';
+}
+
 require_once __DIR__.'/../vendor/autoload.php'; /* Composer */
 
 
