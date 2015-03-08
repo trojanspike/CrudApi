@@ -7,6 +7,10 @@ Api::auth(function($req, $res, $run, $injects){
         
         Just for example letting it in
     */
+    // $get = $req->get(['key','key1','key2']);
+   // $res->json( $get['key'] );
+    
+    
     
     $run();
 });

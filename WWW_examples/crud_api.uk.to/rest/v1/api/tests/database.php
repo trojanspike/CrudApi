@@ -12,7 +12,7 @@ Api::get(function($req, $res, $injects){
    /* */
     $users = new Users;
 
-    $result2 = $users->test($injects['PARAMS'][0]);
+    $result2 = $users->test($injects['PARAMS'][0], $injects['PARAMS'][1]);
     // $result2 = $users::table('users')->get();
     
      

@@ -13,8 +13,8 @@ class Users {
 // curl -H 'accept:application/json' http://crud-api.uk.to/v1/user/login -X POST -d '{"username":"trojanspike", "password":"password""} 
     public function login($form, $res, $token){
         if( $this->_createValidate($form) ){
-            $user = $form[0];
-            $pass = $form[1];
+            $user = $form['username'];
+            $pass = $form['password'];
             $q = $this->dbh->prepare("SELECT * FROM users WHERE username=:username AND password=:pass LIMIT 1");
             $q->bindParam(':username', $user);
             $q->bindParam(':pass', md5($pass));
@@ -54,9 +54,9 @@ class Users {
                 VALUES (:user_id,:username,:extra,:password)');
                 
             $create->bindParam(':user_id', $uid);
-            $create->bindParam(':username', $form[0]);
-            $create->bindParam(':password', md5($form[1]));
-            $create->bindParam(':extra', $form[2]);
+            $create->bindParam(':username', $form['username']);
+            $create->bindParam(':password', md5($form['password']));
+            $create->bindParam(':extra', $form['extra']);
             
             
             $token = $db->prepare('INSERT INTO token_sessions (user_id,token) VALUES (:u_id, :token)');
@@ -87,7 +87,7 @@ class Users {
     }
     
     private function _createValidate($form){
-        return ( strlen($form[0]) > 4 && strlen($form[1]) > 4 )?true:false;
+        return ( strlen($form['username']) > 4 && strlen($form['password']) > 4 )?true:false;
     }
     
     public function test(){
