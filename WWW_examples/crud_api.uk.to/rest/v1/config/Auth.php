@@ -1,7 +1,7 @@
 <?php
 
 
-use App\Auth;
+use Model\Auth;
 
 Api::auth(function($req, $res, $run, $injects){
     $Auth = new Auth();
