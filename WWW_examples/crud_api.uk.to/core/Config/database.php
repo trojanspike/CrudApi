@@ -15,13 +15,18 @@ return [
             ),
             'prefix'    => ''
         ],
-    
-   
-   
+        
+        
    'driver' => 'mysql',
    
-   'sqlite' => realpath( __DIR__.'/../../API.sqlite' )
-    
+   'sqlite' => realpath( __DIR__.'/../../API.sqlite' ),
+   
+   
+   
+   'redis' => [
+        'host' => '127.0.0.1',
+        'port' => '6379'
+        ]
     
 ];
 
