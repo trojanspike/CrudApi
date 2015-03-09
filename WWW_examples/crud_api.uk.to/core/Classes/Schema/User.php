@@ -22,9 +22,16 @@ class User {
     }
     
     
-    // $ bin/schema version3
+    // $  cmd schema version3
     function version3($Schema){
         // $Schema->update('table') , etc
+    }
+    
+    
+    // $ cmd schema test
+    function test($Schema){
+        // $Schema->update('table') , etc
+        touch(__DIR__.'/success');
     }
     
 }

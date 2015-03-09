@@ -1,5 +1,6 @@
 <?php
 
+
 use App\Auth;
 
 Api::auth(function($req, $res, $run, $injects){
