@@ -39,7 +39,7 @@ class Request {
 		$params = explode('/', $_uri);
 		unset($params[0]);
 		$params = array_values( $params );
-		$this->uri = '/'.implode('/', $params);
+		$this->uri = implode('/', $params);
 		$this->_params = $params;
 		
 		/* Cors */
