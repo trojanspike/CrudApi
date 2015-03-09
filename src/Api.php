@@ -41,7 +41,7 @@ class Api {
 	**/
 	private static $verbAllowed = ['GET', 'POST', 'PUT', 'DELETE'];
 	private static $verbFunctions = [], $injects = [], $errorFunc, $request, $response;
-	public static $debug = false;
+	public static $debug = false, $uri = false;
 
 	/**
 	* ::auth
@@ -49,7 +49,7 @@ class Api {
 	* @param function				$callb 
 	**/
 	public static function auth($callb){
-		static::$request = new Request;
+		static::$request = new Request( (static::$uri)?static::$uri:''); // ($parts, $uri)
 		static::$response = new Response;
 
 		call_user_func_array($callb, [

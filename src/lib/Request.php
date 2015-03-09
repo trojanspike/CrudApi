@@ -32,10 +32,16 @@
 
 class Request {
 
-	private $_headers, $_basicAuth, $_input;
-	public $verb, $accept;
+	private $_headers, $_basicAuth, $_input, $_params;
+	public $verb, $accept, $uri = false;
 
-	public function __construct(){
+	public function __construct($_uri){
+		$params = explode('/', $_uri);
+		unset($params[0]);
+		$params = array_values( $params );
+		$this->uri = '/'.implode('/', $params);
+		$this->_params = $params;
+		
 		/* Cors */
 		if( isset($_SERVER['HTTP_ORIGIN']) ){
 			header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
@@ -88,6 +94,21 @@ class Request {
 	public function header($key=false){
 		return $this->_returnKeyVals($this->_headers, $key);
 	}
+	
+	
+	public function params($num){
+		// $this-_params : arr
+		$returnData = [];
+		if( is_numeric($num) && count($this->_params) >= $num ){
+			for( $i = 0; $i< $num ; $i++ ){
+				$returnData[]=$this->_params[$i];
+			}
+		} else {
+			return $this->_params;
+		}
+		return $returnData;
+	}
+	
 	
 	private function _returnKeyVals($obj, $key){
 		if( is_array($key) ){
