@@ -11,7 +11,7 @@ return [
     'test' => false,
     'Quotes/NoAuth' => false,
     'Quotes/Auth' => true,
-    
+    'Data/users' => false,
     'upload' => ['GET', 'POST']
     ]
 ?>
