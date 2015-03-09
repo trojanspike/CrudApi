@@ -68,6 +68,7 @@ $http({method: 'GET',
 * ::error($1) # $1 = function($1, $2) : $1 = error message , $2 = Response class
 * ::inject($1, $2) = $1{string}, $2{*any , object , function , class etc} # injects last into ::auth , ::VERB, get, put etc
 * ::auth($1) # $1 = function($1, $2, $3, $4) : $1 = Request class , $2 = Response class , $3 = run, $4 = $injects
+* ::$uri (String) , $path 
 * Example might be :
 ```php
 	Api::inject('run', true);
@@ -89,7 +90,6 @@ $http({method: 'GET',
 * ::$Dir (String) Path to the rest config folder : ( /api/*APIS , /config/{Auth,NoAuth,Injects,Policies}.php )
 * ::$debug (Boolean) output errors ?
 * ::init($1) # $1 array of the REQUEST_URI , exploded
-* ::$uri (String) , $path 
 ```php
 	Rest::$Dir = realpath(__DIR__.'/Rest/');
 	Rest::$debug = true;
