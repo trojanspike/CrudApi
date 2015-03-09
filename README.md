@@ -1,6 +1,6 @@
 #### Basic Auth CRUD api
 ##### no composer - just require
-- Version 0.1.31
+- Version 0.1.37
 - Flexable usage , some small examples below & example folder
 - Feedback and improvements welcome 
 - [Try a small demo at crud-api.uk.to](http://crud-api.uk.to " Basic crud - rest API  ")
@@ -89,6 +89,7 @@ $http({method: 'GET',
 * ::$Dir (String) Path to the rest config folder : ( /api/*APIS , /config/{Auth,NoAuth,Injects,Policies}.php )
 * ::$debug (Boolean) output errors ?
 * ::init($1) # $1 array of the REQUEST_URI , exploded
+* ::$uri (String) , $path 
 ```php
 	Rest::$Dir = realpath(__DIR__.'/Rest/');
 	Rest::$debug = true;
@@ -102,11 +103,16 @@ $http({method: 'GET',
 * ->header($1) // $1 { string | array | empty } returns value if found else false or if array return Values else false if all not found # or Full-Array if empty $_HEADERS
 * ->input($1) // $1 { string | array | empty } returns value if found else false or if array return Values else false if all not found # or Aull-Array if empty $_POST / $_PUT etc
 * ->get($1) // $1 { string | array | empty } returns value if found else false or if array return Values else false if all not found # or Full-Array if empty $_GET array
+* ->params($1) // $1 {int | empty} return array of params when avail else return false , return full array of params when empty
+* ->uri // The uri { String }
 * Example might be :
 ```php
 	Api::put(function($request, $response){
+		$params = $request->params(); // all params
+		$both = $request->params(2); // /param1/param2
 		$id = $request->get('post-id'); // $_GET['post-id'];
 		$inputs = $request->input(); // like $_POST only PUT
+		$res->setContent('image/jpg')->outPut( file_get_content( $request->uri ) ); // uri = /userid/img/avatar.jpp
 	});
 ```
 #### Response {object class} methods
