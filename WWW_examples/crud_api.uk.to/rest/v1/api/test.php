@@ -3,12 +3,12 @@
 use Model\Users;
 use App\Config;
 use App\Session;
-use Conn\Database;
+use Database\PdoConnect;
 
 Api::get(function($req, $res, $injects){
     //$res->setHeader('Content-Type:text/plain')->outPut(Run::test());
-    
-    $db = Database::getHandler();
+    PdoConnect::sqlite();
+    $db = PdoConnect::getHandler();
     
     // $res->json( $db->query('SELECT * FROM token_sessions')->fetchAll(PDO::FETCH_ASSOC) );
     $user_id = $req->get('uid');

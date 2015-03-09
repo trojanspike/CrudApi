@@ -1,9 +1,4 @@
 <?php
-/* core/classes/Conn */
-use Conn\Database;
-
-Database::sqlite(realpath( '../../crud_api.uk.to/API.sqlite' ));
-
 
 /* have a use App\Security
     Security::level(2),or something

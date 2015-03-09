@@ -1,13 +1,14 @@
 <?php namespace Model;
 
-use Conn\Database;
+use Database\PdoConnect;
 use PDO;
 
 class Users {
     private $dbh;
     
     public function __construct(){
-        $this->dbh = Database::getHandler();
+        PdoConnect::sqlite();
+        $this->dbh = PdoConnect::getHandler();
     }
   
 // curl -H 'accept:application/json' http://crud-api.uk.to/v1/user/login -X POST -d '{"username":"trojanspike", "password":"password""} 

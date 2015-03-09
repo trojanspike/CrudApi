@@ -8,7 +8,9 @@ return [
     
     'storage' => realpath(__DIR__.'/../Storage/'),
     
-    'www' => realpath(__DIR__.'/../../www/')
+    'www' => realpath(__DIR__.'/../../www/'),
+    
+    'Schema' => realpath( __DIR__.'/../Classes/Schema/' )
 ];
 
 ?>

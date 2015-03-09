@@ -1,6 +1,6 @@
 <?php
 
-use Conn\Auth;
+use App\Auth;
 
 Api::auth(function($req, $res, $run, $injects){
     $Auth = new Auth();

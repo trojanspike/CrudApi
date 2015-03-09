@@ -1,8 +1,6 @@
 <?php
 
-use Conn\Auth;
 use Model\Users;
-use Core\File;
 
 /* Create */
 Api::post(function($req, $res, $injects){

@@ -11,10 +11,7 @@ return [
     'test' => false,
     'Quotes/NoAuth' => false,
     'Quotes/Auth' => true,
-    'headers' => false,
-    'upload' => ['GET', 'POST'],
-    'folder/file' => false,
-    'tests/loader' => false,
-    'tests/database' => false
+    
+    'upload' => ['GET', 'POST']
     ]
 ?>

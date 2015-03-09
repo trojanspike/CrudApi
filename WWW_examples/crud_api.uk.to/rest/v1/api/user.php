@@ -9,7 +9,7 @@ delete
 /* $res, $res, $injects['params'] */
 
 use Model\Users;
-use Conn\Database;
+use Database\PdoConnect;
 use App\Session;
 
 /* # crearte */
@@ -34,7 +34,8 @@ Api::post(function($req, $res, $injects){
 
 /* create */
 api::get(function($req, $res, $injects){
-    $db = Database::getHandler();
+    PdoConnect::sqlite();
+    $db = PdoConnect::getHandler();
     
     $users = $db->query('SELECT * FROM users')->fetchAll(PDO::FETCH_ASSOC);
 

@@ -12,7 +12,7 @@
 	"autoload": {
 	    "psr-4": {
 	    	"App\\":"core/Classes/App/",
-	    	"Conn\\":"core/Classes/Conn/",
+	    	"Database\\":"core/Classes/Database/",
 	    	"Model\\":"core/Classes/Model/",
 	    	"Illuminate\\Database\\": ""
 	    },
