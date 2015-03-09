@@ -10,8 +10,12 @@ class Session {
     }
     
     
-    public static function get($key){
-        return isset( $_SESSION[$key] )?$_SESSION[$key]:false;
+    public static function get($key=false){
+        if($key){
+            return isset( $_SESSION[$key] )?$_SESSION[$key]:false;
+        } else {
+            return $_SESSION;
+        }
     }
     
     public static function set($key, $val){
