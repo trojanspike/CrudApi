@@ -1,2 +1,0 @@
-# Grep authToken -> header
-curl -i http://crud-api.uk.to/v1/headers | grep authToken: | sed "s/authToken:\s//"
