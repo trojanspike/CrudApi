@@ -7,7 +7,7 @@ $fnRun = $argv[1];
 
 require_once __DIR__.'/../ENV_DEFINE.php';
 require_once __DIR__.'/../vendor/autoload.php';
-use Conn\Illuminate;
+use Database\Illuminate;
 use App\Config;
 
 $SchemaDir = Config::get('site.Schema');
