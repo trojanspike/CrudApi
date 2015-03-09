@@ -1,4 +1,4 @@
-<?php namespace App;
+<?php namespace Model;
 
 use Database\PdoConnect;
 use PDO;
