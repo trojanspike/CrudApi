@@ -5,7 +5,7 @@ return [
     'mysql' =>  [
             'driver'    => 'mysql',
             'host'      => '127.0.0.1',
-            'database'  => 'database',
+            'database'  => 'username_database',
             'username'  => 'username',
             'password'  => 'password',
             'charset'   => 'utf8',

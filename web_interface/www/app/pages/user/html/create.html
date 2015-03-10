@@ -1,8 +1,18 @@
 <div class="col-md-8">
     
   <form name="UserCreate" ng-submit="fn.create()" class="css-form">
+    
     <div class="form-group">
-      <label for="exampleInputEmail1">Username</label>
+      <label for="email">Email</label>
+      <input type="email" class="form-control" placeholder="Username" 
+      ng-model="form.email"
+      name="email"
+      required
+      ng-minlength="4">
+    </div>
+    
+    <div class="form-group">
+      <label for="username">Username</label>
       <input type="text" class="form-control" placeholder="Username" 
       ng-model="form.username"
       name="username"
@@ -30,6 +40,8 @@
     
     
     <tt>UserCreate.username.$valid = {{UserCreate.username.$valid}}</tt><br/>
+    <tt>UserCreate.email.$valid = {{UserCreate.email.$valid}}</tt><br/>
+    
     <tt>UserCreate.inusernameput.$error = {{UserCreate.username.$error}}</tt><br/>
     <tt>UserCreate.$valid = {{UserCreate.$valid}}</tt><br/>
     <tt>UserCreate.$invalid = {{UserCreate.$invalid}}</tt><br/>

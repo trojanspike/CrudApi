@@ -1,16 +1,17 @@
 <?php
 
 
-use Model\Auth;
+use Model\AuthModel;
 
-Api::auth(function($req, $res, $run, $injects){
-    $Auth = new Auth(); 
+Api::auth(function($req, $res, $run){
+    $Auth = new AuthModel(); 
     
 
 if( preg_match("/application\/json/", $req->accept) ){
     
+    $res->json( $Auth->test() );
     if($input = $req->header('Auth-token')){
-        if( $Auth->byToken($input, $injects['NEW_TOKEN']) > 0 ){
+        if( $Auth->byToken($input) ){
             $run();
         } else {
             $res->json( ['error' => true, 'message' => 'invalidAuthToken'] );

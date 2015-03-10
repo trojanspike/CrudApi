@@ -10,47 +10,45 @@ delete
 
 use Model\Users;
 use App\Session;
+use App\Config;
+
 
 /* # create */
 Api::post(function($req, $res, $injects){
     
     $User = new Users();
 
-    if( $req->header('_csrf') && $req->header('_csrf') == Session::get('_CSRF') /*_CSRF*/ ){
+/* */  if( $req->header('_csrf') && $req->header('_csrf') == Session::get('_CSRF') ){
         /* Validstion class would be good here */
-        if( $input = $req->input(['username', 'password', 'extra']) ){
-            $result = $User->create($input);
-            $res->json( array_merge( $result , ['authToken' => Session::get('new_token')] ) );
+        
+        if( $input = $req->input(['username', 'email', 'password', 'extra']) ){
+            
+             if($User->create($input)){
+                 $res->json(['error'=>false]);
+            } else {
+              $res->json(['error' => true, 'message' => 'Error@user/create']);
+            }
         } else {
-            $res->json(['error' => true, 'message' => 'inputError@user/create']);
+            // error
+            $res->json(['error'=>true, 'message'=>'validation']);
         }
-    } else {
-        $res->json(['error' => true, 'message' => "inputError@user/create#_CSRF-mission"]);
-    }
-    
+/* */ }
+    $res->json(['error' => true, 'message' => "missingCsrf"]);    
 });
 
 /* read */
+use Database\Illuminate;
 
 Api::get(function($req, $res){
+    $db = new Illuminate;
+    $db->table('users')->insert([
+        'username' => '"\Someuser',
+        'password' => 'ppaass/',
+        'email' => 'EEMMAIL"'
+        ]);
     
-    $User = new Users();
-
-    if( true ){
-        /* Validstion class would be good here */
-        if( $input = $req->get(['username', 'password', 'extra']) ){
-            if( $User->create($input) ){
-                $res->created();
-            } else {
-                $res->status(500)->json(['error'=>true, 'message'=>'serverError']);
-            }
-        } else {
-            $res->json(['error' => true, 'message' => 'inputError']);
-        }
-    } else {
-        $res->json(['error' => true, 'message' => "inputError"]);
-    }
-    
+    $result = $db->table('users')->get();
+    $res->json( $result );
 });
 
 /* update */

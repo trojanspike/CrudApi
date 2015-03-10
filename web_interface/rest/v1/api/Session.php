@@ -1,13 +1,18 @@
 <?php
 
 use Model\Users;
+use app\Session;
 
 /* Create */
-Api::post(function($req, $res, $injects){
-$User = new Users();
+Api::post(function($req, $res){
+    $User = new Users();
 
     if( $input = $req->input(['username', 'password']) ){
-        $User->login( $input, $res, $injects['NEW_TOKEN'] );
+        if($data = $User->login( $input )){
+            $res->json( array_merge($data , ['error'=>false, 'authToken' => Session::get('new_token') ]) );
+        } else {
+            $res->json(['error'=>true]);
+        }
     } else {
         $res->json(['error' => true, 'message' => 'inputError@user/login']);
     }

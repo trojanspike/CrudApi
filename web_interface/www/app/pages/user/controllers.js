@@ -11,6 +11,7 @@ function($scope , $http, $state, $rootScope){
                 $state.go('user.login');
             } else {
                 alert('@error POST/v1/user');
+                console.log(result);
             }
         });
     };
