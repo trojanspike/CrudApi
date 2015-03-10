@@ -8,30 +8,18 @@ class User {
     */
     
     function up($Schema){
-        $Schema->create('users_data', function($table){
+        $Schema->create('users', function($table){
             $table->increments('id');
-            $table->string('email')->unique();
-            $table->string('name', 60);
+            // $table->string('email')->unique();
+            $table->string('username', 60);
             $table->string('password', 60);
+            $table->string('extra', 60);
             $table->timestamps();
         });
     }
     
     function down($Schema){
-        $Schema->dropIfExists('users_data');
-    }
-    
-    
-    // $  cmd schema version3
-    function version3($Schema){
-        // $Schema->update('table') , etc
-    }
-    
-    
-    // $ cmd schema test
-    function test($Schema){
-        // $Schema->update('table') , etc
-        touch(__DIR__.'/success');
+        $Schema->dropIfExists('users');
     }
     
 }

@@ -1,88 +1,42 @@
 <?php namespace Model;
+// http://laravel.com/api/4.0/Illuminate/Database/Query/Builder.html
 
 use Database\PdoConnect;
+use Database\RedisDB;
 use PDO;
+use App\Session;
+use App\Config;
 
-class Users {
-    private $dbh;
+class Users extends PdoConnect {
+   
+    private $redis;
     
     public function __construct(){
-        PdoConnect::sqlite();
-        $this->dbh = PdoConnect::getHandler();
-    }
-  
-    public function login($form, $res, $token){
-        if( $this->_createValidate($form) ){
-            $user = $form['username'];
-            $pass = $form['password'];
-            $q = $this->dbh->prepare("SELECT * FROM users WHERE username=:username AND password=:pass LIMIT 1");
-            $q->bindParam(':username', $user);
-            $q->bindParam(':pass', md5($pass));
-            
-            if( $q->execute() ){
-                if( $result = $q->fetch(PDO::FETCH_ASSOC) ){
-                     /* Do a token change - is usually done through Auth.php */
-                    if( $this->tokenChange($result['user_id'], $token) ){
-                        $res->json( array_merge($result, ['authToken' => $token, 'error' => false]) );
-                    } else {
-                        $res->json( ['error' => true, 'message' => 'inputError@login#27'] );
-                    }
-                    
-                } else {
-                    $res->json( ['error' => true, 'message' => 'inputError@login#31'] );
-                }
-                // $res->json( $result->user_id );
-            } else {
-                $res->json( ['error' => true, 'message' => 'inputError@login'] );
-            }   
-            
-        } else {
-            $res->json( ['error' => true, 'message' => 'inputError@login'] );
-        }
+        $this->redis = new RedisDB;
+        parent::__construct();
     }
     
-    
-    public function create($form, $tokenID, $res){
-        $result = [];
-        $db = $this->dbh;
+    public function login($form){
+        $query = $this->prepare('SELECT * FROM users WHERE username=:username AND password=:password LIMIT 1');
+        $query->bindParam(':username', $form['username']);
+        $query->bindParam(':password', $form['password']);
+        $query->execute();
         
-        if( $this->_createValidate($form) ){
-            $uid = md5(uniqid());
-            
-            $create = $db->prepare('INSERT INTO users 
-                (user_id, username, extra, password)
-                VALUES (:user_id,:username,:extra,:password)');
-                
-            $create->bindParam(':user_id', $uid);
-            $create->bindParam(':username', $form['username']);
-            $create->bindParam(':password', md5($form['password']));
-            $create->bindParam(':extra', $form['extra']);
-            
-            
-            $token = $db->prepare('INSERT INTO token_sessions (user_id,token) VALUES (:u_id, :token)');
-            
-            $token->bindParam(':token', $tokenID);
-            $token->bindParam(':u_id', $uid);
-            
-            if( $create->execute() && $token->execute() ){
-                $res->json( ['error' => false, 'message' => 'userCreated', 'authToken' => $tokenID] );
-            } else {
-                $res->json( $db->errorInfo() );
-            }
-            
+        if( $row = $query->fetch(PDO::FETCH_ASSOC) ){
+            $this->redis->set(Session::get('new_token'), json_encode($row) );
+            $this->redis->expire(Session::get('new_token'), Config::get('database.redis')['expires'] );
+            return json_decode( $this->redis->get(Session::get('new_token')) , true );
         } else {
-            $res->json( ['error' => true, 'message' => 'inputError'] );
+            return false;
         }
     }
     
     
-    /*
-    @ return bool
-    */
-    private function tokenChange($uid, $newToken){
-        $query = $this->dbh->prepare('UPDATE token_sessions SET token=:token WHERE user_id=:user_id');
-        $query->bindParam(':user_id', $uid);
-        $query->bindParam(':token', $newToken);
+    public function create($form){
+        $query = $this->prepare('INSERT INTO users (id,username,password,extra) VALUES (null,:uname,:pass,:extra)');
+        $query->bindParam(':uname', $form['username'] );
+        $query->bindParam(':pass', $form['password']);
+        $query->bindParam(':extra', $form['extra']);
         return $query->execute();
     }
     
@@ -91,8 +45,10 @@ class Users {
     }
     
     public function test(){
-        return $this->dbh->query('SELECT * FROM users')->fetchAll(PDO::FETCH_ASSOC);
+        
+        return $this->query('SELECT * FROM users')->fetchAll(PDO::FETCH_ASSOC);
     }
+    
     
 }
 

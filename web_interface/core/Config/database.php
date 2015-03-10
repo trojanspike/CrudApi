@@ -6,8 +6,8 @@ return [
             'driver'    => 'mysql',
             'host'      => '127.0.0.1',
             'database'  => 'database',
-            'username'  => 'root',
-            'password'  => '',
+            'username'  => 'username',
+            'password'  => 'password',
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'options'   => array(
@@ -24,6 +24,7 @@ return [
    
    
    'redis' => [
+       'expires' => 259200,
         'host' => '127.0.0.1',
         'port' => '6379'
         ]
