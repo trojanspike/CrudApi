@@ -3,5 +3,5 @@ vendor/
 .idea/
 composer.lock
 .c9/
-
+.vagrant/
 
