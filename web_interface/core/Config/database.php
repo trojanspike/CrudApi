@@ -19,7 +19,7 @@ return [
         
    'driver' => 'mysql',
    
-   'sqlite' => realpath( __DIR__.'/../../API.sqlite' ),
+   'sqlite' => '',
    
    
    
