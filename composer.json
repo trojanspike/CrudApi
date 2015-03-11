@@ -1,22 +1,36 @@
 {
-	"name": "BasicPageCRUD",
-	"description": " Api for easy CRUD api with header and basic auth ",
-	"keywords": [],
+	"name": "easycrud-api",
+	"description": " An easy to use Crud and rest API, cross domain JS request made easy ",
+	"keywords": ["api", "content", "management"],
 	"license": "MIT",
-	"require": {},
-	"require-dev": {
-    		"heroku/heroku-buildpack-php": "*"
-  	},
-	"autoload": {
-		"classmap": []
+	"require": {
+		"php" : ">=5.4.0",
+	   "leafo/scssphp": "0.0.12",
+	   "illuminate/database": "5.0.4"
 	},
+	"require-dev": {
+		"heroku/heroku-buildpack-php": "*"
+	},
+	"autoload": {
+	    "psr-4": {
+	    	"App\\":"web_interface/core/Classes/App/",
+	    	"Database\\":"web_interface/core/Classes/Database/",
+	    	"Model\\":"web_interface/core/Classes/Model/",
+	    	"Illuminate\\Database\\": ""
+	    },
+		"classmap": ["./src/"],
+		"files": ["web_interface/core/GlobalFn.php"]
+	},
+	"autoload-dev": {},
 	"scripts": {
-		"post-install-cmd": ["cd ./web_interface/ && composer install && ./cmd schema up"],
+		"post-install-cmd": ["./web_interface/cmd schema up"],
 		"post-update-cmd": [],
 		"post-create-project-cmd": []
 	},
 	"config": {
+	    "vendor-dir": "./web_interface/vendor/",
 		"preferred-install": "dist"
 	},
-	"minimum-stability": "stable"
+	"minimum-stability": "stable",
+	"_Reference" : "https://getcomposer.org/doc/04-schema.md"
 }

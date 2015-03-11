@@ -12,4 +12,4 @@ sudo cp /vagrant/Provision/000-default.conf /etc/apache2/sites-enabled/ && servi
 curl -sS https://getcomposer.org/installer | php &&
 mv composer.phar /usr/local/bin/composer && \
 
-cd /var/www/crud_api/web_interface/ && composer install && ./cmd schema up
+cd /var/www/crud_api/ && composer install
