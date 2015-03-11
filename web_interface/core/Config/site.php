@@ -1,8 +1,10 @@
 <?php
 
+/* TODO - load as path_* , env /folder/conf */
+
 return [
     
-    'debug' => true,
+    'debug' => false,
 
     'url' => 'crud-api.uk.to',
     

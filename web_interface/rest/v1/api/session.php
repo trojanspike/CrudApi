@@ -6,15 +6,15 @@ use app\Session;
 /* Create */
 Api::post(function($req, $res){
     $User = new Users();
-
+    $res->json( Session::get() );
     if( $input = $req->input(['username', 'password']) ){
-        if($data = $User->login( $input )){
-            $res->json( array_merge($data , ['error'=>false, 'authToken' => Session::get('new_token') ]) );
+        if( $User->login( $input )){
+            $res->json( ['error'=>false, 'authToken' => Session::get('new_token') ] );
         } else {
-            $res->json(['error'=>true]);
+            $res->json(['error'=>true, 'message' => ['userNotFound'] ]);
         }
     } else {
-        $res->json(['error' => true, 'message' => 'inputError@user/login']);
+        $res->json( ['error' => true, 'message' => ['inputError'] ]);
     }
     
 });
@@ -25,8 +25,9 @@ Api::post(function($req, $res){
 /* UPDATE */
 
 /* Destroy */
-Api::delete(function($req, $res, $injects){
-    /* Auth Token was changed through Auth.php : no need to return it */
+Api::delete(function($req, $res){
+
+    /* Remove key from Redis */
     $res->json(['error' => false]); // Error would have been caught in Auth.php
 });
 

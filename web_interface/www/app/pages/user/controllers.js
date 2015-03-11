@@ -25,7 +25,7 @@ function($scope , $http, userInfo, $state, $rootScope){
     
     $scope.fn.login = function(){
         /* Should prob be in #POST /Session [create-session]*/
-        $http.post('/v1/Session', $scope.form).then(function(data){
+        $http.post('/v1/session', $scope.form).then(function(data){
             console.log(data);
             var result = data.data;
             if( result.error === false ){

@@ -3,7 +3,7 @@ window.angular.module('api', ['ui.router', 'ngAnimate', 'api.upload', 'api.dashb
 /* user info service */
 /* TODO - use l-storage to save authToken */
 /* Should prob call this Session  */
-.factory('userInfo', function($rootScope){
+.factory('Session', function($rootScope){
     var info = { authToken : false, loggedin : false, _csrf : false };
     return {
         getAll : function(){
@@ -27,8 +27,8 @@ window.angular.module('api', ['ui.router', 'ngAnimate', 'api.upload', 'api.dashb
 .directive('apiCsrf', function(){
     return {
         restrict : 'A',
-        controller : function($attrs, userInfo){
-            userInfo.set({
+        controller : function($attrs, Session){
+            Session.set({
                 _csrf : $attrs.apiCsrf
             });
         }
@@ -37,13 +37,13 @@ window.angular.module('api', ['ui.router', 'ngAnimate', 'api.upload', 'api.dashb
 
 
 /* Controller */
-.controller('UserInfoCtl' , ['userInfo','$timeout', '$scope', '$http', 
-function(userInfo, $timeout , $scope, $http){
+.controller('UserInfoCtl' , ['Session','$timeout', '$scope', '$http',
+function(Session, $timeout , $scope, $http){
     $scope.fn = {};
     $scope.data = {};
-    $scope.data.userInfo = userInfo.getAll();
+    $scope.data.Session = Session.getAll();
     
-    $scope.$watch( 'data.userInfo.authToken' , function(_new, _old){
+    $scope.$watch( 'data.Session.authToken' , function(_new, _old){
         localStorage.setItem('Session', JSON.stringify({
             authToken : _new,
             loggedin : (typeof _new === 'string')
@@ -51,8 +51,8 @@ function(userInfo, $timeout , $scope, $http){
     } );
     
     $scope.fn.logout = function(){
-        $http.delete('/v1/Session', {uid : userInfo.get('user_id')}).then(function(data){
-            userInfo.reset();
+        $http.delete('/v1/Session', {uid : Session.get('user_id')}).then(function(data){
+            Session.reset();
             $scope.$emit('logout');
         });
     };
@@ -68,7 +68,7 @@ function(userInfo, $timeout , $scope, $http){
     
     $scope.fn.Auth = function(){
         $http.get('/v1/Quotes-Auth').then(function(data){
-            userInfo.set({
+            Session.set({
                 authToken : ( typeof data.data.authToken !== 'undefined' )?data.data.authToken:false
             });
             $scope.quote = data.data;
@@ -83,16 +83,16 @@ function(userInfo, $timeout , $scope, $http){
     });
     
     $scope.$on('logout' , function(){ 
-        $scope.data.userInfo = userInfo.getAll();
+        $scope.data.Session = Session.getAll();
     });
     
 }])
 
-.run(function($rootScope, $templateCache, userInfo, $state) {
+.run(function($rootScope, $templateCache, Session, $state) {
 
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
         
-        if( typeof(toState.data.sessionRequired) !== 'undefined' && toState.data.sessionRequired !== userInfo.get('loggedin')  ){
+        if( typeof(toState.data.sessionRequired) !== 'undefined' && toState.data.sessionRequired !== Session.get('loggedin')  ){
             
                 event.preventDefault();
                 $rootScope.$broadcast('LoggedIn');
@@ -102,7 +102,7 @@ function(userInfo, $timeout , $scope, $http){
     
     try {
         var Sess = JSON.parse( localStorage.getItem('Session') );
-        userInfo.set(Sess);
+        Session.set(Sess);
         }
         catch(err) {}
     

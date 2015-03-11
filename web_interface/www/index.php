@@ -93,7 +93,7 @@ Session::start();
                     </p>
                     
                     <pre>  <code> 
-                        {{ data.userInfo }}
+                        {{ data.Session }}
                         
                     </code>  </pre>
                       
@@ -166,9 +166,9 @@ Session::start();
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.13/angular-ui-router.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular-animate.js"></script>
+
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
-    
-    
+
     <?php echo View::getJS( realpath(__DIR__.'/app/') ); ?>
     <?php echo View::getJS( realpath(__DIR__.'/app/pages/') ); ?>
     

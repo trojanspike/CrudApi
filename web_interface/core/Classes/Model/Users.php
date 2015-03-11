@@ -1,5 +1,4 @@
 <?php namespace Model;
-// http://laravel.com/api/4.0/Illuminate/Database/Query/Builder.html
 
 use Database\PdoConnect;
 use Database\RedisDB;
@@ -25,7 +24,7 @@ class Users extends PdoConnect {
         if( $row = $query->fetch(PDO::FETCH_ASSOC) ){
             $this->redis->set(Session::get('new_token'), json_encode($row) );
             $this->redis->expire(Session::get('new_token'), Config::get('database.redis')['expires'] );
-            return json_decode( $this->redis->get(Session::get('new_token')) , true );
+            return true;
         } else {
             return false;
         }
@@ -39,19 +38,8 @@ class Users extends PdoConnect {
         $query->bindParam(':uname', $form['username'] );
         $query->bindParam(':pass', $form['password']);
         $query->bindParam(':extra', $form['extra']);
-        
         return $query->execute();
     }
-    
-    private function _createValidate($form){
-        return ( strlen($form['username']) > 4 && strlen($form['password']) > 4 )?true:false;
-    }
-    
-    public function test(){
-        
-        return $this->query('SELECT * FROM users')->fetchAll(PDO::FETCH_ASSOC);
-    }
-    
     
 }
 

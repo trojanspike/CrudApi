@@ -9,10 +9,11 @@ class View {
         /v1/ext-Coffee/app/pages/user/controller.coffee
         */
         $AppJs = glob($path.'/*.js');
+        $time = time();
         $AppJs = array_merge($AppJs , glob($path.'/**/**/*.js'));
         foreach($AppJs as $js){
             $js = preg_replace("/.*www(.*)$/", "$1", $js);
-            echo "<script type='text/javascript' src='{$js}'></script>";
+            echo "<script type='text/javascript' src='{$js}?v={$time}'></script>";
         }
     }
     

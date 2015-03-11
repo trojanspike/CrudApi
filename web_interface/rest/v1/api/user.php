@@ -15,24 +15,24 @@ use App\Config;
 
 /* # create */
 Api::post(function($req, $res, $injects){
-    
+// curl http://local.com/v1/user -X POST -H 'accept:application/json' -d '{"username":"trojan","":"","":""}'
     $User = new Users();
 
-/* */  if( $req->header('_csrf') && $req->header('_csrf') == Session::get('_CSRF') ){
+    if( $req->header('_csrf') && $req->header('_csrf') == Session::get('_CSRF') || Config::get('site.debug') === true ){
         /* Validstion class would be good here */
         
         if( $input = $req->input(['username', 'email', 'password', 'extra']) ){
-            
+
              if($User->create($input)){
                  $res->json(['error'=>false]);
             } else {
-              $res->json(['error' => true, 'message' => 'Error@user/create']);
+              $res->json(['error' => true, 'message' => ['notCreated'] ]);
             }
         } else {
             // error
-            $res->json(['error'=>true, 'message'=>'validation']);
+            $res->json(['error'=>true, 'message'=>['validation'] ]);
         }
-/* */ }
+    }
     $res->json(['error' => true, 'message' => "missingCsrf"]);    
 });
 
