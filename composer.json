@@ -11,7 +11,7 @@
 		"classmap": []
 	},
 	"scripts": {
-		"post-install-cmd": [],
+		"post-install-cmd": ["cd ./web_interface/ && composer install && ./cmd schema up"],
 		"post-update-cmd": [],
 		"post-create-project-cmd": []
 	},
