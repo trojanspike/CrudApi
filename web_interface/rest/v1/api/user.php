@@ -32,7 +32,7 @@ Api::post(function($req, $res, $injects){
             'username'    => 'required|alpha_numeric|max_len,60|min_len,4',
             'email'       => 'required|valid_email',
             'password'    => 'required|max_len,60|min_len,6',
-            'extra'      => 'required|alpha_dash'
+            'extra'      => 'required|alpha_dash' /* TODO , should be json array? */
         ));
         $gump->filter_rules(array(
             'username' => 'trim|sanitize_string',
@@ -73,7 +73,4 @@ Api::get(function($req, $res){
 
 /* destroy */
 
-Api::error(function($message, $res){
-    $res->unAuth();
-});
 ?>

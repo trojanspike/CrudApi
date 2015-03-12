@@ -64,9 +64,6 @@ Api::delete(function($req, $res){
     }
 });
 
-Api::error(function($mess, $res){
-    $res->status($mess['status'])->json($mess);
-});
 
 
 ?>

@@ -10,10 +10,5 @@ Api::get(function($req, $res){
     $res->status(201)->json($test);
 });
 
-Api::error(function($mess , $res){
-    
-    $res->json(['error']);
-    
-});
 
 ?>
