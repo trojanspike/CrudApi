@@ -26,9 +26,6 @@ use Rest;
 
 Api::inject('API_V', $version);
 
-
-Config::set('site.debug', true);
-
 /* How strict to make the REQUEST_URI */
 if( preg_match("/^([\/\-\.a-zA-Z0-9]+)$/", $path) && preg_match("/^v[0-9]$/", $version) ){
     Api::$uri = $path; // needed for $req->uri & req->params()
