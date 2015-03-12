@@ -8,9 +8,7 @@
 	   "leafo/scssphp": "0.0.12",
 	   "illuminate/database": "5.0.4"
 	},
-	"require-dev": {
-		"heroku/heroku-buildpack-php": "*"
-	},
+	"require-dev": {},
 	"autoload": {
 	    "psr-4": {
 	    	"App\\":"web_interface/core/Classes/App/",
@@ -23,7 +21,7 @@
 	},
 	"autoload-dev": {},
 	"scripts": {
-		"post-install-cmd": ["./web_interface/cmd schema up"],
+		"post-install-cmd": ["./web_interface/bin/schema up"],
 		"post-update-cmd": [],
 		"post-create-project-cmd": []
 	},
