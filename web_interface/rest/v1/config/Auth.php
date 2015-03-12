@@ -1,9 +1,8 @@
 <?php
 
 
-use Model\AuthModel;
+use App\Security\Auth;
 use App\Security\Accepted;
-use App\Session;
 use App\Config;
 use App\Build\ResponseAuth as Response;
 
@@ -13,7 +12,7 @@ Api::error(function($message, $res){
 });
 
 Api::auth(function($req, $res, $run){
-    $AuthModel = new AuthModel();
+    $Auth = new Auth();
 
     Accepted::$byPass = Config::get('site.debug');
 
@@ -23,7 +22,7 @@ Api::auth(function($req, $res, $run){
 
 
     if($input = $req->header('Auth-token')){
-        if( $AuthModel->byToken($input) ){
+        if( $Auth->byToken($input) ){
             $run();
         } else {
             $res->status(402)->json( ['error' => true, 'message' => ['invalidAuthToken']] );

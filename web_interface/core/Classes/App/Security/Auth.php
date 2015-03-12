@@ -1,9 +1,9 @@
-<?php namespace Model;
+<?php namespace App\Security;
 
 use Database\RedisDB;
 use App\Session;
 
-class AuthModel extends RedisDB {
+class Auth extends RedisDB {
 
     public function byToken($token){
         if( $info = $this->get($token) )
