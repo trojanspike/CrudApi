@@ -2,7 +2,7 @@
 
 return [
 
-    'www' -> '',
+    'www' => '',
 
     'storage' => '',
 

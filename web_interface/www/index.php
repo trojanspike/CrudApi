@@ -1,10 +1,11 @@
 <?php
-ini_set("display_errors", "1");
-error_reporting(E_ALL);
-
 session_start();
 
 require_once __DIR__.'/../vendor/autoload.php'; /* Composer */
+use App\Config;
+
+ini_set("display_errors", config::get('error.display') );
+error_reporting( config::get('error.report') );
 
 
 $path = preg_replace('/^\//', '', parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
@@ -25,10 +26,6 @@ use Rest;
 
 Api::inject('API_V', $version);
 
-
-/* Not using API - load some  */
-
-use App\Config;
 
 Config::set('site.debug', true);
 
