@@ -1,20 +1,16 @@
 <?php
 
-use App\Config;
+use App\Build\ResponseAuth as Response;
 use App\Session;
+use App\Config;
 
 Api::get(function($req, $res, $injects){
     
     $quote = Config::get('demo.quotes');
-   
-    $res->json( ['error'=>false, 'message'=>$quote[rand(0, count($quote) - 1 )],
-    'authToken' => Session::get('new_token')] );
+
+    Response::add(['error'=>false, 'message'=>$quote[rand(0, count($quote) - 1 )]]);
+    Response::run($res);
     
-});
-
-
-Api::error(function($message, $res){
-    $res->status( $message['statue'] )->json($message);
 });
 
 ?>
