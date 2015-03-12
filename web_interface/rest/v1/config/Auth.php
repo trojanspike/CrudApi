@@ -3,11 +3,10 @@
 
 use Model\AuthModel;
 use App\Session;
+use App\Config;
 
 Api::auth(function($req, $res, $run){
     $Auth = new AuthModel(); /* @@@ */
-
-    Session::set('__extra__' , $req->input('__extra__'));
 
 if( preg_match("/application\/json/", $req->accept)  ){
 

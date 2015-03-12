@@ -11,6 +11,8 @@ return [
     'Quotes/NoAuth' => false,
     'Quotes/Auth' => true,
     'test' => false,
-    'store' => true
+    'store' => true,
+
+    'test/redis' => false
     ]
 ?>

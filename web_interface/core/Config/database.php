@@ -21,7 +21,7 @@ return [
    
    'sqlite' => '',
    
-   
+   'passwordSalt' => '$@kis48575Col5',
    
    'redis' => [
        'expires' => 259200,

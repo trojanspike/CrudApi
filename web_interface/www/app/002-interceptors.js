@@ -16,10 +16,10 @@ window.angular.module('api')
             request : function(conf){
                 conf.headers['Accept']='application/json';
                 conf.headers['Auth-token']=Session.get('authToken');
-                conf.headers['_csrf']=Session.get('_csrf');
 
                 /* add Some other data we need for on server */
                 conf.data = conf.data || {};
+                conf.data['_csrf']=Session.get('_csrf');
                 conf.data.__extra__ = {
                     lang : LANG,
                     fingerPrint : FINGER_PRINT,
