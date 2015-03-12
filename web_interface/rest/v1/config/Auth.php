@@ -2,16 +2,28 @@
 
 
 use Model\AuthModel;
+use App\Security\Accepted;
 use App\Session;
 use App\Config;
+use App\Build\ResponseAuth as Response;
+
+Api::error(function($message, $res){
+    Response::$status = $message['status'];
+    Response::run($res, $message);
+});
 
 Api::auth(function($req, $res, $run){
-    $Auth = new AuthModel(); /* @@@ */
+    $AuthModel = new AuthModel();
 
-if( preg_match("/application\/json/", $req->accept)  ){
+    Accepted::$byPass = Config::get('site.debug');
+
+    if( ! Accepted::pass(["/application\/json/"], $req->accept) ){
+        $res->status(402)->json( ['error' => true, 'message' => ['acceptError'] ] );
+    }
+
 
     if($input = $req->header('Auth-token')){
-        if( $Auth->byToken($input) ){
+        if( $AuthModel->byToken($input) ){
             $run();
         } else {
             $res->status(402)->json( ['error' => true, 'message' => ['invalidAuthToken']] );
@@ -21,10 +33,9 @@ if( preg_match("/application\/json/", $req->accept)  ){
     {
         $res->status(402)->json( ['error' => true, 'message' => ['noAuthToken'] ] );
     }
-    
-}
 
-    $res->status(402)->json( ['error' => true, 'message' => ['acceptError'] ] );
+
+
 
 });
 
