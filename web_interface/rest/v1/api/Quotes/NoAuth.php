@@ -11,8 +11,4 @@ Api::get(function($req, $res, $injects){
     
 });
 
-Api::error(function($message, $res){
-    $res->status( $message['statue'] )->json($message);
-});
-
 ?>

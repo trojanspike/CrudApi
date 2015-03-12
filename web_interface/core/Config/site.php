@@ -3,7 +3,7 @@
 
 return [
     
-    'debug' => false,
+    'debug' => true,
 
 	 'production' => false,
 
