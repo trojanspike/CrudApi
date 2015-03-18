@@ -1,7 +1,7 @@
 <?php
 
 
-class User {
+class UserSchema {
     
     /*
     bin -> schema up | down | myFunc

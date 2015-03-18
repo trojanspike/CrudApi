@@ -10,6 +10,10 @@ class Illuminate extends Capsule {
         $capsule->addConnection(Config::get('database')[Config::get('database.driver')]); 
         $capsule->setAsGlobal();
     }
+
+    public static function instance(){
+        return new Illuminate();
+    }
     
 }
 

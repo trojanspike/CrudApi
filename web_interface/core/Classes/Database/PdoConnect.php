@@ -21,6 +21,9 @@ class PdoConnect extends PDO {
         } catch (PDOException $e) {
             echo 'Connection failed: ' . $e->getMessage();
         }
-        
+    }
+
+    public static function instance(){
+        return new PdoConnect();
     }
 }

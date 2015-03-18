@@ -17,5 +17,9 @@ class RedisDB extends Redis {
         $RedisConf = Config::get('database.redis');
         $this->connect($RedisConf['host'], $RedisConf['port']);
     }
+
+    public static function instance(){
+        return new RedisDB();
+    }
 }
 ?>
