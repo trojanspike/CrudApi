@@ -2,7 +2,7 @@
 
 use App\Config;
 
-Api::get(function($req, $res, $injects){
+Api::get(function($req, $res){
     
     // $res->json( $User->test() );
    $quote = Config::get('demo.quotes');

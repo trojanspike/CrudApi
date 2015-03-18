@@ -4,12 +4,13 @@ use App\Build\ResponseAuth as Response;
 use App\Session;
 use App\Config;
 
-Api::get(function($req, $res, $injects){
+$res = new Response;
+
+Api::get(function($req) use($res) {
     
     $quote = Config::get('demo.quotes');
 
-    Response::add(['error'=>false, 'message'=>$quote[rand(0, count($quote) - 1 )]]);
-    Response::run($res);
+    $res->json(['error'=>false, 'message'=>$quote[rand(0, count($quote) - 1 )]]);
     
 });
 

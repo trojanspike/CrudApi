@@ -15,7 +15,7 @@ Api::auth(function($req, $res, $run){
 
 
    if( ! Accepted::pass(["/application\/json/"], $req->accept) ){
-      $res->status(402)->json( ['error' => true, 'message' => ['acceptError'] ] );
+      $res->status(400)->json( ['error' => true, 'message' => ['acceptError'] ] );
    } else {
       $run();
    }

@@ -14,8 +14,8 @@ use App\Config;
 
 
 /* # create */
-Api::post(function($req, $res, $injects){
-// curl http://local.com/v1/user -X POST -H 'accept:application/json' -d '{"username":"trojan","":"","":""}'
+Api::post(function($req, $res){
+// curl http://local.com/v1/user -X POST -H 'accept:application/json' -d '{"username":"username1","email":"email1@email.com","password":"password", "extra":"extra"}'
     $User = new Users();
 
     if( $req->input('_csrf') && $req->input('_csrf') == Session::get('_CSRF') || Config::get('site.debug') === true ){
@@ -32,7 +32,7 @@ Api::post(function($req, $res, $injects){
             'username'    => 'required|alpha_numeric|max_len,60|min_len,4',
             'email'       => 'required|valid_email',
             'password'    => 'required|max_len,60|min_len,6',
-            'extra'      => 'required|alpha_dash' /* TODO , should be json array? */
+            'extra'      => 'required' /* TODO , should be json array? */
         ));
         $gump->filter_rules(array(
             'username' => 'trim|sanitize_string',
@@ -61,10 +61,9 @@ Api::post(function($req, $res, $injects){
 
 /* read */
 use Database\Illuminate;
+$db = Illuminate::instance();
 
-Api::get(function($req, $res){
-    $db = new Illuminate;
-    
+Api::get(function($req, $res) use($db) {
     $result = $db->table('users')->select(['id','username', 'email', 'extra', 'password'])->get();
     $res->json( $result );
 });
