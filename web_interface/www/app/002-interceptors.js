@@ -20,7 +20,7 @@ window.angular.module('api')
                 /* add Some other data we need for on server */
                 conf.data = conf.data || {};
                 conf.data['_csrf']=Session.get('_csrf');
-                conf.data.__extra__ = {
+                conf.data.BROWSER = {
                     lang : LANG,
                     fingerPrint : FINGER_PRINT,
                     timeStamp : new Date().getTime()
