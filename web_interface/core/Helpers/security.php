@@ -5,10 +5,9 @@ if( ! function_exists('api_user_pass') )
 {
     function api_user_pass($pass)
     {
-        return hash('crc32', Config::get('database.passwordSalt')).'.'.hash('haval192,3', $pass);
+        return hash('crc32', Config::get('database.passwordSalt')).hash('haval192,3', $pass).'$';
     }
 }
-
 
 
 

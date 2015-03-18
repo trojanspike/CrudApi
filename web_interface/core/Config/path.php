@@ -2,11 +2,11 @@
 
 return [
 
-    'www' => '',
+    'www' => realpath(__DIR__.'/../../www/'),
 
-    'storage' => '',
+    'storage' => realpath(__DIR__.'/../Storage/'),
 
-    'schema' => ''
+    'schema' => realpath( __DIR__.'/../Classes/Schema/' )
 
 ];
 
