@@ -1,0 +1,41 @@
+<phpunit
+			_REFERENCE="https://phpunit.de/manual/current/en/appendixes.configuration.html"
+			_printerFile="/path/to/ResultPrinter.php"
+			_testSuiteLoaderFile="/path/to/StandardTestSuiteLoader.php"
+
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/4.5/phpunit.xsd"
+         backupGlobals="true"
+         backupStaticAttributes="false"
+         bootstrap="./vendor/autoload.php"
+         cacheTokens="false"
+         colors="false"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         forceCoversAnnotation="false"
+         mapTestClassNameToCoveredClassName="false"
+         printerClass="PHPUnit_TextUI_ResultPrinter"
+         processIsolation="false"
+         stopOnError="false"
+         stopOnFailure="false"
+         stopOnIncomplete="false"
+         stopOnSkipped="false"
+         testSuiteLoaderClass="PHPUnit_Runner_StandardTestSuiteLoader"
+         timeoutForSmallTests="1"
+         timeoutForMediumTests="10"
+         timeoutForLargeTests="60"
+         verbose="false">
+
+	<testsuites>
+
+		<testsuite name="core App">
+			<directory>./core/tests/core/Classes/App/</directory>
+		</testsuite> 
+
+		<testsuite name="core Database">
+			<directory>./core/tests/core/Classes/Database/</directory>
+		</testsuite>
+
+	</testsuites> 
+</phpunit>
