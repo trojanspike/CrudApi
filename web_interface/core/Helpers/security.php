@@ -9,6 +9,14 @@ if( ! function_exists('api_user_pass') )
     }
 }
 
+if( ! function_exists('AuthTokenGenerate') )
+{
+    function AuthTokenGenerate()
+    {
+        return hash('haval224,3', md5(uniqid()).time()).'.'.str_replace(' ', '#', microtime());
+    }
+}
+
 
 
 /* Add to Gump Filter
