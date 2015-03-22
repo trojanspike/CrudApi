@@ -1,16 +1,18 @@
 <?php namespace App;
 
 use Database\RedisDB;
+use App\Session;
 
 class Cache extends RedisDB {
 
-    private $saveTo;
+    private $saveTo, $uid = false;
     private static $DB_Instance = false;
     private static $FILE_Instance = false;
 
     public function __construct($type){
-        $this->saveTo = $type;
-        parent::__construct();
+         $this->saveTo = $type;
+			/* Session::get('user_id') */
+         parent::__construct();
     }
 
     public static function db(){
