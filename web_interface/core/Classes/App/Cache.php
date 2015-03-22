@@ -4,7 +4,7 @@ use Database\RedisDB;
 use App\Session;
 
 class Cache extends RedisDB {
-
+/* TODO , Needs to use Session->user_id  */
     private $saveTo, $uid = false;
     private static $DB_Instance = false;
     private static $FILE_Instance = false;
@@ -32,6 +32,7 @@ class Cache extends RedisDB {
 
 
     public function get($key){
+		$key = md5($key);
         switch($this->saveTo){
             case "db":
                 return parent::get('CACHE_DB_'.$key);
@@ -49,6 +50,7 @@ class Cache extends RedisDB {
         }
     }
     public function put($key, $content, $time){
+		$key = md5($key);
         switch($this->saveTo){
             case "db":
                 $this->set('CACHE_DB_'.$key, $content);
