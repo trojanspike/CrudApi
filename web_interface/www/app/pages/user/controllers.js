@@ -17,8 +17,8 @@ function($scope , $http, $state, $rootScope){
     };
     
 }])
-.controller('Login', ['$scope', '$http' , 'userInfo', '$state', '$rootScope', 
-function($scope , $http, userInfo, $state, $rootScope){
+.controller('Login', ['$scope', '$http' , 'Session', '$state', '$rootScope', 
+function($scope , $http, Session, $state, $rootScope){
     $scope.fn = {};
     $scope.form = {};
     $scope.message = '';
@@ -29,8 +29,8 @@ function($scope , $http, userInfo, $state, $rootScope){
             console.log(data);
             var result = data.data;
             if( result.error === false ){
-                userInfo.set(result);
-                userInfo.set({
+                Session.set(result);
+                Session.set({
                     loggedin : true
                 });
                 $rootScope.$broadcast('LoggedIn'); 
