@@ -29,6 +29,7 @@
 * @version 0.1.27
 * @license MIT License (http://www.opensource.org/licenses/mit-license.php)
 */
+require_once __dir__.'/lib/Interfaces/ResponseInterface.php';
 
 require_once __dir__.'/lib/Request.php';
 require_once __dir__.'/lib/Response.php';
@@ -50,7 +51,9 @@ class Api {
 	**/
 	public static function auth($callb){
 		static::$request = new Request( (static::$uri)?static::$uri:''); // ($parts, $uri)
-		static::$response = new Response;
+		if( static::$response == false ){
+			static::$response = new Response;
+		}
 
 		call_user_func_array($callb, [
 			static::$request,
@@ -88,7 +91,9 @@ class Api {
 		static::$errorFunc = $callb;
 	}
 
-
+	public static function setResponse( ResponseInterface $response ){
+		static::$response = $response;
+	}
 
 	private static function run($verb){
 		if( in_array($verb , static::$verbAllowed) && isset(static::$verbFunctions[$verb]) ){
