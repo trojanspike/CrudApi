@@ -1,17 +1,15 @@
 <?php namespace App;
 
 use Database\RedisDB;
-use App\Session;
 
 class Cache extends RedisDB {
-/* TODO , Needs to use Session->user_id  */
+
     private $saveTo, $uid = false;
     private static $DB_Instance = false;
     private static $FILE_Instance = false;
 
     public function __construct($type){
          $this->saveTo = $type;
-			/* Session::get('user_id') */
          parent::__construct();
     }
 
@@ -35,10 +33,10 @@ class Cache extends RedisDB {
 		$key = md5($key);
         switch($this->saveTo){
             case "db":
-                return parent::get('CACHE_DB_'.$key);
+                return parent::get('CACHE-DB-'.$key);
             break;
             case "file":
-                if(parent::get('CACHE_FILE_'.$key)) {
+                if(parent::get('CACHE-FILE-'.$key)) {
                     return file_get_contents(path('storage') . '/Cache/' . $key);
                 } else {
                     if( file_exists(path('storage') . '/Cache/' . $key) ){
@@ -53,12 +51,12 @@ class Cache extends RedisDB {
 		$key = md5($key);
         switch($this->saveTo){
             case "db":
-                $this->set('CACHE_DB_'.$key, $content);
-                $this->expire('CACHE_DB_'.$key, $time);
+                $this->set('CACHE-DB-'.$key, $content);
+                $this->expire('CACHE-DB-'.$key, $time);
             break;
             case "file":
-                $this->set('CACHE_FILE_'.$key, true);
-                $this->expire('CACHE_FILE_'.$key, $time);
+                $this->set('CACHE-FILE-'.$key, true);
+                $this->expire('CACHE-FILE-'.$key, $time);
                 file_put_contents( path('storage').'/Cache/'.$key, $content );
             break;
         }
