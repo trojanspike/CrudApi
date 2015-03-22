@@ -2,6 +2,13 @@
 
 class Session {
     
+	public function __get($key){
+		return ( isset( $_SESSION[$key] ) )?$_SESSION[$key]:false;
+	}
+
+	public function __set($key, $val){
+		$_SESSION[$key] = $val;
+	}
     
     public static function start(){
         if( ! isset( $_SESSION['_CSRF'] ) ){
