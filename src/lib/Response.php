@@ -30,7 +30,7 @@
 * @license MIT License (http://www.opensource.org/licenses/mit-license.php)
 */
 
-class Response {
+class Response implements ResponseInterface {
 	private $_status, $_content = false;
 
 	public function __construct(){
