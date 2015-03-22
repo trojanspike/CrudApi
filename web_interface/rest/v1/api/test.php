@@ -3,8 +3,6 @@
 use Model\Users;
 use App\Session;
 use App\Config;
-use App\Build\ResponseAuth as Response;
-$res = new Response;
 
 Config::set('path.cache', path('storage').'/Cache');
 use Database\PdoConnect;
@@ -12,7 +10,7 @@ use Database\RedisDB;
 $red = RedisDB::instance();
 
 use App\Cache;
-Api::get(function($req) use($res, $red) {
+Api::get(function($req, $res) use($red) {
 
     $p1 = $req->params(2);
 

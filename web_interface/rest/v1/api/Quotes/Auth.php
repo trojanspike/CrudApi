@@ -1,12 +1,10 @@
 <?php
 
-use App\Build\ResponseAuth as Response;
 use App\Session;
 use App\Config;
 
-$res = new Response;
 
-Api::get(function($req) use($res) {
+Api::get(function($req, $res) {
     
     $quote = Config::get('demo.quotes');
 

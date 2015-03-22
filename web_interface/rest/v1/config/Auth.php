@@ -6,9 +6,10 @@ use App\Security\Accepted;
 use App\Config;
 use App\Build\ResponseAuth as Response;
 
+Api::setResponse( new Response );
+
 Api::error(function($message, $res){
-    Response::$status = $message['status'];
-    Response::run($res, $message);
+    $res->json($message);
 });
 
 Api::auth(function($req, $res, $run){
@@ -25,12 +26,12 @@ Api::auth(function($req, $res, $run){
         if( $Auth->byToken($input) ){
             $run();
         } else {
-            $res->status(402)->json( ['error' => true, 'message' => ['invalidAuthToken']] );
+            $res->status(401)->json( ['error' => true, 'message' => ['invalidAuthToken']] );
         }
     }
     else
     {
-        $res->status(402)->json( ['error' => true, 'message' => ['noAuthToken'] ] );
+        $res->status(401)->json( ['error' => true, 'message' => ['noAuthToken'] ] );
     }
 
 
