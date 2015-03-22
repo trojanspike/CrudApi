@@ -35,9 +35,21 @@ class Rest {
     private static $_Policies, $_params, $_api;
     public static $Dir, $debug = false;
     
-    public static function init($parts)
+    public static function init( array $parts)
     {
-        static::$Dir = realpath(static::$Dir);
+		if( is_dir(static::$Dir) ){
+			static::$Dir = realpath(static::$Dir);
+		} else {
+			if( static::$debug ){
+				echo json_encode([
+                     "error" => "DirectoryNotFound",
+                     "path" => static::$Dir
+                 ]);
+             exit();
+			}
+			static::$Dir = realpath( __DIR__.'/rest/' );
+		}
+        
         
         static::$_api = strpos($parts[0], '-')?str_replace('-','/',$parts[0]):$parts[0];
         Api::inject('API', $parts[0]);
