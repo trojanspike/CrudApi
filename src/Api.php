@@ -33,6 +33,17 @@
 require_once __dir__.'/lib/Request.php';
 require_once __dir__.'/lib/Response.php';
 
+/**
+ * Short description for class
+ *
+ * Long description for class (if any)...
+ *
+ * @copyright  28/03/15 , 16:28 lee
+ * @license
+ * @version
+ * @link
+ * @since
+ */
 
 class Api {
 
@@ -44,10 +55,14 @@ class Api {
 	public static $debug = false, $uri = false;
 
 	/**
-	* ::auth
-	*
-	* @param function				$callb 
-	**/
+	 * ::auth
+	 * Does something interesting
+	 * 28/03/15 , 16:30
+	 * @param  string    $where  Where something interesting takes place
+	 * @param  integer  $repeat How many times something interesting should happen
+	 * @throws Exception If something interesting cannot happen
+	 * @return Status
+	 */
 	public static function auth($callb)
 	{
 		static::$request = new Request( (static::$uri)?static::$uri:''); // ($parts, $uri)
@@ -68,46 +83,104 @@ class Api {
 	}
 
 	/**
-	 * ::inject
-	 *
-	 * @param string				$as
-	 * @param *any					$inj
-	 **/
+	 * Does something interesting
+	 * 28/03/15 , 16:30
+	 * @param  string    $where  Where something interesting takes place
+	 * @param  integer  $repeat How many times something interesting should happen
+	 * @throws Exception If something interesting cannot happen
+	 * @return Status
+	 */
 	public static function inject($as, $inj)
 	{
 		static::$injects[$as] = $inj;
 	}
 
+	/**
+	 * Does something interesting
+	 * 28/03/15 , 16:30
+	 * @param  string    $where  Where something interesting takes place
+	 * @param  integer  $repeat How many times something interesting should happen
+	 * @throws Exception If something interesting cannot happen
+	 * @return Status
+	 */
 	public static function get($callb)
 	{
 		static::$verbFunctions['GET'] = $callb;
 	}
 
+	/**
+	 * Does something interesting
+	 * 28/03/15 , 16:30
+	 * @param  string    $where  Where something interesting takes place
+	 * @param  integer  $repeat How many times something interesting should happen
+	 * @throws Exception If something interesting cannot happen
+	 * @return Status
+	 */
 	public static function post($callb)
 	{
 		static::$verbFunctions['POST'] = $callb;
 	}
 
+	/**
+	 * Does something interesting
+	 * 28/03/15 , 16:30
+	 * @param  string    $where  Where something interesting takes place
+	 * @param  integer  $repeat How many times something interesting should happen
+	 * @throws Exception If something interesting cannot happen
+	 * @return Status
+	 */
 	public static function put($callb)
 	{
 		static::$verbFunctions['PUT'] = $callb;
 	}
 
+	/**
+	 * Does something interesting
+	 * 28/03/15 , 16:30
+	 * @param  string    $where  Where something interesting takes place
+	 * @param  integer  $repeat How many times something interesting should happen
+	 * @throws Exception If something interesting cannot happen
+	 * @return Status
+	 */
 	public static function delete($callb)
 	{
 		static::$verbFunctions['DELETE'] = $callb;
 	}
 
+	/**
+	 * Does something interesting
+	 * 28/03/15 , 16:30
+	 * @param  string    $where  Where something interesting takes place
+	 * @param  integer  $repeat How many times something interesting should happen
+	 * @throws Exception If something interesting cannot happen
+	 * @return Status
+	 */
 	public static function error($callb)
 	{
 		static::$errorFunc = $callb;
 	}
 
+	/**
+	 * Does something interesting
+	 * 28/03/15 , 16:30
+	 * @param  string    $where  Where something interesting takes place
+	 * @param  integer  $repeat How many times something interesting should happen
+	 * @throws Exception If something interesting cannot happen
+	 * @return Status
+	 */
 	public static function setResponse( ResponseInterface $response )
 	{
 		static::$response = $response;
 	}
 
+	/**
+	 * Does something interesting
+	 * 28/03/15 , 16:30
+	 * @param  string    $where  Where something interesting takes place
+	 * @param  integer  $repeat How many times something interesting should happen
+	 * @throws Exception If something interesting cannot happen
+	 * @return Status
+	 */
 	private static function run($verb)
 	{
 		if( in_array($verb , static::$verbAllowed) && isset(static::$verbFunctions[$verb]) )

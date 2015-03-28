@@ -30,11 +30,30 @@
 * @license MIT License (http://www.opensource.org/licenses/mit-license.php)
 */
 
+/**
+ * Short description for class
+ *
+ * Long description for class (if any)...
+ *
+ * @copyright  28/03/15 , 16:28 lee
+ * @license
+ * @version
+ * @link
+ * @since
+ */
 class Request {
 
 	private $_headers, $_basicAuth, $_input, $_params;
 	public $verb, $accept, $uri = false;
 
+	/**
+	 * Does something interesting
+	 * 28/03/15 , 16:30
+	 * @param  string    $where  Where something interesting takes place
+	 * @param  integer  $repeat How many times something interesting should happen
+	 * @throws Exception If something interesting cannot happen
+	 * @return Status
+	 */
 	public function __construct($_uri)
 	{
 		$params = explode('/', $_uri);
@@ -86,23 +105,54 @@ class Request {
 		}
 		$this->accept = $_SERVER['HTTP_ACCEPT'];
 	}
-	
 
+	/**
+	 * Does something interesting
+	 * 28/03/15 , 16:30
+	 * @param  string    $where  Where something interesting takes place
+	 * @param  integer  $repeat How many times something interesting should happen
+	 * @throws Exception If something interesting cannot happen
+	 * @return Status
+	 */
 	public function basicAuth($key=false)
 	{
 		return $this->_returnKeyVals($this->_basicAuth, $key);
 	}
 
-
+	/**
+	 * Does something interesting
+	 * 28/03/15 , 16:30
+	 * @param  string    $where  Where something interesting takes place
+	 * @param  integer  $repeat How many times something interesting should happen
+	 * @throws Exception If something interesting cannot happen
+	 * @return Status
+	 */
 	public function get($key=false)
 	{
 		return $this->_returnKeyVals($_GET, $key);
 	}
+
+	/**
+	 * Does something interesting
+	 * 28/03/15 , 16:30
+	 * @param  string    $where  Where something interesting takes place
+	 * @param  integer  $repeat How many times something interesting should happen
+	 * @throws Exception If something interesting cannot happen
+	 * @return Status
+	 */
 	public function input($key=false)
 	{
 		return $this->_returnKeyVals($this->_input, $key);
 	}
-	
+
+	/**
+	 * Does something interesting
+	 * 28/03/15 , 16:30
+	 * @param  string    $where  Where something interesting takes place
+	 * @param  integer  $repeat How many times something interesting should happen
+	 * @throws Exception If something interesting cannot happen
+	 * @return Status
+	 */
 	public function header($key=false)
 	{
 		return $this->_returnKeyVals($this->_headers, $key);
@@ -110,9 +160,13 @@ class Request {
 
 
 	/**
-	 * @param int $num
-	 * @return array
-     */
+	 * Does something interesting
+	 * 28/03/15 , 16:30
+	 * @param  string    $where  Where something interesting takes place
+	 * @param  integer  $repeat How many times something interesting should happen
+	 * @throws Exception If something interesting cannot happen
+	 * @return Status
+	 */
 	public function params(int $num)
 	{
 		// $this-_params : arr
@@ -130,8 +184,15 @@ class Request {
 		}
 		return $returnData;
 	}
-	
-	
+
+	/**
+	 * Does something interesting
+	 * 28/03/15 , 16:30
+	 * @param  string    $where  Where something interesting takes place
+	 * @param  integer  $repeat How many times something interesting should happen
+	 * @throws Exception If something interesting cannot happen
+	 * @return Status
+	 */
 	private function _returnKeyVals($obj, $key)
 	{
 		if( is_array($key) )
@@ -147,7 +208,15 @@ class Request {
 			return $obj;
 		}
 	}
-	
+
+	/**
+	 * Does something interesting
+	 * 28/03/15 , 16:30
+	 * @param  string    $where  Where something interesting takes place
+	 * @param  integer  $repeat How many times something interesting should happen
+	 * @throws Exception If something interesting cannot happen
+	 * @return Status
+	 */
 	private function _returnKeyValsFromArray($obj , $keyArr)
 	{
 		$dataArr = [];
@@ -162,8 +231,15 @@ class Request {
 		}
 		return $dataArr;
 	}
-	
-	
+
+	/**
+	 * Does something interesting
+	 * 28/03/15 , 16:30
+	 * @param  string    $where  Where something interesting takes place
+	 * @param  integer  $repeat How many times something interesting should happen
+	 * @throws Exception If something interesting cannot happen
+	 * @return Status
+	 */
 	private function _ensureHeaderWord()
 	{
 		foreach( $this->_headers as $HKey => $HVal )

@@ -14,4 +14,4 @@ return [
     'store' => true,
 
     'test/redis' => false
-    ]
+    ];

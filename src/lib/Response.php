@@ -30,6 +30,17 @@
 * @license MIT License (http://www.opensource.org/licenses/mit-license.php)
 */
 
+/**
+ * Short description for class
+ *
+ * Long description for class (if any)...
+ *
+ * @copyright  28/03/15 , 16:28 lee
+ * @license
+ * @version
+ * @link
+ * @since
+ */
 interface ResponseInterface {
 
 	public function setContent($content);
@@ -39,22 +50,55 @@ interface ResponseInterface {
 
 }
 
-
+/**
+ * Short description for class
+ *
+ * Long description for class (if any)...
+ *
+ * @copyright  28/03/15 , 16:28 lee
+ * @license
+ * @version
+ * @link
+ * @since
+ */
 class Response implements ResponseInterface {
 	private $_status, $_content = false;
 
+	/**
+	 * Does something interesting
+	 * 28/03/15 , 16:30
+	 * @param  string    $where  Where something interesting takes place
+	 * @param  integer  $repeat How many times something interesting should happen
+	 * @throws Exception If something interesting cannot happen
+	 * @return Status
+	 */
 	public function __construct()
 	{
 		$this->_status = 200;
 	}
 
-
+	/**
+	 * Does something interesting
+	 * 28/03/15 , 16:30
+	 * @param  string    $where  Where something interesting takes place
+	 * @param  integer  $repeat How many times something interesting should happen
+	 * @throws Exception If something interesting cannot happen
+	 * @return Status
+	 */
 	public function setContent( $content)
 	{
 		$this->_content = $content;
 		return $this;
 	}
-	
+
+	/**
+	 * Does something interesting
+	 * 28/03/15 , 16:30
+	 * @param  string    $where  Where something interesting takes place
+	 * @param  integer  $repeat How many times something interesting should happen
+	 * @throws Exception If something interesting cannot happen
+	 * @return Status
+	 */
 	public function setHeader($header)
 	{
 		if( is_array($header) )
@@ -71,21 +115,42 @@ class Response implements ResponseInterface {
 		return $this;
 	}
 
+	/**
+	 * Does something interesting
+	 * 28/03/15 , 16:30
+	 * @param  string    $where  Where something interesting takes place
+	 * @param  integer  $repeat How many times something interesting should happen
+	 * @throws Exception If something interesting cannot happen
+	 * @return Status
+	 */
 	public function status($code)
 	{
 		$this->_status = (int)$code;
 		return $this;
 	}
 
-
-
-	
+	/**
+	 * Does something interesting
+	 * 28/03/15 , 16:30
+	 * @param  string    $where  Where something interesting takes place
+	 * @param  integer  $repeat How many times something interesting should happen
+	 * @throws Exception If something interesting cannot happen
+	 * @return Status
+	 */
 	public function json($obj)
 	{
 		$this->setHeader('Content-Type:application/javascript');
 		$this->outPut(json_encode($obj));
 	}
-	
+
+	/**
+	 * Does something interesting
+	 * 28/03/15 , 16:30
+	 * @param  string    $where  Where something interesting takes place
+	 * @param  integer  $repeat How many times something interesting should happen
+	 * @throws Exception If something interesting cannot happen
+	 * @return Status
+	 */
 	public function outPut($content)
 	{
 		http_response_code($this->_status);
@@ -99,17 +164,30 @@ class Response implements ResponseInterface {
 		header('Connection:close');
 		exit();
 	}
-	
-	
-	/* Quick herlper methods */
 
+	/**
+	 * Does something interesting
+	 * 28/03/15 , 16:30
+	 * @param  string    $where  Where something interesting takes place
+	 * @param  integer  $repeat How many times something interesting should happen
+	 * @throws Exception If something interesting cannot happen
+	 * @return Status
+	 */
 	public function badRequest()
 	{
 		$this->status(400)->json([
 			'message' => 'ClientError'
 		]);
 	}
-	
+
+	/**
+	 * Does something interesting
+	 * 28/03/15 , 16:30
+	 * @param  string    $where  Where something interesting takes place
+	 * @param  integer  $repeat How many times something interesting should happen
+	 * @throws Exception If something interesting cannot happen
+	 * @return Status
+	 */
 	public function unAuth()
 	{
 		$this->status(401)->json([
@@ -117,6 +195,14 @@ class Response implements ResponseInterface {
 		]);
 	}
 
+	/**
+	 * Does something interesting
+	 * 28/03/15 , 16:30
+	 * @param  string    $where  Where something interesting takes place
+	 * @param  integer  $repeat How many times something interesting should happen
+	 * @throws Exception If something interesting cannot happen
+	 * @return Status
+	 */
 	public function notFound()
 	{
 		$this->status(404)->json([
@@ -124,6 +210,14 @@ class Response implements ResponseInterface {
 		]);
 	}
 
+	/**
+	 * Does something interesting
+	 * 28/03/15 , 16:30
+	 * @param  string    $where  Where something interesting takes place
+	 * @param  integer  $repeat How many times something interesting should happen
+	 * @throws Exception If something interesting cannot happen
+	 * @return Status
+	 */
 	public function ok()
 	{
 		$this->json([
@@ -131,6 +225,14 @@ class Response implements ResponseInterface {
 		]);
 	}
 
+	/**
+	 * Does something interesting
+	 * 28/03/15 , 16:30
+	 * @param  string    $where  Where something interesting takes place
+	 * @param  integer  $repeat How many times something interesting should happen
+	 * @throws Exception If something interesting cannot happen
+	 * @return Status
+	 */
 	public function created()
 	{
 		$this->status(201)->json([

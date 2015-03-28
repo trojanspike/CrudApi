@@ -30,11 +30,31 @@
 * @license MIT License (http://www.opensource.org/licenses/mit-license.php)
 */
 
+/**
+ * Short description for class
+ *
+ * Long description for class (if any)...
+ *
+ * @copyright  28/03/15 , 16:28 lee
+ * @license
+ * @version
+ * @link
+ * @since
+ */
+
 class Rest {
     
     private static $_Policies, $_params, $_api;
     public static $Dir, $debug = false;
-    
+
+    /**
+     * Does something interesting
+     * 28/03/15 , 16:30
+     * @param  string    $where  Where something interesting takes place
+     * @param  integer  $repeat How many times something interesting should happen
+     * @throws Exception If something interesting cannot happen
+     * @return Status
+     */
     public static function init( array $parts)
     {
 		if( is_dir(static::$Dir) )
@@ -83,7 +103,15 @@ class Rest {
             static::_AuthChecker();
         }
     }
-    
+
+    /**
+     * Does something interesting
+     * 28/03/15 , 16:30
+     * @param  string    $where  Where something interesting takes place
+     * @param  integer  $repeat How many times something interesting should happen
+     * @throws Exception If something interesting cannot happen
+     * @return Status
+     */
     private static function _RequireOrError($path)
     {
         if( file_exists($path) )
@@ -103,7 +131,15 @@ class Rest {
             }
         }
     }
-    
+
+    /**
+     * Does something interesting
+     * 28/03/15 , 16:30
+     * @param  string    $where  Where something interesting takes place
+     * @param  integer  $repeat How many times something interesting should happen
+     * @throws Exception If something interesting cannot happen
+     * @return Status
+     */
     private static function _AuthChecker()
     {
        
