@@ -12,4 +12,7 @@ sudo cp /vagrant/Provision/000-default.conf /etc/apache2/sites-enabled/ && servi
 curl -sS https://getcomposer.org/installer | php &&
 mv composer.phar /usr/local/bin/composer && \
 
-cd /var/www/crud_api/ && composer install
+cd /var/www/crud_api/ && composer install && \
+wget https://phar.phpunit.de/phpunit.phar && \
+chmod +x phpunit.phar && \
+sudo mv phpunit.phar /usr/local/bin/phpunit

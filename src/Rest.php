@@ -51,7 +51,7 @@ class Rest {
 		}
         
         
-        static::$_api = strpos($parts[0], '-')?str_replace('-','/',$parts[0]):$parts[0];
+        static::$_api = str_replace('-','/',$parts[0]);
         Api::inject('API', $parts[0]);
         unset($parts[0]);
         Api::inject('PARAMS', array_values($parts));

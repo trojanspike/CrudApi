@@ -30,11 +30,11 @@
 	<testsuites>
 
 		<testsuite name="core App">
-			<directory>./core/tests/core/Classes/App/</directory>
+			<directory>./core/tests/Classes/App/</directory>
 		</testsuite> 
 
 		<testsuite name="core Database">
-			<directory>./core/tests/core/Classes/Database/</directory>
+			<directory>./core/tests/Classes/Database/</directory>
 		</testsuite>
 
 	</testsuites> 
