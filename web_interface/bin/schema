@@ -1,7 +1,5 @@
 #!/usr/bin/env php
 
-# http://laravel.com/docs/5.0/schema
-
 <?php
 $fnRun = $argv[1];
 require_once __DIR__.'/../vendor/autoload.php';
@@ -21,13 +19,15 @@ $Schema = $Capsule::schema();
 
 // cycle through Schemas and run function
 
-foreach( $AppSchemas as $AppSchema ){
+foreach( $AppSchemas as $AppSchema )
+{
     require_once $AppSchema;
     $ClassName = pathinfo($AppSchema , PATHINFO_FILENAME);
     $ClassInst = new $ClassName;
     $ClassMethods = get_class_methods($ClassInst);
     
-    if( in_array($fnRun, $ClassMethods) ){
+    if( in_array($fnRun, $ClassMethods) )
+    {
         $ClassInst->$fnRun($Schema);
     }
 }

@@ -11,5 +11,3 @@ Api::get(function($req, $res) {
     $res->json(['error'=>false, 'message'=>$quote[rand(0, count($quote) - 1 )]]);
     
 });
-
-?>

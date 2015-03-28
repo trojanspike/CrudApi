@@ -22,6 +22,3 @@ Api::post(function($req, $res) use($id) {
     $res->json( $id.'_'.$params[0] );
 
 });
-
-
-?>

@@ -1,4 +1,5 @@
 <?php
+// http://laravel.com/docs/5.0/schema
 
 /**
  * Short description for class

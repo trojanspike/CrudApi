@@ -5,12 +5,14 @@ use Model\AuthModel;
 use app\Session;
 
 /* Create */
-Api::post(function($req, $res){
+Api::post(function($req, $res)
+{
     $User = new Users();
 
     /* Validation */
     $_INPUT = $req->input(['username', 'password']);
-    if( ! $_INPUT ){
+    if( ! $_INPUT )
+    {
         $res->json(['error'=>true, 'message'=> ['all fields required'] ]);
     }
 
@@ -26,9 +28,12 @@ Api::post(function($req, $res){
         'password' => 'trim|apiUserPass'
     ));
     $validated_data = $gump->run($_INPUT);
-    if($validated_data === false) {
+    if($validated_data === false)
+    {
         $res->json(['error'=>true, 'message'=> $gump->get_readable_errors() ]);
-    } else {
+    }
+    else
+    {
         if($User->login($validated_data))
         {
             $res->json( ['error'=>false, 'authToken' => Session::get('new_token') ] );
@@ -57,13 +62,13 @@ Api::get(function($req, $res){
 /* Destroy */
 Api::delete(function($req, $res){
     $AuthModel = new AuthModel;
-    if( $AuthModel->destroy() ) {
+    if( $AuthModel->destroy() )
+    {
         $res->json(['error' => false]);
-    } else {
+    }
+    else
+    {
         $res->json(['error'=>true]);
     }
 });
 
-
-
-?>

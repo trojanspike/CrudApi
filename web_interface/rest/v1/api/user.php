@@ -14,14 +14,16 @@ use App\Config;
 
 
 /* # create */
-Api::post(function($req, $res){
+Api::post(function($req, $res) {
 // curl http://local.com/v1/user -X POST -H 'accept:application/json' -d '{"username":"username1","email":"email1@email.com","password":"password", "extra":"extra"}'
     $User = new Users();
 
-    if( $req->input('_csrf') && $req->input('_csrf') == Session::get('_CSRF') || Config::get('site.debug') === true ){
+    if( $req->input('_csrf') && $req->input('_csrf') == Session::get('_CSRF') || Config::get('site.debug') === true )
+    {
         /* Validation class would be good here */
         $_INPUT = $req->input(['username', 'email', 'password','extra']);
-        if( ! $_INPUT ){
+        if( ! $_INPUT )
+        {
             $res->json(['error'=>true, 'message'=> ['all fields required'] ]);
         }
 
@@ -42,9 +44,12 @@ Api::post(function($req, $res){
         ));
         $validated_data = $gump->run($_INPUT);
 
-        if($validated_data === false) {
+        if($validated_data === false)
+        {
             $res->json(['error'=>true, 'message'=> $gump->get_readable_errors() ]);
-        } else {
+        }
+        else
+        {
             if($User->create($validated_data))
             {
                 $res->json(['error'=>false]);
@@ -72,4 +77,3 @@ Api::get(function($req, $res) use($db) {
 
 /* destroy */
 
-?>

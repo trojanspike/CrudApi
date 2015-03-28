@@ -16,11 +16,13 @@ $js = <<<EOF
 	alert('@@');
 })();
 EOF;
-if( ! Cache::file()->get('jquery') ){
+if( ! Cache::file()->get('jquery') )
+{
 	Cache::file()->put('jquery', file_get_contents("http://code.jquery.com/jquery-1.11.2.min.js"), 120);
 }
 $DB = new PdoConnect;
-if( ! Cache::db()->get("SELECT * FROM users") ){
+if( ! Cache::db()->get("SELECT * FROM users") )
+{
 	Cache::db()->put("SELECT * FROM users", json_encode( $DB->query("SELECT * FROM users")->fetchAll(PDO::FETCH_ASSOC) ) , 25);
 }
 
@@ -28,7 +30,8 @@ Cache::db()->put("/script/file1.js", $js, 120);
 Cache::file()->put("/script/file1.js", $js, 120);
     $p1 = $req->params(2);
 
-    switch( $p1[0] ){
+    switch( $p1[0] )
+    {
         case "redis":
             // echo session_id(); exit();
             // $res->json( $_REQUEST );
@@ -43,7 +46,8 @@ Cache::file()->put("/script/file1.js", $js, 120);
             // $res->setContent('text/plain')->outPut( $Rediss->get($p1[1]) );
             // $res->setContent('text/plain')->outPut( `cat /etc/redis/redis.conf` );
             // $res->json( Cache::db()->info()  );
-            if( Cache::file()->get($p1[1]) ){
+            if( Cache::file()->get($p1[1]) )
+            {
                 // $res->setContent('text/plain')->outPut( Cache::file()->get($p1[1]) );
             }
 
@@ -60,6 +64,3 @@ Cache::file()->put("/script/file1.js", $js, 120);
 
     $res->json( $r );
 });
-
-
-?>
