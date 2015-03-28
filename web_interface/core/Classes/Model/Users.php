@@ -21,12 +21,28 @@ use App\Config;
 class Users extends PdoConnect {
    
     private $redis;
-    
+
+    /**
+     * Does something interesting
+     * 28/03/15 , 16:30
+     * @param  string    $where  Where something interesting takes place
+     * @param  integer  $repeat How many times something interesting should happen
+     * @throws Exception If something interesting cannot happen
+     * @return Status
+     */
     public function __construct(){
         $this->redis = new RedisDB;
         parent::__construct();
     }
-    
+
+    /**
+     * Does something interesting
+     * 28/03/15 , 16:30
+     * @param  string    $where  Where something interesting takes place
+     * @param  integer  $repeat How many times something interesting should happen
+     * @throws Exception If something interesting cannot happen
+     * @return Status
+     */
     public function login($form){
         $query = $this->prepare('SELECT * FROM users WHERE username=:username AND password=:password LIMIT 1');
         $query->bindParam(':username', $form['username']);
@@ -41,10 +57,19 @@ class Users extends PdoConnect {
             return false;
         }
     }
-    
-    
-    public function create($form){
-        $query = $this->prepare('INSERT INTO users (id,email,username,password,extra,created_at,updated_at) 
+
+
+    /**
+     * Does something interesting
+     * 28/03/15 , 16:30
+     * @param  string    $where  Where something interesting takes place
+     * @param  integer  $repeat How many times something interesting should happen
+     * @throws Exception If something interesting cannot happen
+     * @return Status
+     */
+    public function create($form)
+    {
+        $query = $this->prepare('INSERT INTO users (id,email,username,password,extra,created_at,updated_at)
         VALUES (null,:email,:uname,:pass,:extra,NOW(),NOW())');
         $query->bindParam(':email', $form['email'] );
         $query->bindParam(':uname', $form['username'] );

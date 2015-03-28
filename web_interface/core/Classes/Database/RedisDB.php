@@ -24,14 +24,32 @@ use App\Config;
 use Redis;
 
 class RedisDB extends Redis {
-    
-    public function __construct(){
+
+    /**
+     * Does something interesting
+     * 28/03/15 , 16:30
+     * @param  string    $where  Where something interesting takes place
+     * @param  integer  $repeat How many times something interesting should happen
+     * @throws Exception If something interesting cannot happen
+     * @return Status
+     */
+    public function __construct()
+    {
         $RedisConf = Config::get('database.redis');
         $this->connect($RedisConf['host'], $RedisConf['port']);
     }
 
-    public static function instance(){
-        return new RedisDB();
+    /**
+     * Does something interesting
+     * 28/03/15 , 16:30
+     * @param  string    $where  Where something interesting takes place
+     * @param  integer  $repeat How many times something interesting should happen
+     * @throws Exception If something interesting cannot happen
+     * @return Status
+     */
+    public static function instance()
+    {
+        return new RedisDB(); /* TODO - return set instance */
     }
 }
 ?>

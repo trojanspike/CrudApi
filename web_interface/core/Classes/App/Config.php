@@ -15,12 +15,15 @@
 class Config {
     
     private static $_uid, $_set = false;
-    
-    /*
-    get('site.debug')
-    $GLOBAL['site']['debug']
-    */
-    
+
+    /**
+     * Does something interesting
+     * 28/03/15 , 16:30
+     * @param  string    $where  Where something interesting takes place
+     * @param  integer  $repeat How many times something interesting should happen
+     * @throws Exception If something interesting cannot happen
+     * @return Status
+     */
     public static function get($key){
         /* isset -> explode('.', $key) */
         if( is_string($key) ){
@@ -35,12 +38,15 @@ class Config {
             /* Error needs to be string */
         }
     }
-    
-    /*
-    set('site.debug', false)
-    $GLOBAL['site']['debug'] = false
-    */
-    
+
+    /**
+     * Does something interesting
+     * 28/03/15 , 16:30
+     * @param  string    $where  Where something interesting takes place
+     * @param  integer  $repeat How many times something interesting should happen
+     * @throws Exception If something interesting cannot happen
+     * @return Status
+     */
     public static function set($key, $val){
         if( is_string($key) && strpos($key, '.') ){
             $keyArr = explode('.', $key);
@@ -49,17 +55,24 @@ class Config {
             // @ERROR
         }
     }
-    
-    /*
-    getAll('site')
-    $GLOBALS['site']
-    */
-    
-    public static function GetId(){
-        if( static::$_set == false ){
+
+    /**
+     * Does something interesting
+     * 28/03/15 , 16:30
+     * @param  string    $where  Where something interesting takes place
+     * @param  integer  $repeat How many times something interesting should happen
+     * @throws Exception If something interesting cannot happen
+     * @return Status
+     */
+    public static function GetId()
+    {
+        if( static::$_set == false )
+        {
             static::$_set = true;
             return static::$_uid = uniqid();   
-        } else {
+        }
+        else
+        {
             return static::$_uid;
         }
     }

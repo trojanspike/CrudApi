@@ -16,15 +16,33 @@ use App\Config;
  */
 
 class Illuminate extends Capsule {
-    
-    public function __construct(){
+
+    /**
+     * Does something interesting
+     * 28/03/15 , 16:30
+     * @param  string    $where  Where something interesting takes place
+     * @param  integer  $repeat How many times something interesting should happen
+     * @throws Exception If something interesting cannot happen
+     * @return Status
+     */
+    public function __construct()
+    {
         $capsule = new Capsule;
         $capsule->addConnection(Config::get('database')[Config::get('database.driver')]); 
         $capsule->setAsGlobal();
     }
 
-    public static function instance(){
-        return new Illuminate();
+    /**
+     * Does something interesting
+     * 28/03/15 , 16:30
+     * @param  string    $where  Where something interesting takes place
+     * @param  integer  $repeat How many times something interesting should happen
+     * @throws Exception If something interesting cannot happen
+     * @return Status
+     */
+    public static function instance()
+    {
+        return new Illuminate(); /* TODO - return set instance */
     }
     
 }

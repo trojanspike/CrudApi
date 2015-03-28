@@ -16,7 +16,16 @@ use Response;
 class ResponseAuth extends Response {
 
 
-    public function json($obj){
+    /**
+     * Does something interesting
+     * 28/03/15 , 16:30
+     * @param  string    $where  Where something interesting takes place
+     * @param  integer  $repeat How many times something interesting should happen
+     * @throws Exception If something interesting cannot happen
+     * @return Status
+     */
+    public function json($obj)
+    {
         $obj = array_merge( $obj , ['authToken' => Session::get('new_token')] );
         parent::json( $obj );
     }

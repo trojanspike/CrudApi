@@ -13,12 +13,17 @@
  */
 
 class UserSchema {
-    
-    /*
-    bin -> schema up | down | myFunc
-    */
-    
-    function up($Schema){
+
+    /**
+     * Does something interesting
+     * 28/03/15 , 16:30
+     * @param  string    $where  Where something interesting takes place
+     * @param  integer  $repeat How many times something interesting should happen
+     * @throws Exception If something interesting cannot happen
+     * @return Status
+     */
+    function up($Schema)
+    {
         $Schema->create('users', function($table){
             $table->increments('id');
             $table->string('email')->unique();
@@ -29,8 +34,17 @@ class UserSchema {
             $table->timestamps();
         });
     }
-    
-    function down($Schema){
+
+    /**
+     * Does something interesting
+     * 28/03/15 , 16:30
+     * @param  string    $where  Where something interesting takes place
+     * @param  integer  $repeat How many times something interesting should happen
+     * @throws Exception If something interesting cannot happen
+     * @return Status
+     */
+    function down($Schema)
+    {
         $Schema->dropIfExists('users');
     }
     

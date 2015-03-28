@@ -19,8 +19,17 @@ use App\Config;
  */
 
 class PdoConnect extends PDO {
-    
-    function __construct(){
+
+    /**
+     * Does something interesting
+     * 28/03/15 , 16:30
+     * @param  string    $where  Where something interesting takes place
+     * @param  integer  $repeat How many times something interesting should happen
+     * @throws Exception If something interesting cannot happen
+     * @return Status
+     */
+    function __construct()
+    {
         $conf = Config::get('database.mysql');
         $user = $conf['username'];
         $password = $conf['password'];
@@ -30,12 +39,23 @@ class PdoConnect extends PDO {
         
         try {
             parent::__construct("mysql:dbname={$dname};host={$host}", $user, $password);
-        } catch (PDOException $e) {
+        }
+        catch (PDOException $e)
+        {
             echo 'Connection failed: ' . $e->getMessage();
         }
     }
 
-    public static function instance(){
-        return new PdoConnect();
+    /**
+     * Does something interesting
+     * 28/03/15 , 16:30
+     * @param  string    $where  Where something interesting takes place
+     * @param  integer  $repeat How many times something interesting should happen
+     * @throws Exception If something interesting cannot happen
+     * @return Status
+     */
+    public static function instance()
+    {
+        return new PdoConnect(); /* TODO - return set instance */
     }
 }

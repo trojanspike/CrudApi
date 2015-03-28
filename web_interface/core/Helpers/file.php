@@ -9,7 +9,8 @@
  * @return Status
  */
 
-if( ! function_exists('FuncName') ){
+if( ! function_exists('FuncName') )
+{
     function FuncName(){}
 }
 

@@ -20,11 +20,27 @@ class Cache extends RedisDB {
     private static $DB_Instance = false;
     private static $FILE_Instance = false;
 
+    /**
+     * Does something interesting
+     * 28/03/15 , 16:30
+     * @param  string    $where  Where something interesting takes place
+     * @param  integer  $repeat How many times something interesting should happen
+     * @throws Exception If something interesting cannot happen
+     * @return Status
+     */
     public function __construct($type){
          $this->saveTo = $type;
          parent::__construct();
     }
 
+    /**
+     * Does something interesting
+     * 28/03/15 , 16:30
+     * @param  string    $where  Where something interesting takes place
+     * @param  integer  $repeat How many times something interesting should happen
+     * @throws Exception If something interesting cannot happen
+     * @return Status
+     */
     public static function db(){
         if(  static::$DB_Instance ){
             return static::$DB_Instance;
@@ -32,6 +48,15 @@ class Cache extends RedisDB {
             return static::$DB_Instance = new Cache('db');
         }
     }
+
+    /**
+     * Does something interesting
+     * 28/03/15 , 16:30
+     * @param  string    $where  Where something interesting takes place
+     * @param  integer  $repeat How many times something interesting should happen
+     * @throws Exception If something interesting cannot happen
+     * @return Status
+     */
     public static function file(){
         if(  static::$FILE_Instance ){
             return static::$FILE_Instance;
@@ -40,7 +65,14 @@ class Cache extends RedisDB {
         }
     }
 
-
+    /**
+     * Does something interesting
+     * 28/03/15 , 16:30
+     * @param  string    $where  Where something interesting takes place
+     * @param  integer  $repeat How many times something interesting should happen
+     * @throws Exception If something interesting cannot happen
+     * @return Status
+     */
     public function get($key){
 		$key = md5($key);
         switch($this->saveTo){
@@ -59,9 +91,20 @@ class Cache extends RedisDB {
             break;
         }
     }
-    public function put($key, $content, $time){
+
+    /**
+     * Does something interesting
+     * 28/03/15 , 16:30
+     * @param  string    $where  Where something interesting takes place
+     * @param  integer  $repeat How many times something interesting should happen
+     * @throws Exception If something interesting cannot happen
+     * @return Status
+     */
+    public function put($key, $content, $time)
+    {
 		$key = md5($key);
-        switch($this->saveTo){
+        switch($this->saveTo)
+        {
             case "db":
                 $this->set('CACHE-DB-'.$key, $content);
                 $this->expire('CACHE-DB-'.$key, $time);
@@ -75,17 +118,3 @@ class Cache extends RedisDB {
     }
 
 }
-
-/*
- if( $c = Cache::db()->get('/path/to/file.txt') ){
-    echo $c;
-} else {
-    Cache::db()->put('/path/to/file.txt', file_get_contents('/path/to/file.txt'), 3500);
-}
-
- if( $c = Cache::file()->get('/path/to/file.txt') ){
-    echo $c;
-} else {
-    Cache::file()->put('/path/to/file.txt', file_get_contents('/path/to/file.txt'), 3500);
-}
- */

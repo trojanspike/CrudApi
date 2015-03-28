@@ -17,6 +17,14 @@ use App\Session;
 
 class Auth extends RedisDB {
 
+    /**
+     * Does something interesting
+     * 28/03/15 , 16:30
+     * @param  string    $where  Where something interesting takes place
+     * @param  integer  $repeat How many times something interesting should happen
+     * @throws Exception If something interesting cannot happen
+     * @return Status
+     */
     public function byToken($token){
         if( $info = $this->get($token) )
         {
@@ -30,6 +38,14 @@ class Auth extends RedisDB {
         }
     }
 
+    /**
+     * Does something interesting
+     * 28/03/15 , 16:30
+     * @param  string    $where  Where something interesting takes place
+     * @param  integer  $repeat How many times something interesting should happen
+     * @throws Exception If something interesting cannot happen
+     * @return Status
+     */
     public function destroy()
     {
         return $this->del(Session::get('new_token'));
