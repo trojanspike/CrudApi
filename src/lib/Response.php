@@ -30,48 +30,68 @@
 * @license MIT License (http://www.opensource.org/licenses/mit-license.php)
 */
 
+interface ResponseInterface {
+
+	public function setContent($content);
+	public function setHeader($header);
+	public function status($code);
+	public function outPut($content);
+
+}
+
+
 class Response implements ResponseInterface {
 	private $_status, $_content = false;
 
-	public function __construct(){
+	public function __construct()
+	{
 		$this->_status = 200;
 	}
-	
-	
-	/* Setting methods */
-	
-	public function setContent($content){
+
+
+	public function setContent( $content)
+	{
 		$this->_content = $content;
 		return $this;
 	}
 	
-	public function setHeader($header){
-		if( is_array($header) ){
-			foreach( $header as $head ){
+	public function setHeader($header)
+	{
+		if( is_array($header) )
+		{
+			foreach( $header as $head )
+			{
 				header($head);
 			}
-		} else {
+		}
+		else
+		{
 			header($header);
 		}
 		return $this;
 	}
 
-	public function status($code){
+	public function status($code)
+	{
 		$this->_status = (int)$code;
 		return $this;
 	}
+
+
+
 	
-	
-	/* output methods */
-	
-	public function json($obj){
+	public function json($obj)
+	{
 		$this->setHeader('Content-Type:application/javascript');
 		$this->outPut(json_encode($obj));
 	}
 	
-	public function outPut($content){
+	public function outPut($content)
+	{
 		http_response_code($this->_status);
-		if( $this->_content !== false ){
+
+		if( $this->_content !== false )
+		{
 			header('Content-Type:'.$this->_content);
 		}
 		echo $content;
@@ -83,38 +103,39 @@ class Response implements ResponseInterface {
 	
 	/* Quick herlper methods */
 
-	public function badRequest(){
+	public function badRequest()
+	{
 		$this->status(400)->json([
 			'message' => 'ClientError'
 		]);
 	}
 	
-	public function unAuth(){
+	public function unAuth()
+	{
 		$this->status(401)->json([
 			'message' => 'ClientError'
 		]);
 	}
 
-	public function notFound(){
+	public function notFound()
+	{
 		$this->status(404)->json([
 			'message' => 'ClientError'
 		]);
 	}
 
-	public function ok(){
+	public function ok()
+	{
 		$this->json([
 			'message' => 'Success'
 		]);
 	}
 
-	public function created(){
+	public function created()
+	{
 		$this->status(201)->json([
 			'message' => 'Success'
 		]);
 	}
-	
-	/* Private Methods */
 
 }
-
-?>

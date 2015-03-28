@@ -35,7 +35,8 @@ class Request {
 	private $_headers, $_basicAuth, $_input, $_params;
 	public $verb, $accept, $uri = false;
 
-	public function __construct($_uri){
+	public function __construct($_uri)
+	{
 		$params = explode('/', $_uri);
 		unset($params[0]);
 		$params = array_values( $params );
@@ -43,17 +44,22 @@ class Request {
 		$this->_params = $params;
 		
 		/* Cors */
-		if( isset($_SERVER['HTTP_ORIGIN']) ){
+		if( isset($_SERVER['HTTP_ORIGIN']) )
+		{
 			header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
 	        header("Access-Control-Allow-Credentials: true");
 	        header("Access-Control-Max-Age: 86400");
+			header('Access-Control-Allow-Headers: Authorization, Content-Type, Accept, Auth-Token , X-verb, X-username, X-password');
+			header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
 		}
-		header('Access-Control-Allow-Headers: Authorization, Content-Type, Accept, Auth-Token , X-verb, X-username, X-password');
-		header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
-		if( function_exists('getallheaders') ){
+
+		if( function_exists('getallheaders') )
+		{
 			$this->_headers = getallheaders();
 			$this->_ensureHeaderWord();
-		} else {
+		}
+		else
+		{
 		    $headers = ''; 
 		    foreach ($_SERVER as $name => $value) 
 		    { 
@@ -67,65 +73,89 @@ class Request {
 		
 		$this->_input = json_decode( file_get_contents('php://input'), true );
 		$this->verb = isset($this->_headers['X-verb'])?$this->_headers['X-verb']:$_SERVER['REQUEST_METHOD'];
-		if( isset( $_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW']) ){
+		if( isset( $_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW']) )
+		{
 			$this->_basicAuth = [
 				'username' => $_SERVER['PHP_AUTH_USER'],
 				'password' => $_SERVER['PHP_AUTH_PW']
 			];
-		} else {
+		}
+		else
+		{
 			$this->_basicAuth = false;
 		}
 		$this->accept = $_SERVER['HTTP_ACCEPT'];
 	}
 	
 
-	public function basicAuth($key=false){
+	public function basicAuth($key=false)
+	{
 		return $this->_returnKeyVals($this->_basicAuth, $key);
 	}
 
 
-	public function get($key=false){
+	public function get($key=false)
+	{
 		return $this->_returnKeyVals($_GET, $key);
 	}
-	public function input($key=false){
+	public function input($key=false)
+	{
 		return $this->_returnKeyVals($this->_input, $key);
 	}
 	
-	public function header($key=false){
+	public function header($key=false)
+	{
 		return $this->_returnKeyVals($this->_headers, $key);
 	}
-	
-	
-	public function params($num){
+
+
+	/**
+	 * @param int $num
+	 * @return array
+     */
+	public function params(int $num)
+	{
 		// $this-_params : arr
 		$returnData = [];
-		if( is_numeric($num) && count($this->_params) >= $num ){
-			for( $i = 0; $i< $num ; $i++ ){
+		if( is_numeric($num) && count($this->_params) >= $num )
+		{
+			for( $i = 0; $i< $num ; $i++ )
+			{
 				$returnData[]=$this->_params[$i];
 			}
-		} else {
+		}
+		else
+		{
 			return $this->_params;
 		}
 		return $returnData;
 	}
 	
 	
-	private function _returnKeyVals($obj, $key){
-		if( is_array($key) ){
+	private function _returnKeyVals($obj, $key)
+	{
+		if( is_array($key) )
+		{
 			return $this->_returnKeyValsFromArray($obj, $key);
 		}
-		if($key){
+		if($key)
+		{
 			return ( isset($obj[$key]) )?$obj[$key]:false;
-		} else {
+		}
+		else
+		{
 			return $obj;
 		}
 	}
 	
-	private function _returnKeyValsFromArray($obj , $keyArr){
+	private function _returnKeyValsFromArray($obj , $keyArr)
+	{
 		$dataArr = [];
-		foreach( $keyArr as $key ){
+		foreach( $keyArr as $key )
+		{
 			$_val = $this->_returnKeyVals($obj ,$key);
-			if($_val == false){
+			if($_val == false)
+			{
 				return false;
 			}
 			$dataArr[$key]=$_val;
@@ -134,8 +164,10 @@ class Request {
 	}
 	
 	
-	private function _ensureHeaderWord(){
-		foreach( $this->_headers as $HKey => $HVal ){
+	private function _ensureHeaderWord()
+	{
+		foreach( $this->_headers as $HKey => $HVal )
+		{
 			array_shift($this->_headers);
 			$this->_headers[ucwords($HKey)]=$HVal;
 		}
@@ -143,5 +175,3 @@ class Request {
 	
 
 }
-
-?>
