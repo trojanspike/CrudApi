@@ -7,7 +7,7 @@
 - View # /WWW_examples/crud_api.uk.to/ Code
 - Login from [remote access](http://crud-api-remote.uk.to " Basic crud - rest API #remote ") with Javascript to hit the API
 
-#### Get starts
+#### Get started
 
 ```bash
 $ vagrant up # to lauch dev env & run provision scripts
