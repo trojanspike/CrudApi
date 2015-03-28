@@ -9,4 +9,6 @@
 
 #### Get starts
 
+```bash
 $ vagrant up # to lauch dev env & run provision scripts
+```
