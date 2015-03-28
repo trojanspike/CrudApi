@@ -8,6 +8,18 @@ aliases and pre fixes?
 https://github.com/phpredis/phpredis#expire-settimeout-pexpire
 */
 
+/**
+ * Short description for class
+ *
+ * Long description for class (if any)...
+ *
+ * @copyright  28/03/15 , 16:28 lee
+ * @license
+ * @version
+ * @link
+ * @since
+ */
+
 use App\Config;
 use Redis;
 
