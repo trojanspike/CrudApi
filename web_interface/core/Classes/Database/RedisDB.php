@@ -25,7 +25,7 @@ use Redis;
 
 class RedisDB extends Redis {
 
-  private $instance = false;
+  private static $instance = false;
 
     /**
      * Does something interesting
@@ -51,13 +51,13 @@ class RedisDB extends Redis {
      */
     public static function instance()
     {
-      if( $this->instance === false )
+      if(  static::$instance === false )
       {
-        return $this->instance = new RedisDB();
+        return static::$instance = new RedisDB();
       }
       else
       {
-        return $this->instance;
+        return static::$instance;
       }
     }
 }

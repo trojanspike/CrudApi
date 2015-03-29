@@ -17,7 +17,7 @@ use App\Config;
 
 class Illuminate extends Capsule {
 
-  private $instance = false;
+  private static $instance = false;
 
     /**
      * Does something interesting
@@ -44,13 +44,13 @@ class Illuminate extends Capsule {
      */
     public static function instance()
     {
-      if( $this->instance === false )
+      if( static::$instance === false )
       {
-        return $this->instance = new Illuminate();
+        return static::$instance = new Illuminate();
       }
       else
       {
-        return $this->instance;
+        return static::$instance;
       }
     }
 

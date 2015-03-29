@@ -20,7 +20,7 @@ use App\Config;
 
 class PdoConnect extends PDO {
 
-  private $instance = false;
+  private static $instance = false;
 
     /**
      * Does something interesting
@@ -58,13 +58,13 @@ class PdoConnect extends PDO {
      */
     public static function instance()
     {
-      if( $this->instance === false )
+      if( static::$instance === false )
       {
-        return $this->instance = new PdoConnect();
+        return static::$instance = new PdoConnect();
       }
       else
       {
-        return $this->instance;
+        return static::$instance;
       }
     }
 }
