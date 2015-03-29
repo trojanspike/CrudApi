@@ -19,7 +19,7 @@ use App\Config;
  */
 
 class Users extends PdoConnect {
-   
+
     private $redis;
 
     /**
@@ -30,7 +30,8 @@ class Users extends PdoConnect {
      * @throws Exception If something interesting cannot happen
      * @return Status
      */
-    public function __construct(){
+    public function __construct()
+    {
         $this->redis = new RedisDB;
         parent::__construct();
     }
@@ -43,17 +44,21 @@ class Users extends PdoConnect {
      * @throws Exception If something interesting cannot happen
      * @return Status
      */
-    public function login($form){
+    public function login($form)
+    {
         $query = $this->prepare('SELECT * FROM users WHERE username=:username AND password=:password LIMIT 1');
         $query->bindParam(':username', $form['username']);
         $query->bindParam(':password', $form['password']);
         $query->execute();
-        
-        if( $row = $query->fetch(PDO::FETCH_ASSOC) ){
+
+        if( $row = $query->fetch(PDO::FETCH_ASSOC) )
+        {
             $this->redis->set(Session::get('new_token'), json_encode($row) );
             $this->redis->expire(Session::get('new_token'), Config::get('database.redis')['expires'] );
             return true;
-        } else {
+        }
+        else
+        {
             return false;
         }
     }
@@ -77,7 +82,7 @@ class Users extends PdoConnect {
         $query->bindParam(':extra', $form['extra']);
         return $query->execute();
     }
-    
+
 }
 
 ?>

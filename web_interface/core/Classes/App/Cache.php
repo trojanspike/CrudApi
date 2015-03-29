@@ -28,7 +28,8 @@ class Cache extends RedisDB {
      * @throws Exception If something interesting cannot happen
      * @return Status
      */
-    public function __construct($type){
+    public function __construct($type)
+    {
          $this->saveTo = $type;
          parent::__construct();
     }
@@ -41,10 +42,14 @@ class Cache extends RedisDB {
      * @throws Exception If something interesting cannot happen
      * @return Status
      */
-    public static function db(){
-        if(  static::$DB_Instance ){
+    public static function db()
+    {
+        if(  static::$DB_Instance )
+        {
             return static::$DB_Instance;
-        } else {
+        }
+        else
+        {
             return static::$DB_Instance = new Cache('db');
         }
     }
@@ -57,10 +62,14 @@ class Cache extends RedisDB {
      * @throws Exception If something interesting cannot happen
      * @return Status
      */
-    public static function file(){
-        if(  static::$FILE_Instance ){
+    public static function file()
+    {
+        if(  static::$FILE_Instance )
+        {
             return static::$FILE_Instance;
-        } else {
+        }
+        else
+        {
             return static::$FILE_Instance = new Cache('file');
         }
     }
@@ -73,17 +82,23 @@ class Cache extends RedisDB {
      * @throws Exception If something interesting cannot happen
      * @return Status
      */
-    public function get($key){
+    public function get($key)
+    {
 		$key = md5($key);
-        switch($this->saveTo){
+        switch($this->saveTo)
+        {
             case "db":
                 return parent::get('CACHE-DB-'.$key);
             break;
             case "file":
-                if(parent::get('CACHE-FILE-'.$key)) {
+                if(parent::get('CACHE-FILE-'.$key))
+                {
                     return file_get_contents(path('storage') . '/Cache/' . $key);
-                } else {
-                    if( file_exists(path('storage') . '/Cache/' . $key) ){
+                }
+                else
+                {
+                    if( file_exists(path('storage') . '/Cache/' . $key) )
+                    {
                         unlink( path('storage') . '/Cache/' . $key );
                     }
                     return false;

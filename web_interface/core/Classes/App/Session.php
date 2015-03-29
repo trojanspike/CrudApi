@@ -21,7 +21,7 @@ class Session {
      * @return Value or false if not set
      */
 	public function __get($key)
-    {
+  {
 		return ( isset( $_SESSION[$key] ) )?$_SESSION[$key]:false;
 	}
 
@@ -33,7 +33,7 @@ class Session {
      * @return void
      */
 	public function __set($key, $val)
-    {
+  {
 		$_SESSION[$key] = $val;
 	}
 
@@ -85,8 +85,8 @@ class Session {
     {
         $_SESSION[$key]=$val;
     }
-    
-    
+
+
 }
 
 ?>

@@ -25,7 +25,8 @@ class Accepted {
      */
     public static function pass( array $tests, $accept )
     {
-        if( static::$byPass ){
+        if( static::$byPass )
+        {
             return true;
         }
         foreach( $tests as $test )
