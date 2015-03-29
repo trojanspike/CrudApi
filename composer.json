@@ -6,12 +6,12 @@
 	"require": {
 		"php" : ">=5.4.0",
 	   "leafo/scssphp": "0.0.12",
+		"gkralik/php-uglifyjs": "0.5.*",
 	   "illuminate/database": "5.0.4",
-	   "wixel/gump": "dev-master"
+	   "wixel/gump": "dev-master",
+		"rhumsaa/uuid": "2.8.0"
 	},
-	"require-dev": {
-		"phpunit/phpunit": "4.5.0"
-	},
+	"require-dev": {},
 	"autoload": {
 	    "psr-4": {
 	    	"App\\":"web_interface/core/Classes/App/",
