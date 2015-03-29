@@ -17,6 +17,8 @@ use App\Config;
 
 class Illuminate extends Capsule {
 
+  private $instance = false;
+
     /**
      * Does something interesting
      * 28/03/15 , 16:30
@@ -28,7 +30,7 @@ class Illuminate extends Capsule {
     public function __construct()
     {
         $capsule = new Capsule;
-        $capsule->addConnection(Config::get('database')[Config::get('database.driver')]); 
+        $capsule->addConnection(Config::get('database')[Config::get('database.driver')]);
         $capsule->setAsGlobal();
     }
 
@@ -42,9 +44,16 @@ class Illuminate extends Capsule {
      */
     public static function instance()
     {
-        return new Illuminate(); /* TODO - return set instance */
+      if( $this->instance === false )
+      {
+        return $this->instance = new Illuminate();
+      }
+      else
+      {
+        return $this->instance;
+      }
     }
-    
+
 }
 
 ?>

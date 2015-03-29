@@ -20,6 +20,8 @@ use App\Config;
 
 class PdoConnect extends PDO {
 
+  private $instance = false;
+
     /**
      * Does something interesting
      * 28/03/15 , 16:30
@@ -35,8 +37,8 @@ class PdoConnect extends PDO {
         $password = $conf['password'];
         $dname = $conf['database'];
         $host = $conf['host'];
-        
-        
+
+
         try {
             parent::__construct("mysql:dbname={$dname};host={$host}", $user, $password);
         }
@@ -56,6 +58,13 @@ class PdoConnect extends PDO {
      */
     public static function instance()
     {
-        return new PdoConnect(); /* TODO - return set instance */
+      if( $this->instance === false )
+      {
+        return $this->instance = new PdoConnect();
+      }
+      else
+      {
+        return $this->instance;
+      }
     }
 }
