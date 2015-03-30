@@ -6,16 +6,14 @@ use Database\RedisDB;
  * Caching to file or RedisDB
  *
  *
- * @copyright  28/03/15 , 16:28 lee
- * @license
- * @version
- * @link
- * @since
+ * @copyright   28/03/15 , 16:28 lee
+ * @license     MIT
+ * @link        https://github.com/trojanspike/BasicAuthCRUD-api
  */
 
 class Cache extends RedisDB {
 
-    private $saveTo, $uid = false;
+    private $saveTo;
     private static $DB_Instance = false;
     private static $FILE_Instance = false;
 
