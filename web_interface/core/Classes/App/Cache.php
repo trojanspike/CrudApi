@@ -3,9 +3,8 @@
 use Database\RedisDB;
 
 /**
- * Short description for class
+ * Caching to file or RedisDB
  *
- * Long description for class (if any)...
  *
  * @copyright  28/03/15 , 16:28 lee
  * @license
@@ -21,10 +20,9 @@ class Cache extends RedisDB {
     private static $FILE_Instance = false;
 
     /**
-     * Does something interesting
+     * Creates a Cache instance using DB or File
      * 28/03/15 , 16:30
-     * @param  string    $where  Where something interesting takes place
-     * @param  integer  $repeat How many times something interesting should happen
+     * @param  string    $type  Cache option to use , "db" or "file", Cache::db(), Cache::file()
      * @throws Exception If something interesting cannot happen
      * @return Status
      */
@@ -35,12 +33,10 @@ class Cache extends RedisDB {
     }
 
     /**
-     * Does something interesting
+     * Create Cache::db instance , caching using Redis db
      * 28/03/15 , 16:30
-     * @param  string    $where  Where something interesting takes place
-     * @param  integer  $repeat How many times something interesting should happen
-     * @throws Exception If something interesting cannot happen
-     * @return Status
+     *
+     * @return Cache instance class object
      */
     public static function db()
     {
@@ -55,12 +51,10 @@ class Cache extends RedisDB {
     }
 
     /**
-     * Does something interesting
+     * Create Cache::file instance , caching using Files and Redis DB for tracking
      * 28/03/15 , 16:30
-     * @param  string    $where  Where something interesting takes place
-     * @param  integer  $repeat How many times something interesting should happen
-     * @throws Exception If something interesting cannot happen
-     * @return Status
+     *
+     * @return Cache instance class object
      */
     public static function file()
     {
@@ -75,12 +69,10 @@ class Cache extends RedisDB {
     }
 
     /**
-     * Does something interesting
+     * Get Cache content using a key
      * 28/03/15 , 16:30
-     * @param  string    $where  Where something interesting takes place
-     * @param  integer  $repeat How many times something interesting should happen
-     * @throws Exception If something interesting cannot happen
-     * @return Status
+     * @param  string    $key  Key pointer to cached content
+     * @return string or false if no key found
      */
     public function get($key)
     {
@@ -108,14 +100,15 @@ class Cache extends RedisDB {
     }
 
     /**
-     * Does something interesting
+     * Put | Set Cache content with a key , content and time to expire
      * 28/03/15 , 16:30
-     * @param  string    $where  Where something interesting takes place
-     * @param  integer  $repeat How many times something interesting should happen
-     * @throws Exception If something interesting cannot happen
-     * @return Status
+     * @param  string       $key        Key pointer to cached content
+     * @param  string       $content    Content to cache
+     * @param  int          $time       Set a key's time to live in seconds
+     *
+     * @return void
      */
-    public function put($key, $content, $time)
+    public function put($key, $content, int $time)
     {
 		$key = md5($key);
         switch($this->saveTo)

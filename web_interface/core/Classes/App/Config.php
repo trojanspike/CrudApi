@@ -1,32 +1,29 @@
 <?php namespace App;
 
 /**
- * Short description for class
+ * Config getter and setter class
  *
- * Long description for class (if any)...
  *
  * @copyright  28/03/15 , 16:28 lee
- * @license
- * @version
- * @link
- * @since
+ * @license     MIT
+ * @link        https://github.com/trojanspike/BasicAuthCRUD-api
  */
+
 
 class Config {
 
     private static $_uid, $_set = false;
 
     /**
-     * Does something interesting
+     * Get a config option from /core/config/*
      * 28/03/15 , 16:30
-     * @param  string    $where  Where something interesting takes place
-     * @param  integer  $repeat How many times something interesting should happen
-     * @throws Exception If something interesting cannot happen
-     * @return Status
+     * @param  string    $key   Config option to get, i.e ::get('site.url')
+     *
+     * @throws Exception If $key isn't a string
+     * @return config value if found, else false
      */
     public static function get($key)
     {
-        /* isset -> explode('.', $key) */
         if( is_string($key) )
         {
             if( strpos($key, ".") )
@@ -37,22 +34,23 @@ class Config {
             else
             {
                return isset( $GLOBALS[ static::$_uid.'_'.strtoupper($key)] )?$GLOBALS[static::$_uid.'_'.strtoupper($key)]:[0];
-                // return $GLOBALS;
             }
         }
         else
         {
-            /* Error needs to be string */
+            throw new \Exception('Type error , :get($1) , $1 must be a string');
         }
     }
 
     /**
-     * Does something interesting
+     * Set a config option from /core/config/*
      * 28/03/15 , 16:30
-     * @param  string    $where  Where something interesting takes place
-     * @param  integer  $repeat How many times something interesting should happen
-     * @throws Exception If something interesting cannot happen
-     * @return Status
+     *
+     * @param  string    $key   Config option to set, i.e ::set('site.url')
+     * @param  string    $val   Config value
+     *
+     * @throws Exception If $key isn't a string
+     * @return void
      */
     public static function set($key, $val)
     {
@@ -63,21 +61,19 @@ class Config {
         }
         else
         {
-            // @ERROR
+            throw new \Exception('Type error , :set($1,$2) , $1 must be a string');
         }
     }
 
     /**
-     * Does something interesting
+     * Return the unique id for use in $GLOBALS , so not to clash with anu other globals
      * 28/03/15 , 16:30
-     * @param  string    $where  Where something interesting takes place
-     * @param  integer  $repeat How many times something interesting should happen
-     * @throws Exception If something interesting cannot happen
-     * @return Status
+     *
+     * @return String , uid
      */
     public static function GetId()
     {
-        if( static::$_set == false )
+        if( static::$_set === false )
         {
             static::$_set = true;
             return static::$_uid = uniqid();

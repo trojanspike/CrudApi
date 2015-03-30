@@ -3,27 +3,22 @@
 use Database\RedisDB;
 
 /**
- * Short description for class
+ * Redis database setup & other tear downs etc
+ * $ bin/schema down // i.e
  *
- * Long description for class (if any)...
- *
- * @copyright  28/03/15 , 16:28 lee
- * @license
- * @version
- * @link
- * @since
+ * @copyright   28/03/15 , 16:28 lee
+ * @license     MIT
+ * @link        https://github.com/trojanspike/BasicAuthCRUD-api
  */
 
 class RedisSchema extends RedisDB {
 
 
     /**
-     * Does something interesting
+     * Flush redis DB deleting all content, used in cli $ /bin/schema down
      * 28/03/15 , 16:30
-     * @param  string    $where  Where something interesting takes place
-     * @param  integer  $repeat How many times something interesting should happen
-     * @throws Exception If something interesting cannot happen
-     * @return Status
+     *
+     * @return void
      */
     function down()
     {

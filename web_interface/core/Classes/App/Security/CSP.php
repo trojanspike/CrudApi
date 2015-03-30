@@ -1,19 +1,16 @@
 <?php namespace App\Security;
 
 /**
- * Short description for class
- *
- * Long description for class (if any)...
+ * Content Security Policy
+ * @link https://www.owasp.org/index.php/Content_Security_Policy
  *
  * @copyright  28/03/15 , 16:28 lee
- * @license
- * @version
- * @link
- * @since
+ * @license     MIT
+ * @link        https://github.com/trojanspike/BasicAuthCRUD-api
  */
 
 class CSP {
-
+    /* TODO - set header  Content Security Policy*/
 }
 
 

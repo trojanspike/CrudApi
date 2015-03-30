@@ -3,15 +3,12 @@
 use App\Session;
 use Response;
 /**
- * Short description for class
+ * Extends Response class for custom methods & injected output
  *
- * Long description for class (if any)...
  *
- * @copyright  28/03/15 , 16:28 lee
- * @license
- * @version
- * @link
- * @since
+ * @copyright   28/03/15 , 16:28 lee
+ * @license     MIT
+ * @link        https://github.com/trojanspike/BasicAuthCRUD-api
  */
 class ResponseAuth extends Response {
 
@@ -19,12 +16,10 @@ class ResponseAuth extends Response {
     /**
      * Does something interesting
      * 28/03/15 , 16:30
-     * @param  string    $where  Where something interesting takes place
-     * @param  integer  $repeat How many times something interesting should happen
-     * @throws Exception If something interesting cannot happen
-     * @return Status
+     * @param  array    $obj  Output as JSON string using Response->json
+     * @return void
      */
-    public function json($obj)
+    public function json( array $obj)
     {
         $obj = array_merge( $obj , ['authToken' => Session::get('new_token')] );
         parent::json( $obj );

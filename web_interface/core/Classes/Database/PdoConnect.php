@@ -7,30 +7,25 @@ use PDO;
 use App\Config;
 
 /**
- * Short description for class
- *
- * Long description for class (if any)...
+ * Extends PDO database class
  *
  * @copyright  28/03/15 , 16:28 lee
- * @license
- * @version
- * @link
- * @since
+ * @license     MIT
+ * @link        https://github.com/trojanspike/BasicAuthCRUD-api
  */
 
 class PdoConnect extends PDO {
 
-  private static $instance = false;
+  protected static $instance = false;
 
     /**
-     * Does something interesting
+     * PDO driver setup and Config
      * 28/03/15 , 16:30
-     * @param  string    $where  Where something interesting takes place
-     * @param  integer  $repeat How many times something interesting should happen
-     * @throws Exception If something interesting cannot happen
+     *
+     * @throws PDOException if any fails
      * @return Status
      */
-    function __construct()
+    function __construct() /* TODO - check Config and if dev show more fail info */
     {
         $conf = Config::get('database.mysql');
         $user = $conf['username'];
@@ -44,17 +39,15 @@ class PdoConnect extends PDO {
         }
         catch (PDOException $e)
         {
-            echo 'Connection failed: ' . $e->getMessage();
+            die( 'Connection failed: ' . $e->getMessage() );
         }
     }
 
     /**
-     * Does something interesting
+     * instance if the DB driver
      * 28/03/15 , 16:30
-     * @param  string    $where  Where something interesting takes place
-     * @param  integer  $repeat How many times something interesting should happen
-     * @throws Exception If something interesting cannot happen
-     * @return Status
+     *
+     * @return DB driver instance
      */
     public static function instance()
     {

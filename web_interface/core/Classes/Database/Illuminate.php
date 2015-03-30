@@ -1,46 +1,39 @@
 <?php namespace Database;
-// http://laravel.com/api/4.0/Illuminate/Database/Query/Builder.html
+
 use Illuminate\Database\Capsule\Manager as Capsule;
 use App\Config;
 
 /**
- * Short description for class
- *
- * Long description for class (if any)...
+ * Extends Illuminate database class
+ * @link http://laravel.com/api/4.0/Illuminate/Database/Query/Builder.html
  *
  * @copyright  28/03/15 , 16:28 lee
- * @license
- * @version
- * @link
- * @since
+ * @license     MIT
+ * @link        https://github.com/trojanspike/BasicAuthCRUD-api
  */
 
 class Illuminate extends Capsule {
 
-  private static $instance = false;
+  protected static $instance = false;
 
     /**
-     * Does something interesting
+     * Illuminate DB drive setup & config
      * 28/03/15 , 16:30
-     * @param  string    $where  Where something interesting takes place
-     * @param  integer  $repeat How many times something interesting should happen
-     * @throws Exception If something interesting cannot happen
-     * @return Status
+     *
+     * @throws Exception TODO - DbException
+     * @return void
      */
     public function __construct()
     {
-        $capsule = new Capsule;
-        $capsule->addConnection(Config::get('database')[Config::get('database.driver')]);
-        $capsule->setAsGlobal();
+        $this->addConnection(Config::get('database')[Config::get('database.driver')]);
+        $this->setAsGlobal();
     }
 
     /**
-     * Does something interesting
+     * instance if the DB driver
      * 28/03/15 , 16:30
-     * @param  string    $where  Where something interesting takes place
-     * @param  integer  $repeat How many times something interesting should happen
-     * @throws Exception If something interesting cannot happen
-     * @return Status
+     *
+     * @return DB driver instance
      */
     public static function instance()
     {

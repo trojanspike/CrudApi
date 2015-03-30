@@ -1,15 +1,12 @@
 <?php namespace App;
 
 /**
- * Short description for class
+ * Session getter and setter class
  *
- * Long description for class (if any)...
  *
  * @copyright  28/03/15 , 16:28 lee
- * @license
- * @version
- * @link
- * @since
+ * @license     MIT
+ * @link        https://github.com/trojanspike/BasicAuthCRUD-api
  */
 
 class Session {
@@ -38,12 +35,10 @@ class Session {
 	}
 
     /**
-     * Does something interesting
+     * start an App session and set _CSRF value to use on forms
      * 28/03/15 , 16:30
-     * @param  string    $where  Where something interesting takes place
-     * @param  integer  $repeat How many times something interesting should happen
-     * @throws Exception If something interesting cannot happen
-     * @return Status
+     *
+     * @return void
      */
     public static function start()
     {
@@ -54,12 +49,11 @@ class Session {
     }
 
     /**
-     * Does something interesting
+     * Get a value from SESSION array using the key passed
      * 28/03/15 , 16:30
-     * @param  string    $where  Where something interesting takes place
-     * @param  integer  $repeat How many times something interesting should happen
-     * @throws Exception If something interesting cannot happen
-     * @return Status
+     * @param  string    $key  Key of SESSION array or empty to return full $_SESSION
+     *
+     * @return Key value or $_SESSION , else false if $key pass and not found
      */
     public static function get($key=false)
     {
@@ -74,12 +68,12 @@ class Session {
     }
 
     /**
-     * Does something interesting
+     * Set a value in SESSION array
      * 28/03/15 , 16:30
-     * @param  string    $where  Where something interesting takes place
-     * @param  integer  $repeat How many times something interesting should happen
-     * @throws Exception If something interesting cannot happen
-     * @return Status
+     * @param  string    $key  Where something interesting takes place
+     * @param  *        $val    Value to set onto the SESSION key
+     *
+     * @return void
      */
     public static function set($key, $val)
     {

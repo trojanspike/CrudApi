@@ -1,23 +1,17 @@
 <?php namespace Database;
 
 /*
-https://github.com/phpredis/phpredis
 TODO : Maybe make multiple connections /
-aliases and pre fixes?
-
-https://github.com/phpredis/phpredis#expire-settimeout-pexpire
 */
 
 /**
- * Short description for class
- *
- * Long description for class (if any)...
+ * Extends RedisDB database class
+ * @link https://github.com/phpredis/phpredis
+ * @link https://github.com/phpredis/phpredis#expire-settimeout-pexpire
  *
  * @copyright  28/03/15 , 16:28 lee
- * @license
- * @version
- * @link
- * @since
+ * @license     MIT
+ * @link        https://github.com/trojanspike/BasicAuthCRUD-api
  */
 
 use App\Config;
@@ -25,15 +19,13 @@ use Redis;
 
 class RedisDB extends Redis {
 
-  private static $instance = false;
+  protected static $instance = false;
 
     /**
-     * Does something interesting
+     * Redis DB setup and Config
      * 28/03/15 , 16:30
-     * @param  string    $where  Where something interesting takes place
-     * @param  integer  $repeat How many times something interesting should happen
-     * @throws Exception If something interesting cannot happen
-     * @return Status
+     *
+     * @return void
      */
     public function __construct()
     {
@@ -42,12 +34,10 @@ class RedisDB extends Redis {
     }
 
     /**
-     * Does something interesting
+     * instance if the DB driver
      * 28/03/15 , 16:30
-     * @param  string    $where  Where something interesting takes place
-     * @param  integer  $repeat How many times something interesting should happen
-     * @throws Exception If something interesting cannot happen
-     * @return Status
+     *
+     * @return DB driver instance
      */
     public static function instance()
     {

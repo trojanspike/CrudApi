@@ -1,27 +1,23 @@
 <?php namespace App\Security;
 
 /**
- * Short description for class
+ * Security : check accepted headers and c-types are allowed
  *
- * Long description for class (if any)...
  *
- * @copyright  28/03/15 , 16:28 lee
- * @license
- * @version
- * @link
- * @since
+ * @copyright   28/03/15 , 16:28 lee
+ * @license     MIT
+ * @link        https://github.com/trojanspike/BasicAuthCRUD-api
  */
 
 class Accepted {
-    public static $byPass = false; /* TODO - use Config:: */
+    public static $byPass = false;
 
     /**
      * Does something interesting
      * 28/03/15 , 16:30
-     * @param  string    $where  Where something interesting takes place
-     * @param  integer  $repeat How many times something interesting should happen
-     * @throws Exception If something interesting cannot happen
-     * @return Status
+     * @param  array    $tests  Array of strings to preg match $accept
+     * @param  string  $accept  Header Accept Type
+     * @return bool , true = pass | false = fail
      */
     public static function pass( array $tests, $accept )
     {

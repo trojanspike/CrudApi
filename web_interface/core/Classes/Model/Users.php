@@ -7,15 +7,12 @@ use App\Session;
 use App\Config;
 
 /**
- * Short description for class
+ * Database interaction for Users table
  *
- * Long description for class (if any)...
  *
- * @copyright  28/03/15 , 16:28 lee
- * @license
- * @version
- * @link
- * @since
+ * @copyright   28/03/15 , 16:28 lee
+ * @license     MIT
+ * @link        https://github.com/trojanspike/BasicAuthCRUD-api
  */
 
 class Users extends PdoConnect {
@@ -23,12 +20,10 @@ class Users extends PdoConnect {
     private $redis;
 
     /**
-     * Does something interesting
+     * Set Redis DB Var to be used in User class
      * 28/03/15 , 16:30
-     * @param  string    $where  Where something interesting takes place
-     * @param  integer  $repeat How many times something interesting should happen
-     * @throws Exception If something interesting cannot happen
-     * @return Status
+     *
+     * @return void
      */
     public function __construct()
     {
@@ -37,14 +32,13 @@ class Users extends PdoConnect {
     }
 
     /**
-     * Does something interesting
+     * Check user credentials for logging in
      * 28/03/15 , 16:30
-     * @param  string    $where  Where something interesting takes place
-     * @param  integer  $repeat How many times something interesting should happen
-     * @throws Exception If something interesting cannot happen
-     * @return Status
+     * @param  array    $form  ['username'] & ['password'] required
+     *
+     * @return bool, false = user not found & true = user found , redis session set with auth token
      */
-    public function login($form)
+    public function login( array $form)
     {
         $query = $this->prepare('SELECT * FROM users WHERE username=:username AND password=:password LIMIT 1');
         $query->bindParam(':username', $form['username']);
@@ -67,12 +61,11 @@ class Users extends PdoConnect {
     /**
      * Does something interesting
      * 28/03/15 , 16:30
-     * @param  string    $where  Where something interesting takes place
-     * @param  integer  $repeat How many times something interesting should happen
-     * @throws Exception If something interesting cannot happen
-     * @return Status
+     * @param  array    $form  ['email']['username']['password']['extra'], create new user
+     *
+     * @return bool , executed query
      */
-    public function create($form)
+    public function create( array $form)
     {
         $query = $this->prepare('INSERT INTO users (id,email,username,password,extra,created_at,updated_at)
         VALUES (null,:email,:uname,:pass,:extra,NOW(),NOW())');
