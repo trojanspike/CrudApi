@@ -12,7 +12,8 @@
 		"rhumsaa/uuid": "2.8.0"
 	},
 	"require-dev": {
-		"mockery/mockery": "0.9.3"
+		"mockery/mockery": "0.9.3",
+		"fzaninotto/faker": "1.4.0"
 	},
 	"autoload": {
 	    "psr-4": {
