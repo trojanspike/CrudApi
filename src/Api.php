@@ -29,39 +29,78 @@
 * @version 0.1.27
 * @license MIT License (http://www.opensource.org/licenses/mit-license.php)
 */
-
+require_once __dir__.'/lib/Hooks.php';
 require_once __dir__.'/lib/Request.php';
 require_once __dir__.'/lib/Response.php';
 
 /**
- * Short description for class
+ * Api class setup the Api:: methods , depends on Request , Response & Hooks
  *
- * Long description for class (if any)...
  *
  * @copyright  28/03/15 , 16:28 lee
- * @license
- * @version
- * @link
- * @since
+ * @license MIT License (http://www.opensource.org/licenses/mit-license.php)
+ * @link https://github.com/trojanspike/BasicAuthCRUD-api
  */
 
 class Api {
 
 	/**
-	* @var 
-	**/
+	 * array of allowed REQUEST_METHOD
+	 *
+	 * @var $verbAllowed
+	 */
 	private static $verbAllowed = ['GET', 'POST', 'PUT', 'DELETE'];
-	private static $verbFunctions = [], $injects = [], $errorFunc, $request, $response;
-	public static $debug = false, $uri = false;
+	/**
+	 * array of function to fire when verbs passed through REQUEST_METHOD, i.e PUT -> fire
+	 *
+	 * @var $verbFunctions
+	 */
+	private static $verbFunctions = [],
+	/**
+	 * array of values available as 3rd param in Api::VERB($1,$2, $3)
+	 *
+	 * @var $injects
+	 */
+	$injects = [],
+	/**
+	 * Function to fire when verb error , i.e if OPTIONS
+	 *
+	 * @var $errorFunc
+	 */
+	$errorFunc,
+	/**
+	 * Request class instance
+	 *
+	 * @var $request
+	 */
+	$request,
+	/**
+	 * Response class instance
+	 *
+	 * @var $response
+	 */
+	$response;
+
+	/**
+	 * Bool , set debug on or off
+	 *
+	 * @var $debug
+	 */
+	public static $debug = false,
+	/**
+	 * Set the uri tp be passed to Request Class
+	 *
+	 * @var $uri
+	 */
+	$uri = false;
 
 	/**
 	 * ::auth
 	 * Does something interesting
 	 * 28/03/15 , 16:30
-	 * @param  string    $where  Where something interesting takes place
-	 * @param  integer  $repeat How many times something interesting should happen
-	 * @throws Exception If something interesting cannot happen
-	 * @return Status
+	 * @param  func    $callb  Callback function with 3 args, Request, Response, Run, See docs
+	 *
+	 * @return void
 	 */
 	public static function auth($callb)
 	{
@@ -83,12 +122,12 @@ class Api {
 	}
 
 	/**
-	 * Does something interesting
+	 * Inject values to be available in Api::VERB 3rd arg, see docs
 	 * 28/03/15 , 16:30
-	 * @param  string    $where  Where something interesting takes place
-	 * @param  integer  $repeat How many times something interesting should happen
-	 * @throws Exception If something interesting cannot happen
-	 * @return Status
+	 * @param  string    	$as  set key of value
+	 * @param  any  		$inj Inject value
+	 *
+	 * @return void
 	 */
 	public static function inject($as, $inj)
 	{
@@ -96,25 +135,23 @@ class Api {
 	}
 
 	/**
-	 * Does something interesting
+	 * Set the function to be fire with verb GET
 	 * 28/03/15 , 16:30
-	 * @param  string    $where  Where something interesting takes place
-	 * @param  integer  $repeat How many times something interesting should happen
-	 * @throws Exception If something interesting cannot happen
-	 * @return Status
+	 * @param  func    $callb  Function to use
+	 *
+	 * @return void
 	 */
-	public static function get($callb)
+	public static function get( $callb)
 	{
 		static::$verbFunctions['GET'] = $callb;
 	}
 
 	/**
-	 * Does something interesting
+	 * Set the function to be fire with verb POST
 	 * 28/03/15 , 16:30
-	 * @param  string    $where  Where something interesting takes place
-	 * @param  integer  $repeat How many times something interesting should happen
-	 * @throws Exception If something interesting cannot happen
-	 * @return Status
+	 * @param  func    $callb  Function to use
+	 *
+	 * @return void
 	 */
 	public static function post($callb)
 	{
@@ -122,12 +159,11 @@ class Api {
 	}
 
 	/**
-	 * Does something interesting
+	 * Set the function to be fire with verb PUT
 	 * 28/03/15 , 16:30
-	 * @param  string    $where  Where something interesting takes place
-	 * @param  integer  $repeat How many times something interesting should happen
-	 * @throws Exception If something interesting cannot happen
-	 * @return Status
+	 * @param  func    $callb  Function to use
+	 *
+	 * @return void
 	 */
 	public static function put($callb)
 	{
@@ -135,12 +171,11 @@ class Api {
 	}
 
 	/**
-	 * Does something interesting
+	 * Set the function to be fire with verb DELETE
 	 * 28/03/15 , 16:30
-	 * @param  string    $where  Where something interesting takes place
-	 * @param  integer  $repeat How many times something interesting should happen
-	 * @throws Exception If something interesting cannot happen
-	 * @return Status
+	 * @param  func    $callb  Function to use
+	 *
+	 * @return void
 	 */
 	public static function delete($callb)
 	{
@@ -148,12 +183,11 @@ class Api {
 	}
 
 	/**
-	 * Does something interesting
+	 * Set the function to be fire when an un-allowed verb is sent, i.e OPTIONS
 	 * 28/03/15 , 16:30
-	 * @param  string    $where  Where something interesting takes place
-	 * @param  integer  $repeat How many times something interesting should happen
-	 * @throws Exception If something interesting cannot happen
-	 * @return Status
+	 * @param  func    $callb  Function to use
+	 *
+	 * @return void
 	 */
 	public static function error($callb)
 	{
@@ -161,12 +195,11 @@ class Api {
 	}
 
 	/**
-	 * Does something interesting
+	 * Set the Response class to use
 	 * 28/03/15 , 16:30
-	 * @param  string    $where  Where something interesting takes place
-	 * @param  integer  $repeat How many times something interesting should happen
-	 * @throws Exception If something interesting cannot happen
-	 * @return Status
+	 * @param Response|ResponseInterface 	$response 	Response class
+	 *
+	 * @return void
 	 */
 	public static function setResponse( ResponseInterface $response )
 	{
@@ -174,12 +207,12 @@ class Api {
 	}
 
 	/**
-	 * Does something interesting
+	 * access private
+	 * Run api called , 3rd arg in Api::auth fn
 	 * 28/03/15 , 16:30
-	 * @param  string    $where  Where something interesting takes place
-	 * @param  integer  $repeat How many times something interesting should happen
-	 * @throws Exception If something interesting cannot happen
-	 * @return Status
+	 * @param  string    $verb  	Verb used
+	 *
+	 * @return void
 	 */
 	private static function run($verb)
 	{

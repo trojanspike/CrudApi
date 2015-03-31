@@ -43,17 +43,45 @@
  */
 
 class Rest {
-    
-    private static $_Policies, $_params, $_api;
-    public static $Dir, $debug = false;
+    /**
+     * Polices array config
+     *
+     * @var $_Policies
+     */
+    private static $_Policies,
 
     /**
-     * Does something interesting
+     * Params passed through the url, i.e /param1/param2/param3 etc
+     *
+     * @var $_params
+     */
+    $_params,
+
+    /**
+     * Api to use, first arg in uri after Version, i.e /Session
+     *
+     * @var $_api
+     */
+    $_api;
+
+    /**
+     * directory location of the Rest config
+     *
+     * @var $Dir
+     */
+    public static $Dir,
+    /**
+     * Debug on or off, display errors
+     *
+     * @var $debug
+     */
+    $debug = false;
+
+    /**
+     * Initialize the Rest Class , see docs
      * 28/03/15 , 16:30
-     * @param  string    $where  Where something interesting takes place
-     * @param  integer  $repeat How many times something interesting should happen
-     * @throws Exception If something interesting cannot happen
-     * @return Status
+     * @param array $parts uri parts , exploded by /
+     * @return void
      */
     public static function init( array $parts)
     {
@@ -77,7 +105,7 @@ class Rest {
         
         static::$_api = str_replace('-','/',$parts[0]);
 
-        Api::inject('API', $parts[0]);
+        Api::inject('API', $parts[0]); /* TODO - note Injects */
 
         unset($parts[0]);
 
@@ -88,13 +116,9 @@ class Rest {
         static::_RequireOrError(static::$Dir.'/api/'.static::$_api.'.php');
         static::_RequireOrError(static::$Dir.'/config/Injects.php');
 
-        /*
-        if in->array $API.$parts[0]
-        i.e : /user/creste > user.create
-        */
+        // is the api in the Policies config?
         if( ! in_array(static::$_api , array_keys(static::$_Policies)) )
         {
-            /* Auth required by default */
             static::_RequireOrError(static::$Dir.'/config/Auth.php');
             
         }
@@ -105,12 +129,10 @@ class Rest {
     }
 
     /**
-     * Does something interesting
+     * Include file once , or error if not found
      * 28/03/15 , 16:30
-     * @param  string    $where  Where something interesting takes place
-     * @param  integer  $repeat How many times something interesting should happen
-     * @throws Exception If something interesting cannot happen
-     * @return Status
+     * @param $path     Path to file
+     * @return require_once
      */
     private static function _RequireOrError($path)
     {
@@ -133,12 +155,11 @@ class Rest {
     }
 
     /**
-     * Does something interesting
+     * Access Private
+     * Check Polices and api access to load correct auth file from config.
      * 28/03/15 , 16:30
-     * @param  string    $where  Where something interesting takes place
-     * @param  integer  $repeat How many times something interesting should happen
-     * @throws Exception If something interesting cannot happen
-     * @return Status
+     *
+     * @return void
      */
     private static function _AuthChecker()
     {
@@ -146,17 +167,19 @@ class Rest {
         $policy = static::$_Policies[static::$_api];
         if( $policy === false )
         {
-            /* No auth required */
+            // No auth required
             static::_RequireOrError( static::$Dir.'/config/NoAuth.php' );
         }
         else
         {
             if( is_array($policy) && in_array($_SERVER['REQUEST_METHOD'] , $policy) )
             {
+                // No auth required
                 static::_RequireOrError( static::$Dir.'/config/NoAuth.php' );
             }
             else
             {
+                // auth required
                 static::_RequireOrError( static::$Dir.'/config/Auth.php' );
             }
         }
