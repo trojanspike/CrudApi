@@ -11,7 +11,9 @@
 	   "wixel/gump": "dev-master",
 		"rhumsaa/uuid": "2.8.0"
 	},
-	"require-dev": {},
+	"require-dev": {
+		"mockery/mockery": "0.9.3"
+	},
 	"autoload": {
 	    "psr-4": {
 	    	"App\\":"web_interface/core/Classes/App/",
