@@ -1,4 +1,5 @@
 <?php
+Api::inject('AuthKey', 'access');
 
 Api::auth(function($req, $res, $run, $injects){
     
