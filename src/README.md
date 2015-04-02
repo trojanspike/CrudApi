@@ -142,6 +142,17 @@ Helper shortcuts
 		$response->status(500)->setContent('text/plain')->outPut('Error');
 	});
 ```
+#### Hooks { static class }
+* ::on($1, $2) // $1{String},$2{function - accepts args}
+* ::fire($1, $2) // $1{string},$2{Array of args}
+```php
+	Hooks::on('auth:fail' , function( $ip ){
+		// fail2ban 
+		$Auth->fail($ip); // some redis counter ++
+	});
+	Hooks::fire('auth:fail', [ $_SERVER['REMOTE_ADDR'] ] );
+```
+
 #### Allow - Origin & Header
 - Allow-Origin: *
 - Allow-Headers : Authorization, Content-Type, Accept, X-username , X-password , X-verb , Auth-Token
