@@ -25,7 +25,7 @@
 * THE SOFTWARE.
 *
 * @copyright Copyright 2015 (c) Lee Mc Kay (http://www.@site/)
-* @link http://www.@site/
+* @link https://github.com/trojanspike/BasicAuthCRUD-api
 * @version 0.1.27
 * @license MIT License (http://www.opensource.org/licenses/mit-license.php)
 */

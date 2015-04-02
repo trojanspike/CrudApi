@@ -36,10 +36,8 @@
  * Long description for class (if any)...
  *
  * @copyright  28/03/15 , 16:28 lee
- * @license
- * @version
- * @link
- * @since
+ * @license MIT License (http://www.opensource.org/licenses/mit-license.php)
+ * @link https://github.com/trojanspike/BasicAuthCRUD-api
  */
 
 class Rest {
@@ -114,7 +112,7 @@ class Rest {
         static::$_Policies = static::_RequireOrError(static::$Dir.'/config/Policies.php');
         
         static::_RequireOrError(static::$Dir.'/api/'.static::$_api.'.php');
-        static::_RequireOrError(static::$Dir.'/config/Injects.php');
+        static::_RequireOrError(static::$Dir.'/config/Hooks.php');
 
         // is the api in the Policies config?
         if( ! in_array(static::$_api , array_keys(static::$_Policies)) )

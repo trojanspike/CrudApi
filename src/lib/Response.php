@@ -36,10 +36,8 @@
  * Long description for class (if any)...
  *
  * @copyright  28/03/15 , 16:28 lee
- * @license
- * @version
- * @link
- * @since
+ * @license MIT License (http://www.opensource.org/licenses/mit-license.php)
+ * @link https://github.com/trojanspike/BasicAuthCRUD-api
  */
 interface ResponseInterface {
 
@@ -51,39 +49,22 @@ interface ResponseInterface {
 }
 
 /**
- * Short description for class
+ * simple response class , setting header content, output etc
  *
- * Long description for class (if any)...
  *
  * @copyright  28/03/15 , 16:28 lee
- * @license
- * @version
- * @link
- * @since
+ * @license MIT License (http://www.opensource.org/licenses/mit-license.php)
+ * @link https://github.com/trojanspike/BasicAuthCRUD-api
  */
 class Response implements ResponseInterface {
-	private $_status, $_content = false;
+	private $_status = 200, $_content = false;
 
 	/**
-	 * Does something interesting
+	 * Set the page content type, ie. js , xml, etc
 	 * 28/03/15 , 16:30
-	 * @param  string    $where  Where something interesting takes place
-	 * @param  integer  $repeat How many times something interesting should happen
-	 * @throws Exception If something interesting cannot happen
-	 * @return Status
-	 */
-	public function __construct()
-	{
-		$this->_status = 200;
-	}
-
-	/**
-	 * Does something interesting
-	 * 28/03/15 , 16:30
-	 * @param  string    $where  Where something interesting takes place
-	 * @param  integer  $repeat How many times something interesting should happen
-	 * @throws Exception If something interesting cannot happen
-	 * @return Status
+	 * @param  string    $content  Content type
+	 *
+	 * @return self
 	 */
 	public function setContent( $content)
 	{
@@ -92,12 +73,11 @@ class Response implements ResponseInterface {
 	}
 
 	/**
-	 * Does something interesting
+	 * set header option
 	 * 28/03/15 , 16:30
-	 * @param  string    $where  Where something interesting takes place
-	 * @param  integer  $repeat How many times something interesting should happen
-	 * @throws Exception If something interesting cannot happen
-	 * @return Status
+	 * @param  array|string    $header  Where something interesting takes place
+	 *
+	 * @return self
 	 */
 	public function setHeader($header)
 	{
