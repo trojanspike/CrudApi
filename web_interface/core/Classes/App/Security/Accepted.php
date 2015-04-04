@@ -10,6 +10,12 @@
  */
 
 class Accepted {
+
+	/**
+	* Bypass tests, do fake true | pass
+	*
+	* @var bool
+	*/
     public static $byPass = false;
 
     /**
