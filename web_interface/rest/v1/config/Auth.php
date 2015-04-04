@@ -5,6 +5,10 @@ use App\Security\Auth;
 use App\Security\Accepted;
 use App\Config;
 use App\Build\ResponseAuth as Response;
+use App\Session;
+/* Generate a new token */
+Session::set('new_token', AuthTokenGenerate());
+/***********************/
 
 Api::setResponse( new Response );
 
