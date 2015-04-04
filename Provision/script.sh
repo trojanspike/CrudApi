@@ -6,6 +6,8 @@ sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password passwor
 sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password password'
 sudo apt-get install php5 php5-cli php5-curl php5-mcrypt apache2 mysql-server redis-server php5-mysql php5-redis -yy &&
 
+sudo php5enmod mcrypt curl
+
 mysql -u root -ppassword -e "CREATE DATABASE root_database;" &&
 sudo cp /vagrant/Provision/000-default.conf /etc/apache2/sites-enabled/ && service apache2 reload
 
