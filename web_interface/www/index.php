@@ -7,6 +7,9 @@ use App\Config;
 ini_set("display_errors", config::get('error.display') );
 error_reporting( config::get('error.report') );
 
+date_default_timezone_set('Europe/London');
+ini_set('date.timezone', 'Europe/London');
+
 
 $path = preg_replace('/^\//', '', parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
 
