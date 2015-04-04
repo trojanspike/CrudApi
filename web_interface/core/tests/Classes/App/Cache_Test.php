@@ -8,7 +8,7 @@
 * @license MIT License (http://www.opensource.org/licenses/mit-license.php)
 */
 
-class Cache_Test extends \PHPUnit_Framework_TestCase {
+class Cache_Test extends PHPUnit_Framework_TestCase {
 
     private $param = false;
 
@@ -24,6 +24,7 @@ class Cache_Test extends \PHPUnit_Framework_TestCase {
 
     public function testSetupPHPUnit()
     {
+        $this->assertCount(1, array('foo'));
         $this->assertTrue( $this->param );
 
     }
