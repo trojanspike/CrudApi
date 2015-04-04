@@ -117,7 +117,7 @@ class Response implements ResponseInterface {
 	 * @throws Exception If something interesting cannot happen
 	 * @return Status
 	 */
-	public function json($obj)
+	public function json( array $obj)
 	{
 		$this->setHeader('Content-Type:application/javascript');
 		$this->outPut(json_encode($obj));
