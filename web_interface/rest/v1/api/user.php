@@ -66,9 +66,10 @@ Api::post(function($req, $res) {
 
 /* read */
 use Database\Illuminate;
-$db = Illuminate::instance();
+$db = new Illuminate;
 
 Api::get(function($req, $res) use($db) {
+    var_dump($db);
     $result = $db->table('users')->select(['id','username', 'email', 'extra', 'password'])->get();
     $res->json( $result );
 });
