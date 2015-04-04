@@ -19,4 +19,5 @@ return [
     ,'ext/css' => ['GET']
     ,'ext/js' => ['GET']
     ,'ext/img' => ['GET']
+    ,'phpinfo' => ['GET']
     ];
