@@ -8,7 +8,7 @@
 * @license MIT License (http://www.opensource.org/licenses/mit-license.php)
 */
 
-class RedisDB_Test extends \PHPUnit_Framework_TestCase {
+class Cache_Test extends \PHPUnit_Framework_TestCase {
 
     private $param = false;
 
