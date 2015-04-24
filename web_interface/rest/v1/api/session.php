@@ -7,7 +7,7 @@ use app\Session;
 /* Create */
 Api::post(function($req, $res)
 {
-    $User = new Users();
+    Hooks::fire('login:before', [ $_SERVER['REMOTE_ADDR'] ]);
 
     /* Validation */
     $_INPUT = $req->input(['username', 'password']);
@@ -30,32 +30,26 @@ Api::post(function($req, $res)
     $validated_data = $gump->run($_INPUT);
     if($validated_data === false)
     {
+        Hooks::fire('login:fail', [ $_SERVER['REMOTE_ADDR'] ]);
         $res->json(['error'=>true, 'message'=> $gump->get_readable_errors() ]);
     }
     else
     {
+        $User = new Users();
         if($User->login($validated_data))
         {
+            Hooks::fire('login:success', [ $_SERVER['REMOTE_ADDR'] ]);
             $res->json( ['error'=>false, 'authToken' => Session::get('new_token') ] );
         }
         else
         {
+            Hooks::fire('login:fail', [ $_SERVER['REMOTE_ADDR'] ]);
             $res->json(['error'=>true, 'message' => ['username or email already in use.']]);
         }
     }
     /***********/
 });
 
-/* read / */
-
-Api::get(function($req, $res){
-
-    $res->json([
-        Session::get('userInfo'),
-        'authToken' => Session::get('new_token')
-    ]);
-
-});
 
 /* UPDATE */
 
