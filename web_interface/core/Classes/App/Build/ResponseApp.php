@@ -39,8 +39,20 @@ class ResponseApp extends Response {
         {
             $obj = array_merge( $obj , ['authToken' => Session::get('new_token')] );
         }
-
         parent::json( $obj );
+    }
+
+    /**
+     * Does something interesting
+     * 24/04/15 , 13:48
+     * @param  string    $where  Where something interesting takes place
+     * @param  integer  $repeat How many times something interesting should happen
+     * @throws Exception If something interesting cannot happen
+     * @return Status
+     */
+    public function html( $content )
+    {
+        parent::setContent('text/html')->status(200)->outPut($content);
     }
 
 }
