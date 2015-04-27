@@ -5,10 +5,9 @@ return [
     
     'debug' => true,
 
-	 'production' => false,
+	'production' => false,
 
     'url' => 'crud-api.uk.to'
 
-];
 
-?>
+];

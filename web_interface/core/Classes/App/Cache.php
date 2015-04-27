@@ -106,7 +106,7 @@ class Cache extends RedisDB {
      *
      * @return void
      */
-    public function put($key, $content, int $time)
+    public function put($key, $content, $time)
     {
 		$key = md5($key);
         switch($this->saveTo)

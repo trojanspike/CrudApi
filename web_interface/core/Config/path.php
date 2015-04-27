@@ -9,5 +9,3 @@ return [
     'schema' => realpath( __DIR__.'/../Classes/Schema/' )
 
 ];
-
-?>

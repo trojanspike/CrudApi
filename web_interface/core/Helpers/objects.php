@@ -1,7 +1,5 @@
 <?php
-use App\Config;
 
-// path('www')
 /**
  * Does something interesting
  * 28/03/15 , 16:30
@@ -11,11 +9,23 @@ use App\Config;
  * @return Status
  */
 
-if( ! function_exists('path') )
+if( ! function_exists('array2std') )
 {
-    function path($path)
+    function array2std( array $arr )
     {
-        return Config::get('path.'.$path);
+        $stdClass = new StdClass;
+        foreach( $arr as $key => $val )
+        {
+            if( is_array( $val ) )
+            {
+                $stdClass->$key = array2std($val);
+            }
+            else
+            {
+                $stdClass->$key = $val;
+            }
+        }
+        return $stdClass;
     }
 }
 
@@ -28,13 +38,24 @@ if( ! function_exists('path') )
  * @return Status
  */
 
-if( ! function_exists('www_path') )
+if( ! function_exists('std2array') )
 {
-    function www_path()
+    function std2array( stdClass $stdClass )
     {
-        return Config::get('path.www');
     }
 }
+
+/*
+ $class = new stdClass;
+ $class->name = 'Lee';
+ $class->age = 32;
+ 
+$class_vars = get_object_vars($class);
+if($class instanceof stdClass){
+  echo "@@";  
+}
+print_r($class_vars);
+*/
 
 /**
  * Does something interesting
@@ -45,27 +66,17 @@ if( ! function_exists('www_path') )
  * @return Status
  */
 
-if( ! function_exists('schema_path') )
+if( ! function_exists('arrayFlatten') )
 {
-    function schema_path()
+    function arrayFlatten( array $arr )
     {
-        return Config::get('path.schema');
     }
 }
-
-/**
- * Does something interesting
- * 28/03/15 , 16:30
- * @param  string    $where  Where something interesting takes place
- * @param  integer  $repeat How many times something interesting should happen
- * @throws Exception If something interesting cannot happen
- * @return Status
- */
-
-if( ! function_exists('storage_path') )
-{
-    function storage_path()
-    {
-        return Config::get('path.storage');
-    }
-}
+/*
+* arrayFlatten 
+return iterator_to_array( 
+	new RecursiveIteratorIterator(
+		new RecursiveArrayIterator( $array );
+	);
+ , false);
+*/

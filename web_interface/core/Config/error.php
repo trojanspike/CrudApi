@@ -9,5 +9,3 @@ return [
 	'report' => E_ALL
 
 ];
-
-?>
