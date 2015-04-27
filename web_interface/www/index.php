@@ -5,12 +5,12 @@ require_once __DIR__.'/../vendor/autoload.php'; /* Composer */
 
 /**
  * TODO :
-App start class passing $_SERVER URI
-Cleans up index.php & makes phpunit tests easier
-
-
-use App\Start;
-Start::app($_SERVER['REQUEST_URI']);
+ * App start class passing $_SERVER URI
+ * Cleans up index.php & makes phpunit tests easier
+ *
+ *
+ * use App\Start;
+ * Start::app($_SERVER['REQUEST_URI']);
 **/
 
 use App\Config;
