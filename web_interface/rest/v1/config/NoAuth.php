@@ -3,6 +3,9 @@
 use App\Session;
 use App\Config;
 use App\Security\Accepted;
+use App\Build\ResponseApp as Response;
+
+Api::setResponse( new Response(false) );
 
 Api::error(function($message, $res)
 {

@@ -14,10 +14,10 @@ return [
     ,'store' => true
     ,'test/redis' => false
     ,'test/Illuminate' => false
-    ,'test/hooks' => false
     ,'uuid' => false
     ,'ext/css' => ['GET']
     ,'ext/js' => ['GET']
     ,'ext/img' => ['GET']
     ,'phpinfo' => ['GET']
+    ,'test/mail' => ['GET', 'POST']
     ];
