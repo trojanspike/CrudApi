@@ -15,9 +15,10 @@ return [
     ,'test/redis' => false
     ,'test/Illuminate' => false
     ,'uuid' => false
-    ,'ext/css' => ['GET']
-    ,'ext/js' => ['GET']
-    ,'ext/img' => ['GET']
+    ,'ext/style.css' => ['GET']
+    ,'ext/script.js' => ['GET']
+    ,'ext/image.jpg' => ['GET']
+    ,'ext/image' => ['GET']
     ,'phpinfo' => ['GET']
     ,'test/mail' => ['GET', 'POST']
     , 'test/config' => ['GET']
