@@ -4,7 +4,6 @@ use App\Config;
 
 Api::get(function($req, $res){
 
-    // $res->json( Config::get('mail')[Config::get('mail.default')] );
-    $res->html( $req->ext() );
+    $res->json( Config::get('mail')[Config::get('mail.default')] );
 
 });
