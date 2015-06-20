@@ -5,4 +5,3 @@ composer.lock
 .c9/
 .vagrant/
 web_interface/core/Storage/Cache/
-web_interface/core/Config/mail.php
