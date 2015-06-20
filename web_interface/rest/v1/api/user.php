@@ -29,7 +29,6 @@ Api::post(function($req, $res) {
 
         /* Validate */
         $gump = new GUMP();
-        $_INPUT = $gump->sanitize($_INPUT);
         $gump->validation_rules(array(
             'username'    => 'required|alpha_numeric|max_len,60|min_len,4',
             'email'       => 'required|valid_email',
@@ -39,8 +38,7 @@ Api::post(function($req, $res) {
         $gump->filter_rules(array(
             'username' => 'trim|sanitize_string',
             'email'    => 'trim|sanitize_email',
-            'password' => 'trim|apiUserPass',
-            'extra'   => 'trim'
+            'password' => 'trim|apiUserPass'
         ));
         $validated_data = $gump->run($_INPUT);
 
@@ -70,7 +68,8 @@ $db = new Illuminate;
 
 Api::get(function($req, $res) use($db) {
     // var_dump($db);
-    $result = $db->table('users')->get();
+    // $result = $db->table('users')->get();
+    $result = $db->table('users')->select('extra')->get();
     $res->json( $result );
 });
 
