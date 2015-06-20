@@ -8,7 +8,7 @@
 	   	"leafo/scssphp": "0.0.12",
 		"gkralik/php-uglifyjs": "0.5.*",
 	   	"illuminate/database": "5.0.4",
-	   	"wixel/gump": "dev-master",
+	   	"wixel/gump": "1.1.*",
 		"rhumsaa/uuid": "2.8.0",
 		"swiftmailer/swiftmailer": "~5.4"
 	},
