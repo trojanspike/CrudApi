@@ -6,7 +6,7 @@ if false -> allow all
 if array [] -> allow noAuth what ever is in array
 */
 return [
-    'user' => ['POST','GET']
+    'users' => ['POST','GET']
     ,'session' => ['POST']
     ,'Quotes/NoAuth' => false
     ,'Quotes/Auth' => true

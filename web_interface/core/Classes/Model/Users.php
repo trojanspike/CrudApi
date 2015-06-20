@@ -67,13 +67,18 @@ class Users extends PdoConnect {
      */
     public function create( array $form)
     {
-        $query = $this->prepare('INSERT INTO users (id,email,username,password,extra,actived,created_at,updated_at)
-        VALUES (null,:email,:uname,:pass,:extra,false,NOW(),NOW())');
+        $activationKey = md5(uniqid(rand(), true));
+        $query = $this->prepare('INSERT INTO users (id,email,username,password,extra,actived,activationKey,created_at,updated_at)
+        VALUES (null,:email,:uname,:pass,:extra,false,:activationKey,NOW(),NOW())');
         $query->bindParam(':email', $form['email'] );
         $query->bindParam(':uname', $form['username'] );
         $query->bindParam(':pass', $form['password']);
         $query->bindParam(':extra', $form['extra']);
-        return $query->execute();
+        $query->bindParam(':activationKey', $activationKey);
+        return $query->execute(); /* TODO -
+            if success , send welcome email & activation key
+            GET /activate/someKey?email=email@email.com
+         */
     }
 
 }

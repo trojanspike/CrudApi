@@ -5,12 +5,12 @@ function($scope , $http, $state, $rootScope){
     $scope.form = {};
     
     $scope.fn.create = function(){
-        $http.post('/v1/user', $scope.form).then(function(data){
+        $http.post('/v1/users', $scope.form).then(function(data){
             var result = data.data;
             if( result.error === false ){
                 $state.go('user.login');
             } else {
-                alert('@error POST/v1/user');
+                alert('@error POST/v1/users');
                 console.log(result);
             }
         });

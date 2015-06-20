@@ -29,6 +29,7 @@ class UserSchema {
             $table->json('extra');
             // $table->enum('actived', [0, 1])->default(0);
             $table->boolean('actived')->default(false);
+            $table->string('activationKey', 32)->unique();
             $table->timestamps();
         });
     }
