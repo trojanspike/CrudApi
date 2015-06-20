@@ -20,4 +20,5 @@ return [
     ,'ext/img' => ['GET']
     ,'phpinfo' => ['GET']
     ,'test/mail' => ['GET', 'POST']
+    , 'test/config' => ['GET']
     ];
