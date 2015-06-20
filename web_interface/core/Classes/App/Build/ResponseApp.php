@@ -55,4 +55,17 @@ class ResponseApp extends Response {
         parent::setContent('text/html')->status(200)->outPut($content);
     }
 
+    /**
+     * Does something interesting
+     * 20/06/15 , 21:49
+     * @param  string    $where  Where something interesting takes place
+     * @param  integer  $repeat How many times something interesting should happen
+     * @throws Exception If something interesting cannot happen
+     * @return Status
+     */
+    public function jpg( $content )
+    {
+        $this->setContent('image/jpg')->status(200)->outPut( $content );
+    }
+
 }
