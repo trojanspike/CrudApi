@@ -16,4 +16,8 @@ foreach (glob(__DIR__."/Helpers/*.php") as $Helpers) {
     require_once( $Helpers );
 }
 
+/* Add a local Config file , ignored bu git. to be used for local-dev env */
+if( file_exists( __DIR__.'/../local_config.php' ) ){
+    /* TODO , add local_config to config object */
+}
 ?>
