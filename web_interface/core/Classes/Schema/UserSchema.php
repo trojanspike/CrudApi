@@ -22,12 +22,13 @@ class UserSchema {
     function up($Schema)
     {
         $Schema->create('users', function($table){
-            $table->string('id', 100)->unique()->default( 'unique'.time() );
+            $table->increments('id');
             $table->string('email')->unique();
             $table->string('username', 60)->unique();
             $table->string('password', 60);
-            $table->string('extra', 60);
-            $table->enum('actived', [0, 1]);
+            $table->json('extra');
+            // $table->enum('actived', [0, 1])->default(0);
+            $table->boolean('actived')->default(false);
             $table->timestamps();
         });
     }

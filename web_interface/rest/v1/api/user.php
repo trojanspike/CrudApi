@@ -15,7 +15,7 @@ use App\Config;
 
 /* # create */
 Api::post(function($req, $res) {
-// curl http://local.com/v1/user -X POST -H 'accept:application/json' -d '{"username":"username1","email":"email1@email.com","password":"password", "extra":"extra"}'
+// curl http://192.168.1.18/v1/user -X POST -H 'accept:application/json' -d '{"username":"username1","email":"email1@email.com","password":"password", "extra":"extra"}'
     $User = new Users();
 
     if( $req->input('_csrf') && $req->input('_csrf') == Session::get('_CSRF') || Config::get('site.debug') === true )
@@ -69,8 +69,8 @@ use Database\Illuminate;
 $db = new Illuminate;
 
 Api::get(function($req, $res) use($db) {
-    var_dump($db);
-    $result = $db->table('users')->select(['id','username', 'email', 'extra', 'password'])->get();
+    // var_dump($db);
+    $result = $db->table('users')->get();
     $res->json( $result );
 });
 

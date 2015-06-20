@@ -67,8 +67,8 @@ class Users extends PdoConnect {
      */
     public function create( array $form)
     {
-        $query = $this->prepare('INSERT INTO users (id,email,username,password,extra,created_at,updated_at)
-        VALUES (null,:email,:uname,:pass,:extra,NOW(),NOW())');
+        $query = $this->prepare('INSERT INTO users (id,email,username,password,extra,actived,created_at,updated_at)
+        VALUES (null,:email,:uname,:pass,:extra,false,NOW(),NOW())');
         $query->bindParam(':email', $form['email'] );
         $query->bindParam(':uname', $form['username'] );
         $query->bindParam(':pass', $form['password']);
