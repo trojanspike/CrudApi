@@ -69,8 +69,8 @@ $db = new Illuminate;
 Api::get(function($req, $res) use($db) {
     // var_dump($db);
     // $result = $db->table('users')->get();
-    $result = $db->table('users')->select('*')->where('id', '=', '5')->get();
-    $res->html( $result      );
+    $result = $db->table('users')->select('*')->get();
+    $res->json( $result );
 });
 
 /* update */
