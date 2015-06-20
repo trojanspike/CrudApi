@@ -18,6 +18,10 @@ foreach (glob(__DIR__."/Helpers/*.php") as $Helpers) {
 
 /* Add a local Config file , ignored bu git. to be used for local-dev env */
 if( file_exists( __DIR__.'/../local_config.php' ) ){
-    /* TODO , add local_config to config object */
+    $localConf = require( __DIR__.'/../local_config.php' );
+    foreach( $localConf as $confKey => $confArray )
+    {
+        $GLOBALS[Config::GetId() .'_'.strtoupper( $confKey )] = array_merge( Config::get($confKey) , $confArray );
+    }
 }
 ?>
