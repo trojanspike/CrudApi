@@ -33,7 +33,7 @@ Api::post(function($req, $res) {
             'username'    => 'required|alpha_numeric|max_len,60|min_len,4',
             'email'       => 'required|valid_email',
             'password'    => 'required|max_len,60|min_len,6',
-            'extra'      => 'required' /* TODO , should be json array? */
+            'extra'      => 'required|isJson'
         ));
         $gump->filter_rules(array(
             'username' => 'trim|sanitize_string',
@@ -69,8 +69,8 @@ $db = new Illuminate;
 Api::get(function($req, $res) use($db) {
     // var_dump($db);
     // $result = $db->table('users')->get();
-    $result = $db->table('users')->select('extra')->get();
-    $res->json( $result );
+    $result = $db->table('users')->select('*')->where('id', '=', '5')->get();
+    $res->html( $result      );
 });
 
 /* update */
