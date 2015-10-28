@@ -103,7 +103,7 @@ class Request {
 		{
 			$this->_basicAuth = false;
 		}
-		$this->accept = $_SERVER['HTTP_ACCEPT'];
+		$this->accept = isset($_SERVER['HTTP_ACCEPT'])?$_SERVER['HTTP_ACCEPT']:'NULL';
 	}
 
 	/**
