@@ -7,8 +7,8 @@ php:
   - hhvm
 
 before_script:
+  - composer install --prefer-source --no-interaction
   - composer self-update
-  - composer install --prefer-source --no-interaction --dev
 
 script: phpunit
 
