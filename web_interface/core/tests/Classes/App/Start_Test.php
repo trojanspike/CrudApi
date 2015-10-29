@@ -24,7 +24,7 @@ class Start_Test extends PHPUnit_Framework_TestCase {
     {
         $this->assertCount(1, array('foo'));
         $this->assertTrue( $this->param );
-        $this->assetTrue( false );
+        $this->assertTrue( false );
     }
 
 }
