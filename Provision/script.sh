@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 #http://stackoverflow.com/questions/7739645/install-mysql-on-ubuntu-without-password-prompt
+# http://phpdox.de/getting-started.html
 sudo add-apt-repository ppa:ondrej/php5-5.6 <<EFO
 
 EFO
@@ -7,7 +8,7 @@ EFO
 sudo apt-get update && sudo apt-get upgrade -y && \
 sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password password'
 sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password password'
-sudo apt-get install php5 php5-cli php5-curl php5-mcrypt apache2 mysql-server redis-server php5-mysql php5-redis -yy && \
+sudo apt-get install php5 php5-cli php5-curl php5-xsl php5-mcrypt apache2 mysql-server redis-server php5-mysql php5-redis -yy && \
 sudo php5enmod mcrypt curl
 
 mysql -u root -ppassword -e "CREATE DATABASE root_database;" && \
