@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <phpdox xmlns="http://xml.phpdox.net/config">
-    <project name="Example" source="${basedir}/src" workdir="${basedir}/build">
+    <project name="API" source="${basedir}/src" workdir="${basedir}/build/src">
         <collector backend="parser" />
-        <generator output="${basedir}/build">
+        <generator output="${basedir}/build/src">
+            <build engine="html" output="html"/>
+        </generator>
+    </project>
+    <project name="WEB Interface" source="${basedir}/web_interface/core/Classes/" workdir="${basedir}/build/core">
+        <collector backend="parser" />
+        <generator output="${basedir}/build/core">
             <build engine="html" output="html"/>
         </generator>
     </project>
