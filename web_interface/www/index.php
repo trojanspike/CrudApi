@@ -15,12 +15,11 @@ require_once __DIR__.'/../vendor/autoload.php'; /* Composer */
 
 use App\Config;
 
-ini_set("display_errors", config::get('error.display') );
-error_reporting( config::get('error.report') );
+ini_set("display_errors", config::get('site.error:display') );
+error_reporting( config::get('site.error:report') );
 
-date_default_timezone_set('Europe/London');
-ini_set('date.timezone', 'Europe/London');
-
+date_default_timezone_set( Config::get("site.timezone") );
+ini_set('date.timezone', Config::get("site.timezone") );
 
 $path = preg_replace('/^\//', '', parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
 
