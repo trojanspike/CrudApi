@@ -167,7 +167,7 @@ class Request {
 	 * @throws Exception If something interesting cannot happen
 	 * @return Status
 	 */
-	public function params(int $num)
+	public function params($num="*")
 	{
 		// $this-_params : arr
 		$returnData = [];
@@ -180,6 +180,7 @@ class Request {
 		}
 		else
 		{
+			/* TODO -> Throw error when not int ? */
 			return $this->_params;
 		}
 		return $returnData;
