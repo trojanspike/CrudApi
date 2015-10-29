@@ -7,7 +7,7 @@ return [
 
 	'production' => false,
 
-    'url' => 'crud-api.uk.to'
+    'url' => 'dev.website.com'
 
 
 ];

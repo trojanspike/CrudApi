@@ -1,5 +1,6 @@
 <?php
 
 return [
-	'uri' => ''
+	'debug' => false,
+	'url' => 'website.com'
 ];
