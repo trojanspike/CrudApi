@@ -6,6 +6,8 @@ return [
 
     'storage' => realpath(__DIR__.'/../Storage/'),
 
-    'schema' => realpath( __DIR__.'/../Classes/Schema/' )
+    'schema' => realpath( __DIR__.'/../Classes/Schema/' ),
+
+    "config" => realpath( __DIR__."/../Config/" )
 
 ];

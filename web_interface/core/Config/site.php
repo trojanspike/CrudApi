@@ -3,11 +3,15 @@
 
 return [
     
-    'debug' => true,
+    "debug" => true,
 
-	'production' => false,
+    "config" => "NULL",
 
-    'url' => 'dev.website.com'
+    "url" => "dev.website.com",
 
+    "error:report" => E_ALL,
 
+    "error:display" => 1,
+
+    "timezone" => "Europe/London"
 ];

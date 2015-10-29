@@ -6,8 +6,9 @@ foreach (glob(__DIR__."/Config/*.php") as $file) {
     $GLOBALS[ Config::GetId() .'_'. strtoupper(  pathinfo($file , PATHINFO_FILENAME) ) ] = require_once( realpath($file) );
 }
 
-if( Config::get('site.production') ){
-	foreach (glob(__DIR__."/Config/production/*.php") as $file) {
+if( Config::get('site.config') !== false && is_dir( __DIR__."/Config/".Config::get('site.config') ) ){
+    /* TODO -> if dir not avail do error if on debug mode */
+	foreach (glob(__DIR__."/Config/".Config::get('site.config')."/*.php") as $file) {
 		 $GLOBALS[ Config::GetId() .'_'. strtoupper(  pathinfo($file , PATHINFO_FILENAME) ) ] = require_once( realpath($file) );
 	}
 }
