@@ -9,7 +9,7 @@
 		"gkralik/php-uglifyjs": "0.5.*",
 	   	"illuminate/database": "5.0.4",
 	   	"wixel/gump": "1.1.*",
-		"rhumsaa/uuid": "2.8.0",
+		"ramsey/uuid": "2.8.0",
 		"swiftmailer/swiftmailer": "~5.4"
 	},
 	"require-dev": {
