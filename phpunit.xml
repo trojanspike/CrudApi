@@ -7,7 +7,7 @@
          xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/4.5/phpunit.xsd"
          backupGlobals="true"
          backupStaticAttributes="false"
-         bootstrap="./vendor/autoload.php"
+         bootstrap="web_interface/vendor/autoload.php"
          cacheTokens="false"
          colors="false"
          convertErrorsToExceptions="true"
@@ -30,19 +30,19 @@
 	<testsuites>
 
 		<testsuite name="core App">
-			<directory>./core/tests/Classes/App/</directory>
+			<directory>web_interface/core/tests/Classes/App/</directory>
 		</testsuite> 
 
 		<testsuite name="core Database">
-			<directory>./core/tests/Classes/Database/</directory>
+			<directory>web_interface/core/tests/Classes/Database/</directory>
 		</testsuite>
 
         <testsuite name="core Model">
-            <directory>./core/tests/Classes/Model/</directory>
+            <directory>web_interface/core/tests/Classes/Model/</directory>
         </testsuite>
 
         <testsuite name="core Schema">
-            <directory>./core/tests/Classes/Schema/</directory>
+            <directory>web_interface/core/tests/Classes/Schema/</directory>
         </testsuite>
 
 	</testsuites> 
