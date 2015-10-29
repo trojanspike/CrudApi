@@ -9,6 +9,7 @@ php:
 before_script:
   - composer install --prefer-source --no-interaction
   - composer self-update
+  - mysql -e 'create database database_test;'
 
 script: phpunit
 
@@ -24,9 +25,6 @@ notifications:
 
 services:
   - redis-server
-
-before_script:
-  - mysql -e 'create database database_test;'
 
 test:
   adapter: mysql2
