@@ -44,7 +44,7 @@ Api::inject('API_V', $version);
 if( preg_match("/^([\/\-\.a-zA-Z0-9]+)$/", $path) && preg_match("/^v[0-9]$/", $version) ){
     Api::$uri = $path; // needed for $req->uri & req->params()
     Api::$debug = Config::get('site.debug');
-    Rest::$Dir = __DIR__."/../rest/{$version}/";
+    Rest::$Dir = __DIR__."/../rest/Default/{$version}/";
     Rest::$debug = Config::get('site.debug');
     
     /* TODO : Poss change ?
