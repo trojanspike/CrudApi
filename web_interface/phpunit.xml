@@ -41,5 +41,9 @@
             <directory>./core/tests/Classes/Model/</directory>
         </testsuite>
 
+        <testsuite name="core Schema">
+            <directory>./core/tests/Classes/Schema/</directory>
+        </testsuite>
+
 	</testsuites> 
 </phpunit>
