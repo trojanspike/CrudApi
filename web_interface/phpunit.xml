@@ -37,5 +37,9 @@
 			<directory>./core/tests/Classes/Database/</directory>
 		</testsuite>
 
+        <testsuite name="core Model">
+            <directory>./core/tests/Classes/Model/</directory>
+        </testsuite>
+
 	</testsuites> 
 </phpunit>
