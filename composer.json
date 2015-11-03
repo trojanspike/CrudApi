@@ -18,22 +18,22 @@
 	},
 	"autoload": {
 	    "psr-4": {
-	    	"App\\":"web_interface/core/Classes/App/",
-	    	"Database\\":"web_interface/core/Classes/Database/",
-	    	"Model\\":"web_interface/core/Classes/Model/",
+	    	"App\\":"Application/core/Classes/App/",
+	    	"Database\\":"Application/core/Classes/Database/",
+	    	"Model\\":"Application/core/Classes/Model/",
 	    	"Illuminate\\Database\\": ""
 	    },
 		"classmap": ["./src/"],
-		"files": ["web_interface/core/GlobalFn.php"]
+		"files": ["Application/core/GlobalFn.php"]
 	},
 	"autoload-dev": {},
 	"scripts": {
-		"post-install-cmd": ["./web_interface/bin/schema up"],
+		"post-install-cmd": ["./Application/bin/schema up"],
 		"post-update-cmd": [],
 		"post-create-project-cmd": []
 	},
 	"config": {
-	    "vendor-dir": "./web_interface/vendor/",
+	    "vendor-dir": "./Application/vendor/",
 		"preferred-install": "dist"
 	},
 	"minimum-stability": "stable",

@@ -4,5 +4,5 @@ vendor/
 composer.lock
 .c9/
 .vagrant/
-web_interface/core/Storage/Cache/
+Application/core/Storage/Cache/
 build/
