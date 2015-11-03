@@ -25,7 +25,7 @@ debconf-set-selections <<< "mysql-server mysql-server/root_password password $MS
 debconf-set-selections <<< "mysql-server mysql-server/root_password_again password $MSQL_ROOT_PASS"
 apt-get install php5 php5-cli php5-curl php5-xsl php5-mcrypt apache2 mysql-server redis-server php5-mysql php5-redis -yy && \
 php5enmod mcrypt curl && \
-mysql -u root -ppassword -e "CREATE DATABASE CrudApi_database;" && \
+mysql -u root -p$MSQL_ROOT_PASS -e "CREATE DATABASE CrudApi_database;" && \
 rsync $BASE/Provision/000-default.conf /etc/apache2/sites-enabled/ && service apache2 reload && \
 curl -sS https://getcomposer.org/installer | php &&
 mv composer.phar /usr/local/bin/composer && \
