@@ -8,6 +8,8 @@ return [
 
     'schema' => realpath( __DIR__.'/../Classes/Schema/' ),
 
-    "config" => realpath( __DIR__."/../Config/" )
+    "config" => realpath( __DIR__."/../Config/" ),
+
+    "base" => realpath( __DIR__."/../../" )
 
 ];
