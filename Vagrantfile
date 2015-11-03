@@ -27,20 +27,20 @@ Vagrant.configure(2) do |config|
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
-  # config.vm.network "private_network", ip: "192.168.33.18"
+  config.vm.network "private_network", ip: "192.168.33.18"
   config.vm.provision "shell", path: "Provision/script.sh"
 
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
   # your network.
-  config.vm.network "public_network", ip: "192.168.1.18"
+  # config.vm.network "public_network", ip: "192.168.1.18"
 
   # Share an additional folder to the guest VM. The first argument is
   # the path on the host to the actual folder. The second argument is
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
   config.vm.synced_folder "./", "/var/www/crud_api",
-	:owner =>"vagrant", :group => "www-data", :mount_options => ['dmode=755,fmode=755']
+	:owner =>"www-data", :group => "www-data", :mount_options => ['dmode=755,fmode=755']
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
