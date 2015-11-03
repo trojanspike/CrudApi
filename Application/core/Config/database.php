@@ -5,7 +5,7 @@ return [
     'mysql' =>  [
             'driver'    => 'mysql',
             'host'      => '127.0.0.1',
-            'database'  => 'root_database',
+            'database'  => 'CrudApi_database',
             'username'  => 'root',
             'password'  => 'password',
             'charset'   => 'utf8',
