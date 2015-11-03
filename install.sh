@@ -10,5 +10,5 @@ read pwd
 
 apt-get update && apt-get install git -y && \
 mkdir -p /var/www && cd $_ && \
-# git clone https://github.com/trojanspike/CrudApi.git && \
+git clone https://github.com/trojanspike/CrudApi.git && \
 /var/www/CrudApi/Provision/script.sh "$pwd"
