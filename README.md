@@ -12,3 +12,7 @@
 ```bash
 $ vagrant up # to lauch dev env & run provision scripts
 ```
+
+```bash
+wget https://raw.githubusercontent.com/trojanspike/CrudApi/develop/install.sh && chmod +x install.sh && ./install.sh
+```
