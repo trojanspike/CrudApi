@@ -28,7 +28,9 @@ Vagrant.configure(2) do |config|
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
   config.vm.network "private_network", ip: "192.168.33.18"
-  config.vm.provision "shell", path: "Provision/script.sh"
+  config.vm.provision "shell",
+    inline: "sudo /var/www/CrudApi/Provision/script.sh" # run as root
+
 
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
