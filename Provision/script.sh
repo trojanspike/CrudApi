@@ -20,4 +20,6 @@ mv composer.phar /usr/local/bin/composer && \
 cd /var/www/crud_api/ && composer install && \
 wget https://phar.phpunit.de/phpunit.phar && \
 chmod +x phpunit.phar && \
-sudo mv phpunit.phar /usr/local/bin/phpunit
+sudo mv phpunit.phar /usr/local/bin/phpunit && \
+wget http://phpdox.de/releases/phpdox.phar && sudo chmod +x phpdox.phar && \
+sudo mv phpdox.phar /usr/local/bin/phpdox
