@@ -5,4 +5,5 @@ composer.lock
 .c9/
 .vagrant/
 Application/core/Storage/Cache/
+!Application/core/Storage/Cache/.gitindex
 build/
