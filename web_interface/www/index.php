@@ -3,57 +3,15 @@ session_start();
 
 require_once __DIR__.'/../vendor/autoload.php'; /* Composer */
 
-/**
- * TODO :
- * App start class passing $_SERVER URI
- * Cleans up index.php & makes phpunit tests easier
- *
- *
- * use App\Start;
- * Start::app($_SERVER['REQUEST_URI']);
-**/
-
+use App\Start;
 use App\Config;
 
-ini_set("display_errors", config::get('site.error:display') );
-error_reporting( config::get('site.error:report') );
-
-date_default_timezone_set( Config::get("site.timezone") );
-ini_set('date.timezone', Config::get("site.timezone") );
-
-$path = preg_replace('/^\//', '', parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
-
-/* /show page  */
-if( $path == '' ){
-    header('Location:/docs');
-}
-
-
-$version = substr($path,0,2);
-$path = preg_replace('/^v[0-9]\//', '', $path);
-
-/*
-use Api;
-use Rest;
-*/
-
-Api::inject('API_V', $version);
-
-/* How strict to make the REQUEST_URI */
-if( preg_match("/^([\/\-\.a-zA-Z0-9]+)$/", $path) && preg_match("/^v[0-9]$/", $version) ){
-    Api::$uri = $path; // needed for $req->uri & req->params()
-    Api::$debug = Config::get('site.debug');
-    Rest::$Dir = __DIR__."/../rest/Default/{$version}/";
-    Rest::$debug = Config::get('site.debug');
-    
-    /* TODO : Poss change ?
-    Rest::conf([
-        'config' => path/to/policies,
-        'apis' => path/to/apiDir
-    ]);
-    */
-    Rest::init(explode('/', $path));
-}
+Start::init($_SERVER['REQUEST_URI'], [
+    "defaultPath"   =>  "/docs/v1",
+    "uriRestrict"   =>  "/^([\/\-\.a-zA-Z0-9]+)$/",
+    "debug"         =>  Config::get('site.debug'),
+    "restDir"       =>  path("base")."/rest/Default"
+])->run();
 
 use App\View;
 use App\Session;
