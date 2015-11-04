@@ -80,21 +80,19 @@ class Accept {
      * Does something interesting
      * 28/03/15 , 16:30
      * @param  array    $tests  Array of strings to preg match $accept
-     * @param  string  $accept  Header Accept Type
      * @return bool , true = pass | false = fail
+     * regx(['text/plain', 'application/javascript']);
      */
-    public static function pass( array $tests, $accept )
+    public function regx( array $tests )
     {
         foreach( $tests as $test )
         {
-            if( ! preg_match($test, $accept) )
+            if( preg_match( $test, $this->sentAccept ) )
             {
-                return false;
+                return true;
             }
         }
-        return true;
+        return false;
     }
-
-
 
 }
