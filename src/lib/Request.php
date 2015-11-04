@@ -171,7 +171,7 @@ class Request {
 	{
 		// $this-_params : arr
 		$returnData = [];
-		if( is_numeric($num) && count($this->_params) >= $num )
+		if( is_numeric($num) && count($this->_params) == $num )
 		{
 			for( $i = 0; $i< $num ; $i++ )
 			{
@@ -180,8 +180,7 @@ class Request {
 		}
 		else
 		{
-			/* TODO -> Throw error when not int ? */
-			return $this->_params;
+			return false;
 		}
 		return $returnData;
 	}
