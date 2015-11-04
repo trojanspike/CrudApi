@@ -11,6 +11,7 @@ use App\Config;
  * @link        https://github.com/trojanspike/BasicAuthCRUD-api
  */
 
+
 class View {
 
     /**
@@ -20,16 +21,19 @@ class View {
      *
      * @return echo's out each JS script tag
      */
-    public static function getJS($path) /* TODO , if in production run through uglify & cache */
-    {   /* TODO , refactor to scale ? */
-        $AppJs = glob($path.'/*.js');
-        $time = time();
-        $AppJs = array_merge($AppJs , glob($path.'/**/**/*.js'));
-        foreach($AppJs as $js)
+    public static function getJS()
+    {
+        $AppJS = [];
+        foreach( path("js_dirs") as $jsdir ) /* TODO : id path(bowerFile) != false */
+        {
+            $AppJS = array_merge_recursive($AppJS, glob($jsdir.'/*.js'), glob($jsdir.'/**/*.js') );
+        }
+        foreach($AppJS as $js)
         {
             $js = preg_replace("/.*www(.*)$/", "$1", $js);
-            echo "<script type='text/javascript' src='{$js}?v={$time}'></script>";
+            echo "<script type='text/javascript' src='{$js}'></script>";
         }
+
     }
-    
+
 }
