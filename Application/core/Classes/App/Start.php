@@ -1,5 +1,5 @@
 <?php namespace App;
-
+/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */
 /**
  * Short description for class
  *
@@ -41,6 +41,13 @@ class Start {
         $this->_setReporting();
     }
 
+    /**
+     * Does something interesting
+     * 03/11/15 , 12:14
+     * @param  type    $name  What it does
+     * @throws Exception If something interesting cannot happen
+     * @return Info
+     */
     public static function init($requestURI, $conf)
     {
         return new Start($requestURI, $conf);
@@ -81,5 +88,3 @@ class Start {
     }
 
 }
-
-/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4: */

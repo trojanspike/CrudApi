@@ -29,5 +29,3 @@ class Illuminate extends Capsule {
 
 
 }
-
-?>

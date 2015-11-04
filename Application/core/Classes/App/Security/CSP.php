@@ -12,6 +12,3 @@
 class CSP {
     /* TODO - set header  Content Security Policy*/
 }
-
-
-?>

@@ -26,4 +26,3 @@ class RedisSchema extends RedisDB {
     }
 
 }
-?>

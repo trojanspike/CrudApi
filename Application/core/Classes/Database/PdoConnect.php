@@ -30,14 +30,14 @@ class PdoConnect extends PDO {
         $conf = Config::get('database.mysql');
         $user = $conf['username'];
         $password = $conf['password'];
-        $dname = $conf['database'];
+        $dbname = $conf['database'];
         $host = $conf['host'];
 
 
         try {
-            parent::__construct("mysql:dbname={$dname};host={$host}", $user, $password);
+            parent::__construct("mysql:dbname={$dbname};host={$host}", $user, $password);
         }
-        catch (PDOException $e)
+        catch (\PDOException $e)
         {
             die( 'Connection failed: ' . $e->getMessage() );
         }

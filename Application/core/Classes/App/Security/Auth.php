@@ -45,5 +45,3 @@ class Auth extends RedisDB {
     }
 
 }
-
-?>

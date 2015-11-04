@@ -82,5 +82,3 @@ class Users extends PdoConnect {
     }
 
 }
-
-?>

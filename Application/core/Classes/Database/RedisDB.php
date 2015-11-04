@@ -51,4 +51,3 @@ class RedisDB extends Redis {
       }
     }
 }
-?>
