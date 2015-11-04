@@ -22,4 +22,5 @@ return [
     ,'phpinfo'          => ['GET']
     ,'test/mail'        => ['GET', 'POST']
     ,'test/config'      => ['GET']
+    ,'test/accept'      => ['GET', 'POST']
     ];

@@ -9,7 +9,9 @@
  * @link        https://github.com/trojanspike/BasicAuthCRUD-api
  */
 
-class Accepted {
+use Request;
+
+class Accepted extends Request {
 
 	/**
 	* Bypass tests, do fake true | pass
@@ -41,7 +43,6 @@ class Accepted {
         return true;
     }
 
+
+
 }
-
-
-?>
