@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 require_once __DIR__.'/../vendor/autoload.php'; /* Composer */
 
 use App\Start;
@@ -16,6 +15,13 @@ Start::init($_SERVER['REQUEST_URI'], [
 use App\View;
 use App\Session;
 Session::start();
+View::render(path('www').'/app/main.html', [
+    "csrf" => Session::get('_CSRF'),
+    "scripts" => [
+        realpath(__DIR__.'/app/'),
+        realpath(__DIR__.'/app/pages/')
+    ]
+]);
 
 ?>
 
@@ -133,7 +139,7 @@ Session::start();
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular-animate.js"></script>
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
-
+    <script src="/v1/render-js?csrf=<?php echo Session::get('_CSRF') ?>"></script>
     <?php echo View::getJS( realpath(__DIR__.'/app/') ); ?>
     <?php echo View::getJS( realpath(__DIR__.'/app/pages/') ); ?>
     
