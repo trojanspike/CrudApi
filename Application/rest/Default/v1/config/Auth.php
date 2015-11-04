@@ -5,10 +5,9 @@ use App\Security\Auth;
 use App\Config;
 use App\Build\ResponseApp as Response;
 use App\Session;
-/* Generate a new token */
-// Session::set('new_token', AuthTokenGenerate());
-/***********************/
 
+/***********************/
+Session::set('new_token', AuthTokenGenerate());
 Api::setResponse( new Response(true) );
 
 Api::error(function($message, $res)
