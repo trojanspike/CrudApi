@@ -2,6 +2,7 @@
 
 use App\Session;
 use Response;
+
 /**
  * Extends Response class for custom methods & injected output
  *
@@ -50,8 +51,12 @@ class ResponseApp extends Response {
      * @throws Exception If something interesting cannot happen
      * @return Status
      */
-    public function html( $content )
+    public function html( $content="" )
     {
+        if( ! is_string($content) )
+        {
+            throw new \Exception("Response::html($1) , $1 must be string");
+        }
         parent::setContent('text/html')->status(200)->outPut($content);
     }
 
@@ -66,6 +71,36 @@ class ResponseApp extends Response {
     public function jpg( $content )
     {
         $this->setContent('image/jpg')->status(200)->outPut( $content );
+    }
+
+    /**
+     * Does something interesting
+     * 04/11/15 , 11:42
+     * @param  string    $where  Where something interesting takes place
+     * @param  integer  $repeat How many times something interesting should happen
+     * @throws Exception If something interesting cannot happen
+     * @return Status
+     */
+    public function H301()
+    {
+        $this->setContent('text/plain')->status(301)->outPut("301 Moved Permanently");
+    }
+
+    /**
+     * Does something interesting
+     * 04/11/15 , 11:50
+     * @param  string    $where  Where something interesting takes place
+     * @param  integer  $repeat How many times something interesting should happen
+     * @throws Exception If something interesting cannot happen
+     * @return Status
+     */
+    public function jsonErr( array $obj)
+    {
+        $this->json([
+            "error" => true,
+            "code" => $obj["code"],
+            "message" => $obj["message"]
+        ]);
     }
 
 }
