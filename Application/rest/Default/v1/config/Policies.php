@@ -11,7 +11,7 @@ return [
     ,'Quotes/NoAuth'    => false
     ,'Quotes/Auth'      => true
     ,'test'             => false
-    ,'store'            => true
+    ,'store'            => ['GET', 'POST']
     ,'test/redis'       => false
     ,'test/Illuminate'  => false
     ,'uuid'             => false

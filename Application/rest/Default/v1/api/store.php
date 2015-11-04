@@ -1,24 +1,60 @@
 <?php
 
-use Database\RedisDB;
-$id = 123;
-/* TODO - quick storage over /POST , retrieve /GET */
-Api::get(function($req, $res) use($id) {
-    $redis = new RedisDB;
+use App\Cache;
 
-    $params = $req->params(2);
-
-    $res->setContent('application/json')->outPut( $redis->get($id.'_'.$params[0]) );
-
+Api::get(function($req, $res){
+    if( $params = $req->params(2) )
+    {
+        switch( $params[0] )
+        {
+            case "file":
+                if( $data = Cache::file()->get($params[1]) )
+                {
+                    $data=json_decode($data, true);
+                    $res->setContent($data['contentType'])->status(200)->outPut($data['content']);
+                }
+                else
+                {
+                    $res->json(['NA']);
+                }
+            break;
+            case "db";
+            break;
+            default:
+                $res->json([]);
+        }
+    }
+    else
+    {
+        $res->json([]);
+    }
 });
 
-Api::post(function($req, $res) use($id) {
-    $redis = new RedisDB;
-    $params = $req->params(2);
+/* /POST /store/file/{NAME} -X POST -d '{"contentType":"application/json", "content":"{\"key\":\"val\"}"}' */
+Api::post(function($req, $res){
 
-    $redis->set($id.'_'.$params[0], json_encode( $req->input() ) );
-    $redis->expire($id.'_'.$params[0], $params[1]);
-
-    $res->json( $id.'_'.$params[0] );
-
+    if( $params = $req->params(2) )
+    {
+        switch( $params[0] )
+        {
+            case "file":
+                if( $post = $req->input(['contentType', 'content']) )
+                {
+                    Cache::file()->put($params[1] , json_encode($post) , 120 );
+                    $res->json(['OK']);
+                }
+                else {
+                    $res->json([0]);
+                }
+            break;
+            case "db";
+                break;
+            default:
+                $res->json([]);
+        }
+    }
+    else
+    {
+        $res->json([]);
+    }
 });
