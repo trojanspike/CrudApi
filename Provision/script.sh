@@ -16,6 +16,7 @@ fi
 #http://stackoverflow.com/questions/7739645/install-mysql-on-ubuntu-without-password-prompt
 # http://phpdox.de/getting-started.html
 # http://www.dev-metal.com/install-setup-php-5-6-ubuntu-14-04-lts/
+apt-get update && apt-get install python-software-properties -y && \
 add-apt-repository ppa:ondrej/php5-5.6 <<EFO
 
 EFO
