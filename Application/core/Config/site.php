@@ -7,9 +7,9 @@ return [
 
     "env"               => "prod",
 
-    "config"            => "NULL",
+    "config"            => $_SERVER['HTTP_HOST'],
 
-    "url"               => "dev.website.com",
+    "url"               => $_SERVER['HTTP_HOST'],
 
     "error:report"      => E_ALL,
 

@@ -12,7 +12,7 @@ Start::init($_SERVER['REQUEST_URI'], [
     "defaultPath"   =>  "/docs",
     "uriRestrict"   =>  "/^([\/\-\.a-zA-Z0-9]+)$/",
     "debug"         =>  Config::get('site.debug'),
-    "restDir"       =>  path("base")."/rest/Default"
+    "restDir"       =>  path("base")."/rest/{$_SERVER['HTTP_HOST']}"
 ])->run();
 
 use App\View;
