@@ -24,4 +24,5 @@ return [
     ,'test/config'      => ['GET']
     ,'test/accept'      => ['GET', 'POST', 'PUT', 'DELETE']
     ,'render/js'        => ['GET']
+    ,'render/css'        => ['GET']
     ];

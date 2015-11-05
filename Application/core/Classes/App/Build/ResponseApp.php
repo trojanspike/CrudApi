@@ -45,6 +45,16 @@ class ResponseApp extends Response {
 
     /**
      * Does something interesting
+     * 05/11/15 , 14:51
+     * @param  string    $content  Css styles
+     * @return Status
+     */
+    public function css( $content )
+    {
+        $this->setContent("text/css")->status(200)->outPut($content);
+    }
+    /**
+     * Does something interesting
      * 24/04/15 , 13:48
      * @param  string    $where  Where something interesting takes place
      * @param  integer  $repeat How many times something interesting should happen
