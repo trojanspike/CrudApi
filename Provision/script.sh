@@ -29,7 +29,8 @@ mysql -u root -p$MSQL_ROOT_PASS -e "CREATE DATABASE CrudApi_database;" && \
 rsync $BASE/Provision/000-default.conf /etc/apache2/sites-enabled/ && service apache2 reload && \
 curl -sS https://getcomposer.org/installer | php &&
 mv composer.phar /usr/local/bin/composer && \
-#
+# https://getcomposer.org/doc/articles/troubleshooting.md#proc-open-fork-failed-errors
+/bin/dd if=/dev/zero of=/var/swap.1 bs=1M count=1024 && /sbin/mkswap /var/swap.1 && /sbin/swapon /var/swap.1 && \
 cd /var/www/CrudApi/ && composer install && \
 wget https://phar.phpunit.de/phpunit.phar && \
 chmod +x phpunit.phar && \
