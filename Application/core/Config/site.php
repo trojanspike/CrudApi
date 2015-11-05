@@ -5,7 +5,7 @@ return [
     
     "debug"             => true,
 
-    "env"               => "dev",
+    "env"               => "prod",
 
     "config"            => "NULL",
 

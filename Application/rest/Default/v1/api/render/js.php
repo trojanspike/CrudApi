@@ -2,8 +2,15 @@
 
 use App\Config;
 use App\Cache;
-
+use App\Session;
+use JSMin\JSMin;
 Api::get(function($req, $res){
+    $csrf = $req->get("csrf");
+
+    if( $csrf == false || $csrf !== Session::get("_CSRF") )
+    {
+        $res->json(["error"]);
+    }
 
     if( $js = Cache::file()->get('render-js') )
     {
@@ -17,6 +24,7 @@ Api::get(function($req, $res){
     {
         $content.=file_get_contents($js);
     }
-    Cache::file()->put('render-js', preg_replace("/\/\/.*\n|\/\*.*\*\/\n|\n\n/", "", $content) , 259200);
-    $res->setContent('application/javascript')->status(200)->outPut( $content );
+    $JS_minifies = JSMin::minify( $content );
+    Cache::file()->put('render-js', $JS_minifies , 25);
+    $res->setContent('application/javascript')->status(200)->outPut( $JS_minifies );
 });

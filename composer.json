@@ -10,7 +10,8 @@
 	   	"illuminate/database": "5.0.4",
 	   	"wixel/gump": "1.1.*",
 		"ramsey/uuid": "2.8.0",
-		"swiftmailer/swiftmailer": "~5.4"
+		"swiftmailer/swiftmailer": "~5.4",
+		"mrclay/jsmin-php": "^2.3"
 	},
 	"require-dev": {
 		"mockery/mockery": "0.9.3",
