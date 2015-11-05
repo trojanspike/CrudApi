@@ -1,5 +1,5 @@
 window.angular.module('api')
-.config(['$stateProvider', function($stateProvider){
+.config(['$stateProvider', '$locationProvider', '$urlRouterProvider', function($stateProvider, $locationProvider, $urlRouterProvider){
     $stateProvider
         .state('docs', {
             url : '/docs',
@@ -24,4 +24,9 @@ window.angular.module('api')
                 }
             }
         });
+        $locationProvider.html5Mode({
+            enabled: true,
+            requireBase: true
+        });
+        $urlRouterProvider.otherwise('/docs/v1');
 }]);

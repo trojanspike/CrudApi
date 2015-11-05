@@ -1,5 +1,5 @@
 window.angular.module('api.upload', ['upload.controllers', 'upload.directives'])
-.config(['$stateProvider', function($stateProvider){
+.config(['$stateProvider', '$locationProvider', function($stateProvider, $locationProvider){
     console.log($stateProvider)
     $stateProvider
     .state('upload', {
@@ -18,5 +18,4 @@ window.angular.module('api.upload', ['upload.controllers', 'upload.directives'])
             }
         }
     });
-    
 }]);

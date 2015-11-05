@@ -1,5 +1,5 @@
 window.angular.module('api')
-.config(['$stateProvider', function($stateProvider){
+.config(['$stateProvider', '$locationProvider', function($stateProvider, $locationProvider){
     $stateProvider
         .state('user', {
             url : '/user',

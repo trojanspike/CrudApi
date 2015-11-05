@@ -1,5 +1,5 @@
 window.angular.module('api.dashboard', ['dashboard.controllers', 'dashboard.directives'])
-.config(['$stateProvider', function($stateProvider){
+.config(['$stateProvider', '$locationProvider', function($stateProvider, $locationProvider){
     $stateProvider
     .state('dashboard', {
         url : '/dashboard',
@@ -17,5 +17,4 @@ window.angular.module('api.dashboard', ['dashboard.controllers', 'dashboard.dire
             }
         }
     });
-    
 }]);

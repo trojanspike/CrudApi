@@ -9,7 +9,7 @@ use App\Start;
 use App\Config;
 
 Start::init($_SERVER['REQUEST_URI'], [
-    "defaultPath"   =>  "/docs/v1",
+    "defaultPath"   =>  "/docs",
     "uriRestrict"   =>  "/^([\/\-\.a-zA-Z0-9]+)$/",
     "debug"         =>  Config::get('site.debug'),
     "restDir"       =>  path("base")."/rest/Default"
