@@ -11,6 +11,8 @@ return [
 
     "url"               => $_SERVER['HTTP_HOST'],
 
+    "urlScheme"         =>  $_SERVER["REQUEST_SCHEME"],
+
     "error:report"      => E_ALL,
 
     "error:display"     => 1,

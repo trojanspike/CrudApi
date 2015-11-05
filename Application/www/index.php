@@ -27,7 +27,7 @@ Session::start();
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/css/bootstrap.css" type="text/css" />
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.1/animate.min.css">
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/default.min.css">
-        <link rel="stylesheet" href="/v1/render-css?csrf=<?php echo Session::get("_CSRF"); ?>" type="text/css" />
+        <link rel="stylesheet" href="<?php echo Config::get("site.urlScheme") ?>://<?php echo Config::get("site.url") ?>/v1/render-css?csrf=<?php echo Session::get("_CSRF"); ?>" type="text/css" />
         <base href="/" target="_blank">
     </head>
     <body ng-app="api" ng-cloak api-csrf="<?php echo Session::get('_CSRF'); ?>">
@@ -136,6 +136,7 @@ Session::start();
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
     <?php
+
         if( Config::get("site.env") == "dev" )
         {
             echo View::getJS();
@@ -144,7 +145,7 @@ Session::start();
         else
         {
         ?>
-            <script src="/v1/render-js?csrf=<?php echo Session::get('_CSRF') ?>"></script>
+            <script src="<?php echo Config::get("site.urlScheme") ?>://<?php echo Config::get("site.url") ?>/v1/render-js?csrf=<?php echo Session::get('_CSRF') ?>"></script>
         <?php
         }
     ?>
