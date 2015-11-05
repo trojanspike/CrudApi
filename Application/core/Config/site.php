@@ -7,9 +7,9 @@ return [
 
     "env"               => "prod",
 
-    "config"            => $_SERVER['HTTP_HOST'],
+    "config"            => isset($_SERVER['HTTP_HOST'])?$_SERVER['HTTP_HOST']:"NULL",
 
-    "url"               => $_SERVER['HTTP_HOST'],
+    "url"               => isset($_SERVER['HTTP_HOST'])?$_SERVER['HTTP_HOST']:"NULL",
 
     "urlScheme"         =>  $_SERVER["REQUEST_SCHEME"],
 
