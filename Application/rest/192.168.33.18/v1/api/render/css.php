@@ -26,13 +26,17 @@ Api::get(function($req, $res, $injects){
         $content = "";
         $scss = new scssc();
         $scss->setFormatter("scss_formatter_compressed");
+        $scss->addImportPath(function($path) {
+            if (!file_exists(path("www")."/app/scss/".$path)) return null;
+            return path("www")."/app/scss/".$path;
+        });
         foreach( glob( path("www")."/app/scss/*.scss" ) as $scssFile )
         {
             if( ! preg_match("/_.*.scss$/", $scssFile) ) {
                 $content .= file_get_contents($scssFile);
             }
         }
-        $css = $scss->compile($content);
+        $css = $scss->compile( $content );
         Cache::file()->put( "render-css" , $css."\n/* Css Comppiles ".date(DATE_RFC2822)." */", 3);
         $res->css($content);
     }

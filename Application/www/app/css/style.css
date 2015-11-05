@@ -1,6 +1,5 @@
 html, body {
-    
-    background:#d3d3d3;
+    background:lighten($color, 20%);
     }
 body > .container {
     height:auto;
@@ -17,6 +16,7 @@ body > footer {
     background:#e7e7e7;
     border-top:1px solid #eee;
     display:none;
+    height:100%;
 }
 
 
@@ -30,10 +30,6 @@ body > footer {
 background-color: #78FA89;
 }
 
-
-body > .container {
-    height:100%;
-}
 
 .list-group-item.active {
     border-color:#000;
