@@ -8,12 +8,29 @@ require_once __DIR__.'/../vendor/autoload.php'; /* Composer */
 use App\Start;
 use App\Config;
 
-Start::init($_SERVER['REQUEST_URI'], [
+$Application = Start::init($_SERVER['REQUEST_URI'], [
     "defaultPath"   =>  "/docs",
     "uriRestrict"   =>  "/^([\/\-\.a-zA-Z0-9]+)$/",
     "debug"         =>  Config::get('site.debug'),
     "restDir"       =>  path("base")."/rest/{$_SERVER['HTTP_HOST']}"
-])->run();
+]);
+
+try
+{
+    $Application->run(/*TODO : time started*/ /* bool -> throw exception */);
+} catch( Exception $e )
+{
+    if( Config::get("site.debug") === true ) {
+        $res = new Response;
+        if ($e instanceof ApiException OR $e instanceof RestException OR $e instanceof Exception || $e instanceof AuthException ) {
+            // It's either an A or B exception.
+            $res->setContent("text/plain")->status(500)->outPut($e->getMessage());
+        }
+    }
+} /* finally { // TODO -> finally should be working but isn't
+    $res->setContent("text/plain")->status(500)->outPut("Internal Server Error");
+} */
+
 
 use App\View;
 use App\Session;
