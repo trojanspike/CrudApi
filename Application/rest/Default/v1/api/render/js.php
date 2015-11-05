@@ -4,7 +4,6 @@ use App\Config;
 use App\Cache;
 
 Api::get(function($req, $res){
-    /* TODO :: Header resend issue */
 
     if( $js = Cache::file()->get('render-js') )
     {
