@@ -119,7 +119,7 @@ class Response implements ResponseInterface {
 	 */
 	public function json( array $obj)
 	{
-		$this->setHeader('Content-Type:application/javascript');
+		$this->_content='application/json';
 		$this->outPut(json_encode($obj));
 	}
 
@@ -133,15 +133,10 @@ class Response implements ResponseInterface {
 	 */
 	public function outPut($content)
 	{
-		http_response_code($this->_status);
-
-		if( $this->_content !== false )
-		{
-			header('Content-Type:'.$this->_content);
-		}
-		echo $content;
+		header("Content-Type:{$this->_content}");
 		header('Content-Length:'.strlen($content));
 		header('Connection:close');
+		echo $content;
 		exit();
 	}
 
