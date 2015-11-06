@@ -23,4 +23,9 @@ return [
         , 'password' => 'password'
     ]
     , 'default' => 'mailgun'
+
+    , "sender" => [
+          "name" => "John Doe"
+        , "email"   =>  "johndoe@website.com"
+    ]
 ];

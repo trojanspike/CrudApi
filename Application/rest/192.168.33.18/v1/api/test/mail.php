@@ -3,51 +3,50 @@ use App\Config;
 use App\Cache;
 
 Api::get(function($req, $res){
-    $html = <<<EFO
+    if( $form = Cache::file()->get("mail-form") )
+    {
+        $res->html( Cache::file()->get('mail-form') );
+    }
+    else
+    {
+$html = <<<EFO
 <form action="/v1/test-mail" method="POST">
     <p> Email : <input type="email" name="email"> </p>
+    <p> Name : <input type="text" name="name"> </p>
+    <p> Subject : <input type="text" name="subject"> </p>
     <p> Message : <textarea name="message"></textarea> </p>
     <p> <input type="submit" value="Send"> </p>
 </form>
 EFO;
-
-    if( Cache::db()->get('HTML_FORM') === false )
-    {
-        Cache::db()->put('HTML_FORM', $html , 120);
+        Cache::file()->put('mail-form', $html , 120);
+        $res->html( $html );
     }
-
-    $res->setContent('text/html')->outPut( Cache::db()->get('HTML_FORM') );
 
 });
 
-Api::post(function( $req , $res ){
-
-    $mailConf = array2std( Config::get('mail')[ Config::get('mail')['default'] ] );
-
-    $transport = Swift_SmtpTransport::newInstance($mailConf->domain, $mailConf->port , $mailConf->encrypt)
-        ->setUsername($mailConf->username)
-        ->setPassword($mailConf->password);
-
-    $mailer = Swift_Mailer::newInstance($transport);
-
-    $message = Swift_Message::newInstance('Wonderful Subject')
-        ->setTo(array($_POST['email'], $_POST['email'] => 'A name'))
-        ->setBody($_POST['message']);
-
-    $attachment = Swift_Attachment::fromPath( path('storage').'/uploads/php.jpg' , 'image/jpg');
-
-    // Attach it to the message
-    $message->attach($attachment);
-
-    $i = 0;
-
-    while( $i < 1 ){
-        $message->setFrom(array("john@doe{$i}.com" => "John Doe {$i}"));
-
-        $mailer->send($message);
-        $i++;
+$mailer = new App\Build\Mailer;
+Api::post(function( $req , $res ) use( $mailer ) {
+    if( ! isset( $_POST["subject"] , $_POST["message"] , $_POST["email"] , $_POST["name"] ) )
+    {
+        $res->json([
+            "All fields required :: test"
+        ]);
     }
-
-    $res->json([$i]);
-
+    $mailer->content($_POST["subject"], $_POST["message"])->to([
+        "email" => $_POST["email"],
+        "name"  =>  $_POST["name"]
+    ]);
+    $mailer->attach([
+        path('storage').'/uploads/php.jpg',
+        path('storage').'/uploads/attachment.zip',
+        path('storage').'/uploads/Swiftmailer.pdf'
+    ]);
+    if( $mailer->send() )
+    {
+        $res->ok();
+    }
+    else
+    {
+        $res->json(["error"]);
+    }
 });
