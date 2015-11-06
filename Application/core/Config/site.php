@@ -11,7 +11,7 @@ return [
 
     "url"               => isset($_SERVER['HTTP_HOST'])?$_SERVER['HTTP_HOST']:"NULL",
 
-    "urlScheme"         =>  $_SERVER["REQUEST_SCHEME"],
+    "urlScheme"         =>  isset($_SERVER["REQUEST_SCHEME"])?$_SERVER["REQUEST_SCHEME"]:"NULL",
 
     "error:report"      => E_ALL,
 
