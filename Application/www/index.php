@@ -30,9 +30,9 @@ try
             $res->setContent("text/plain")->status(500)->outPut("Internal Server Error");
         }
     }
-} finally { // TODO -> finally should be working but isn't
+} /* finally { // TODO -> finally should be working but isn't
     $res->setContent("text/plain")->status(500)->outPut("Internal Server Error");
-}
+} */
 
 
 use App\View;
