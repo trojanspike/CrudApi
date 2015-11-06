@@ -44,6 +44,7 @@
 class Request {
 
 	private $_headers, $_basicAuth, $_input, $_params;
+	protected $inputString;
 	public $verb, $accept, $uri = false;
 
 	/**
@@ -89,7 +90,7 @@ class Request {
 		    } 
 		    $this->_headers = $headers;
 		}
-		
+		$this->inputString = file_get_contents('php://input');
 		$this->_input = json_decode( file_get_contents('php://input'), true );
 		$this->verb = isset($this->_headers['X-verb'])?$this->_headers['X-verb']:$_SERVER['REQUEST_METHOD'];
 		if( isset( $_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW']) )
@@ -119,6 +120,15 @@ class Request {
 		return $this->_returnKeyVals($this->_basicAuth, $key);
 	}
 
+	/**
+	 * Returns the input string
+	 * 06/11/15 , 16:09
+	 * @return Input String
+	 */
+	public function getInputString()
+	{
+	    return $this->inputString;
+	}
 	/**
 	 * Does something interesting
 	 * 28/03/15 , 16:30
