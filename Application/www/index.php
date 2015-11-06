@@ -21,15 +21,18 @@ try
 } catch( Exception $e )
 {
     if( Config::get("site.debug") === true ) {
-        $res = new Response;
-        if ($e instanceof ApiException OR $e instanceof RestException OR $e instanceof Exception || $e instanceof AuthException ) {
+        $res = new App\Build\ResponseApp;
+        if ($e instanceof ApiException || $e instanceof RestException || $e instanceof Exception || $e instanceof AuthException ) {
             // It's either an A or B exception.
             $res->setContent("text/plain")->status(500)->outPut($e->getMessage());
+        } else
+        {
+            $res->setContent("text/plain")->status(500)->outPut("Internal Server Error");
         }
     }
-} /* finally { // TODO -> finally should be working but isn't
+} finally { // TODO -> finally should be working but isn't
     $res->setContent("text/plain")->status(500)->outPut("Internal Server Error");
-} */
+}
 
 
 use App\View;
