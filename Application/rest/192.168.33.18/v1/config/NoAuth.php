@@ -3,8 +3,10 @@
 use App\Session;
 use App\Config;
 use App\Build\ResponseApp as Response;
+use App\Build\RequestApp as Request;
 
 Api::setResponse( new Response(false) );
+Api::setRequest( new Request(Api::$uri) );
 
 Api::error(function($message, $res)
 {

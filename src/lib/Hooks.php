@@ -15,7 +15,7 @@ class Hooks {
    /**
     * Add event hook
     * Hooks::on('some:event', function($param1, $param2){
-        echo "Event fire form {$param1} , username : {$param2}";
+    *    echo "Event fire form {$param1} , username : {$param2}";
     * });
     * 31/03/15 , 21:07
     * @param  string    $key  Hook name

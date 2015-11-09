@@ -73,13 +73,13 @@ class Api {
 	 *
 	 * @var $request
 	 */
-	$request,
+	$request = false,
 	/**
 	 * Response class instance
 	 *
 	 * @var $response
 	 */
-	$response;
+	$response = false;
 
 	/**
 	 * Bool , set debug on or off
@@ -104,7 +104,11 @@ class Api {
 	 */
 	public static function auth($callb)
 	{
-		static::$request = new Request( (static::$uri)?static::$uri:''); // ($parts, $uri)
+
+		if( static::$request == false )
+		{
+			static::$request = new Request( (static::$uri)?static::$uri:''); // ($parts, $uri)
+		}
 
 		if( static::$response == false )
 		{
@@ -206,6 +210,18 @@ class Api {
 		static::$response = $response;
 	}
 
+	/**
+	 * Does something interesting
+	 * 09/11/15 , 12:48
+	 * @param  string    $where  Where something interesting takes place
+	 * @param  integer  $repeat How many times something interesting should happen
+	 * @throws Exception If something interesting cannot happen
+	 * @return Status
+	 */
+	public static function setRequest( RequestInterface $request )
+	{
+		static::$request = $request;
+	}
 	/**
 	 * access private
 	 * Run api called , 3rd arg in Api::auth fn

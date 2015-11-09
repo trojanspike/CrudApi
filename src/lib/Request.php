@@ -29,7 +29,12 @@
 * @version 0.1.27
 * @license MIT License (http://www.opensource.org/licenses/mit-license.php)
 */
+interface RequestInterface {
 
+	public function params($num="*");
+	public function input($key=false);
+
+}
 /**
  * Short description for class
  *
@@ -41,10 +46,10 @@
  * @link
  * @since
  */
-class Request {
+class Request implements RequestInterface {
 
-	private $_headers, $_basicAuth, $_input, $_params;
-	protected $inputString;
+	private $_headers, $_basicAuth;
+	protected $inputString, $_input, $_params;
 	public $verb, $accept, $uri = false;
 
 	/**
@@ -203,7 +208,7 @@ class Request {
 	 * @throws Exception If something interesting cannot happen
 	 * @return Status
 	 */
-	private function _returnKeyVals($obj, $key)
+	protected function _returnKeyVals($obj, $key)
 	{
 		if( is_array($key) )
 		{
@@ -227,7 +232,7 @@ class Request {
 	 * @throws Exception If something interesting cannot happen
 	 * @return Status
 	 */
-	private function _returnKeyValsFromArray($obj , $keyArr)
+	protected function _returnKeyValsFromArray($obj , $keyArr)
 	{
 		$dataArr = [];
 		foreach( $keyArr as $key )
