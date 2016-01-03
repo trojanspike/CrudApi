@@ -11,7 +11,10 @@
 	   	"wixel/gump": "1.1.*",
 		"ramsey/uuid": "2.8.0",
 		"swiftmailer/swiftmailer": "~5.4",
-		"mrclay/jsmin-php": "^2.3"
+		"mrclay/jsmin-php": "^2.3",
+		"jaybizzle/crawler-detect" :"1.*",
+		"symfony/console": "^3.0",
+		"robmorgan/phinx": "^0.5.1"
 	},
 	"require-dev": {
 		"mockery/mockery": "0.9.3",
