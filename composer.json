@@ -14,7 +14,8 @@
 		"mrclay/jsmin-php": "^2.3",
 		"jaybizzle/crawler-detect" :"1.*",
 		"symfony/console": "^3.0",
-		"robmorgan/phinx": "^0.5.1"
+		"robmorgan/phinx": "^0.5.1",
+		"vlucas/phpdotenv": "^2.2"
 	},
 	"require-dev": {
 		"mockery/mockery": "0.9.3",
