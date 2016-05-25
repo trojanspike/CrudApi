@@ -16,6 +16,7 @@ fi
 #http://stackoverflow.com/questions/7739645/install-mysql-on-ubuntu-without-password-prompt
 # http://phpdox.de/getting-started.html
 # http://www.dev-metal.com/install-setup-php-5-6-ubuntu-14-04-lts/
+rm -Rf $BASE/Application/vendor && rm -Rf $BASE/composer.lock && \
 apt-get update && apt-get install python-software-properties -y && \
 add-apt-repository ppa:ondrej/php5-5.6 <<EFO
 
@@ -38,4 +39,5 @@ chmod +x phpunit.phar && \
 mv phpunit.phar /usr/local/bin/phpunit && \
 wget http://phpdox.de/releases/phpdox.phar && chmod +x phpdox.phar && \
 mv phpdox.phar /usr/local/bin/phpdox && chown -R www-data:www-data $BASE/Application/www/ && \
-chown -R root:www-data $BASE/Application/core/Storage/ && chmod -R 770 $BASE/Application/core/Storage/
+chown -R root:www-data $BASE/Application/core/Storage/ && chmod -R 770 $BASE/Application/core/Storage/ && \
+$BASE/Application/bin/schema up
