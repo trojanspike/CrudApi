@@ -5,7 +5,7 @@ return [
     
     "debug"             => true,
 
-    "env"               => "prod",
+    "env"               => "dev",
 
     "config"            => isset($_SERVER['HTTP_HOST'])?$_SERVER['HTTP_HOST']:"NULL",
 

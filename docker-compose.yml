@@ -1,0 +1,43 @@
+# https://docs.docker.com/compose/compose-file/
+
+version: '2'
+services:
+  redis:
+    container_name: redis
+    mem_limit: 512m
+    image: redis:alpine
+    ports:
+      - 6379:6379
+    networks:
+      - back-tier
+  mysql:
+    container_name: mysql
+    image: mysql:5.6
+    ports:
+      - 3306
+    networks:
+      - back-tier
+    environment:
+       - MYSQL_ROOT_PASSWORD=my-secret-pw
+       - MYSQL_DATABASE=CrudApi_database
+       - MYSQL_USER=api_user
+       - MYSQL_PASSWORD=api_pwd
+  crudapi:
+    depends_on:
+      - mysql
+      - redis
+    container_name: crudapi
+    build: .
+    volumes:
+      - ./Application/rest:/var/www/CrudApi/Application/rest
+    links:
+      - mysql
+      - redis
+    ports:
+      - 80:80
+    networks:
+      - front-tier
+      - back-tier
+networks:
+   back-tier:
+   front-tier:

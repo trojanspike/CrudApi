@@ -1,0 +1,5 @@
+.idea/
+.git/
+.vagrant/
+Application/vendor/
+composer.lock

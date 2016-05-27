@@ -4,15 +4,13 @@ return [
     
     'mysql' =>  [
             'driver'    => 'mysql',
-            'host'      => '127.0.0.1',
+            'host'      => isset($_ENV['DOCKER'])?'mysql':'127.0.0.1',
             'database'  => 'CrudApi_database',
-            'username'  => 'root',
-            'password'  => 'password',
+            'username'  => isset($_ENV['DOCKER'])?'api_user':'root',
+            'password'  => isset($_ENV['DOCKER'])?'api_pwd':'password',
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
-            'options'   => array(
-                \PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'UTF8'",
-            ),
+            'options'   => array(),
             'prefix'    => ''
         ],
         
@@ -21,11 +19,11 @@ return [
    
    'sqlite' => '',
    
-   'passwordSalt' => '$@kis48575Col5',
+   'passwordSalt' => '$@kis48575Col5', /* ($is_docker && isset( $ENV['SALT'] ))?$ENV['SALT']:'$@kis48575Col5'; */
    
    'redis' => [
-       'expires' => 259200,
-        'host' => '127.0.0.1',
+       	'expires' => 259200,
+        'host' => isset($_ENV['DOCKER'])?'redis':'127.0.0.1',
         'port' => '6379'
         ]
     

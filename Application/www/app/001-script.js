@@ -102,7 +102,7 @@ function(Session, $timeout , $scope, $http){
     
     try {
         var Sess = JSON.parse( localStorage.getItem('Session') );
-        Session.set(Sess);
+        // Session.set(Sess);
         }
         catch(err) {}
     

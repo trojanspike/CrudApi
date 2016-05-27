@@ -35,7 +35,7 @@ class PdoConnect extends PDO {
 
 
         try {
-            parent::__construct("mysql:dbname={$dbname};host={$host}", $user, $password);
+            parent::__construct("mysql:dbname={$dbname};host={$host};charset=utf8", $user, $password);
         }
         catch (\PDOException $e)
         {

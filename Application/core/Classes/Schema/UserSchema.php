@@ -30,7 +30,9 @@ class UserSchema {
             // $table->enum('actived', [0, 1])->default(0);
             $table->boolean('actived')->default(false);
             $table->string('activationKey', 32)->unique();
-            $table->timestamps();
+			$table->string('created_at', 26);
+			$table->string('updated_at', 26);
+//            $table->timestamps();
         });
     }
 
