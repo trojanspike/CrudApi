@@ -3,3 +3,5 @@
 .vagrant/
 Application/vendor/
 composer.lock
+Application/core/Storage/Cache/*
+!Application/core/Storage/Cache/.gitindex

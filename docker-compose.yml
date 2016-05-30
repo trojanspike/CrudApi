@@ -22,6 +22,8 @@ services:
        - MYSQL_DATABASE=CrudApi_database
        - MYSQL_USER=api_user
        - MYSQL_PASSWORD=api_pwd
+    volumes:
+      - /var/lib/mysql
   crudapi:
     depends_on:
       - mysql
@@ -29,7 +31,8 @@ services:
     container_name: crudapi
     build: .
     volumes:
-      - ./Application/rest:/var/www/CrudApi/Application/rest
+      - /var/www/CrudApi/Application/core/Storage/Cache/
+      - /var/www/CrudApi/Application/core/Storage/uploads/
     links:
       - mysql
       - redis
